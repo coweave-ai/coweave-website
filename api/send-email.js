@@ -13,7 +13,7 @@
  * - RECIPIENT_EMAIL: Email address to receive notifications
  */
 
-const nodemailer = require('nodemailer');
+import nodemailer from 'nodemailer';
 
 // Simple in-memory rate limiting (resets on cold start)
 const rateLimiter = new Map();
@@ -160,7 +160,7 @@ function createEmailTemplate(data) {
 /**
  * Main serverless function handler
  */
-module.exports = async (req, res) => {
+export default async function handler(req, res) {
   // Set CORS headers
   res.setHeader('Access-Control-Allow-Credentials', true);
   res.setHeader('Access-Control-Allow-Origin', '*');
