@@ -1,0 +1,54 @@
+:root {
+  /* Brand Colors */
+  --color-indigo: #2d255a;
+  --color-navy: #130e34;
+  --color-blue: #2a5686;
+  --color-dark-azure: #348fbb;
+  --color-medium-azure: #3bc4e7;
+  --color-vivid-azure: #3fd6f8;
+  --color-light-azure: #bdf3ff;
+  --color-purple: #9d4edd;
+  --color-pink: #f72585;
+  --color-white: #ffffff;
+
+  /* Glow Colors */
+  --glow-azure: rgba(63, 214, 248, 0.5);
+  --glow-azure-strong: rgba(63, 214, 248, 0.8);
+
+  /* Spacing */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  --spacing-3xl: 6rem;
+
+  /* Shadow Variables */
+  --shadow-glow-subtle: 0 0 20px var(--glow-azure);
+  --shadow-glow-medium: 0 0 30px var(--glow-azure);
+  --shadow-glow-strong: 0 0 40px var(--glow-azure-strong), 0 0 80px rgba(63, 214, 248, 0.3);
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+
+  /* Z-Index Layers */
+  --z-particles: 10;
+  --z-content: 20;
+  --z-cards: 30;
+  --z-buttons: 40;
+  --z-modal: 100;
+
+  /* Glassmorphism */
+  --glass-bg: rgba(42, 86, 134, 0.3);
+  --glass-border: rgba(63, 214, 248, 0.2);
+  --glass-blur: blur(10px);
+}

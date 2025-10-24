@@ -1,0 +1,113 @@
+/* Import DM Sans from Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+  background: linear-gradient(to bottom right, #130e34 0%, #2d255a 35%, #2a5686 70%, #348fbb 100%);
+  color: #ffffff;
+  min-height: 100vh;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Selection Colors */
+::selection {
+  background-color: rgba(63, 214, 248, 0.3);
+  color: #ffffff;
+}
+
+::-moz-selection {
+  background-color: rgba(63, 214, 248, 0.3);
+  color: #ffffff;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d255a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3fd6f8 0%, #3bc4e7 100%);
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #3fd6f8 30%, #3bc4e7 100%);
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif !important;
+  font-weight: 700;
+}
+
+/* Links */
+a {
+  color: #3fd6f8;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: #3bc4e7;
+}
+
+/* Animated Gradient Text */
+@keyframes gradient-shift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animated-gradient-text {
+  background: linear-gradient(90deg, #3fd6f8, #bdf3ff, #3fd6f8, #bdf3ff);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradient-shift 4s ease infinite;
+  filter: drop-shadow(0 0 10px rgba(63, 214, 248, 0.4));
+}
+
+/* Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Focus Visible */
+*:focus-visible {
+  outline: 2px solid #3fd6f8;
+  outline-offset: 2px;
+}
