@@ -38,11 +38,17 @@ const WaitlistForm = () => {
       if (result.success) {
         setIsSubmitted(true)
         reset()
+        // Log success for analytics (optional)
+        console.log('Waitlist signup successful:', result.messageId)
       } else {
-        setError(result.error || 'Something went wrong. Please try again.')
+        // Display user-friendly error message
+        const errorMessage = result.error || 'Something went wrong. Please try again.'
+        setError(errorMessage)
+        console.error('Waitlist signup failed:', result.error)
       }
     } catch (err) {
-      setError('Failed to submit. Please try again later.')
+      setError('Failed to submit. Please check your connection and try again.')
+      console.error('Unexpected error during submission:', err)
     } finally {
       setIsSubmitting(false)
     }
