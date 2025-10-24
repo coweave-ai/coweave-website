@@ -29,7 +29,7 @@ const Hero = () => {
         >
           {/* Logo */}
           <img
-            src="/coweave-website/assets/coweave-logo-no-bg.png"
+            src="/assets/coweave-logo-no-bg.png"
             alt="CoWeave Logo"
             className="w-48 h-48 md:w-64 md:h-64 mx-auto drop-shadow-[0_0_30px_rgba(63,214,248,0.6)] animate-float"
           />

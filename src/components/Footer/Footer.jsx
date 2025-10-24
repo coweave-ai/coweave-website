@@ -15,7 +15,7 @@ const Footer = () => {
         >
           {/* Logo */}
           <img
-            src="/coweave-website/assets/coweave-logo-no-bg.png"
+            src="/assets/coweave-logo-no-bg.png"
             alt="CoWeave Logo"
             className="w-12 h-12 opacity-80"
           />
