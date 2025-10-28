@@ -42,10 +42,10 @@ const SolutionSection = () => {
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
             <span className="text-white drop-shadow-[0_0_10px_rgba(189,243,255,0.3)]">
-              Something Big Is{' '}
+              Orchestrate Agentic Workflows{' '}
             </span>
             <span className="animated-gradient-text">
-              Coming
+              from PRD to Prod
             </span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
