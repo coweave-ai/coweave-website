@@ -20,21 +20,6 @@ const Footer = () => {
             className="w-12 h-12 opacity-80"
           />
 
-          {/* Powered By */}
-          <div className="text-center">
-            <p className="text-gray-400 text-sm mb-2">
-              Powered by{' '}
-              <a
-                href="https://www.anthropic.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-primary-vividAzure hover:text-primary-mediumAzure transition-colors"
-              >
-                Anthropic Claude
-              </a>
-            </p>
-          </div>
-
           {/* Contact */}
           <div className="text-center">
             <a
@@ -46,7 +31,7 @@ const Footer = () => {
           </div>
 
           {/* Social Links */}
-          <div className="flex space-x-6">
+          {/* <div className="flex space-x-6">
             <a
               href="#"
               className="text-gray-400 hover:text-primary-vividAzure transition-colors"
@@ -68,7 +53,7 @@ const Footer = () => {
             >
               <FaGithub className="text-2xl" />
             </a>
-          </div>
+          </div> */}
 
           {/* Copyright */}
           <div className="text-center text-gray-500 text-sm pt-6 border-t border-primary-vividAzure/10 w-full">
