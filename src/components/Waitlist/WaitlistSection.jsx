@@ -28,11 +28,11 @@ const WaitlistSection = () => {
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
             <span className="animated-gradient-text">
-              Be Among the First
+              Start Turbocharging Your Team
             </span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-2xl mx-auto">
-            Join the waitlist. Something big is coming.
+            Join the Waitlist. Limited early access for engineering teams ready to transform their SDLC.
           </p>
         </motion.div>
 
