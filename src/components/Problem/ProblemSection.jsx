@@ -9,19 +9,19 @@ const ProblemSection = () => {
     {
       icon: FaHandshake,
       title: 'Coordination Tax',
-      description: 'Distributed teams, endless meetings, approval chains. Getting everyone aligned feels like herding cats.',
+      description: 'Endless meetings, approval bottlenecks, and cross-team dependencies slow every initiative. Alignment takes longer than execution.',
       delay: 0
     },
     {
       icon: FaBrain,
       title: 'Knowledge Silos',
-      description: 'Critical context trapped in engineers\' heads and wikis. What happens when key people are out?',
+      description: 'Institutional knowledge trapped in engineers\' heads creates single points of failure and steep onboarding curves.',
       delay: 0.15
     },
     {
       icon: FaClipboardList,
       title: 'LLM Context Tax',
-      description: 'Teams use AI but manually gather context for every prompt. You\'re still doing the heavy lifting.',
+      description: 'Teams adopt AI tools but still manually gather architecture details, codebase context, and process requirements for each prompt.',
       delay: 0.3
     }
   ]
