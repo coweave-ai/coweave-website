@@ -7,16 +7,16 @@ import { FaBolt, FaRocket, FaCheckCircle, FaArrowDown } from 'react-icons/fa'
 const ImpactSection = () => {
   const stats = [
     {
-      value: 50,
+      value: 75,
       suffix: '%',
-      label: 'Reduction in MTTR',
+      label: 'Reduction in Mean Time to Resolve (MTTR)',
       icon: FaBolt,
       delay: 0
     },
     {
-      value: 55,
+      value: 80,
       suffix: '%',
-      label: 'Less Time on Routine Tasks',
+      label: 'Reduction in Time to Develop',
       icon: FaRocket,
       delay: 0.15
     },
@@ -53,10 +53,10 @@ const ImpactSection = () => {
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
             <span className="text-white drop-shadow-[0_0_10px_rgba(189,243,255,0.3)]">
-              Real Results from{' '}
+              Real{' '}
             </span>
             <span className="animated-gradient-text">
-              Our Team
+              Results
             </span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
