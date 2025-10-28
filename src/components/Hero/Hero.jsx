@@ -40,9 +40,9 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-6xl md:text-8xl lg:text-9xl font-heading font-bold mb-8 leading-tight hero-gradient-text"
+          className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-8 leading-tight hero-gradient-text"
         >
-          Turbocharge Your SDLC
+          Turbocharge Your Software Development Lifecycle
         </motion.h1>
 
         {/* Subtitle */}
@@ -63,7 +63,7 @@ const Hero = () => {
           className="mb-20"
         >
           <GlowButton onClick={scrollToWaitlist} variant="primary">
-            Join the Waitlist
+            Request Early Access
           </GlowButton>
         </motion.div>
 
