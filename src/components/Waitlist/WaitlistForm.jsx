@@ -136,8 +136,11 @@ const WaitlistForm = () => {
           <option value="" disabled>
             Select your role
           </option>
+          <option value="CTO">CTO</option>
+          <option value="SVP Engineering">SVP Engineering</option>
           <option value="VP Engineering">VP Engineering</option>
-          <option value="Director DevOps">Director DevOps</option>
+          <option value="Director of Engineering">Director of Engineering</option>
+          <option value="Architect">Architect</option>
           <option value="Senior Engineer">Senior Engineer</option>
           <option value="Team Lead">Team Lead</option>
           <option value="Other">Other</option>
