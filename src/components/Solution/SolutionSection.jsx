@@ -69,7 +69,7 @@ const SolutionSection = () => {
           className="text-center mt-12"
         >
           <p className="text-xs md:text-sm text-gray-400 italic">
-            *PRD = Product Requirements Document | Prod = Production
+            *PRD = Product Requirements Document | Prod = Production Deployment
           </p>
         </motion.div>
       </div>
