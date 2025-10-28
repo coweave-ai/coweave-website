@@ -44,7 +44,7 @@ const ProblemSection = () => {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
             <span className="text-white">Engineering Teams Are </span>
             <span className="animated-gradient-text">
-              Drowning
+              Overburdened
             </span>
           </h2>
         </motion.div>
