@@ -59,6 +59,19 @@ const SolutionSection = () => {
             <FeatureCard key={index} {...feature} />
           ))}
         </div>
+
+        {/* Footnote */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center mt-12"
+        >
+          <p className="text-xs md:text-sm text-gray-400 italic">
+            *PRD = Product Requirements Document | Prod = Production
+          </p>
+        </motion.div>
       </div>
     </AnimatedSection>
   )
