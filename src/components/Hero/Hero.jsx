@@ -42,7 +42,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-8 leading-tight hero-gradient-text"
         >
-          Turbocharge Your Software Development Lifecycle
+          Codify your Software Development Lifecycle
         </motion.h1>
 
         {/* Subtitle */}
@@ -52,7 +52,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-2xl md:text-3xl lg:text-4xl text-primary-lightAzure mb-12 font-normal"
         >
-          Humans + AI, CoWeave Together
+          Humans + AI, CoWeave Together to Build Reliable Software
         </motion.p>
 
         {/* CTA Button */}
