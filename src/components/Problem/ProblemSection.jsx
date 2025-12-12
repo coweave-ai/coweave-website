@@ -7,21 +7,21 @@ import { FaHandshake, FaBrain, FaClipboardList } from 'react-icons/fa'
 const ProblemSection = () => {
   const problems = [
     {
+      icon: FaClipboardList,
+      title: 'LLM Context Tax',
+      description: 'Teams adopt AI tools but still manually gather architecture details, codebase context, and process requirements for each prompt.',
+      delay: 0
+    },
+    {
       icon: FaHandshake,
       title: 'Coordination Tax',
       description: 'Endless meetings, approval bottlenecks, and cross-team dependencies slow every initiative. Alignment takes longer than execution.',
-      delay: 0
+      delay: 0.15
     },
     {
       icon: FaBrain,
       title: 'Knowledge Silos',
       description: 'Institutional knowledge trapped in engineers\' heads creates single points of failure and steep onboarding curves.',
-      delay: 0.15
-    },
-    {
-      icon: FaClipboardList,
-      title: 'LLM Context Tax',
-      description: 'Teams adopt AI tools but still manually gather architecture details, codebase context, and process requirements for each prompt.',
       delay: 0.3
     }
   ]

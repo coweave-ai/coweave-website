@@ -42,7 +42,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-8 leading-tight hero-gradient-text"
         >
-          Codify your Software Development Lifecycle
+          Codify Your Software Development Lifecycle
         </motion.h1>
 
         {/* Subtitle */}
