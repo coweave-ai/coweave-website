@@ -4,23 +4,30 @@ import FeatureCard from './FeatureCard'
 import AnimatedSection from '../common/AnimatedSection'
 
 const SolutionSection = () => {
+  const gapQuestions = [
+    "What tool ensures your SDLC processes are being followed?",
+    "What tool enforces Test-Driven Development?",
+    "What tool generates comprehensive tests alongside your code?",
+    "What tool eliminates the variance cost?"
+  ]
+
   const features = [
     {
       number: '①',
-      title: 'Codify Your Practices',
-      description: 'Turn tribal knowledge into automated intelligence. Your team\'s expertise, encoded and always available.',
+      title: 'PRD & TDD First, Always',
+      description: 'Codify requirements and design before a single line of code. Documents stay in sync with implementation.',
       delay: 0
     },
     {
       number: '②',
-      title: 'Human-in-the-Loop',
-      description: 'AI does the heavy lifting, humans supervise. The perfect balance of automation and oversight.',
+      title: 'Tests Before Code',
+      description: 'Enforce TDD with agentic workflows that write tests first. Achieve 85%+ coverage automatically.',
       delay: 0.15
     },
     {
       number: '③',
-      title: 'Seamless Integration',
-      description: 'Adapts to your workflow, no overhaul needed. Works with your existing tools and processes.',
+      title: 'Consistent Patterns',
+      description: 'Same process, same quality, every developer, every time. Eliminate the variance cost completely.',
       delay: 0.3
     }
   ]
@@ -32,6 +39,30 @@ const SolutionSection = () => {
       id="solution"
     >
       <div className="container mx-auto px-6">
+        {/* Gap Questions */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <div className="max-w-3xl mx-auto space-y-3 mb-8">
+            {gapQuestions.map((question, index) => (
+              <motion.p
+                key={index}
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="text-lg text-gray-300"
+              >
+                {question}
+              </motion.p>
+            ))}
+          </div>
+        </motion.div>
+
         {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -41,19 +72,10 @@ const SolutionSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-            <span className="text-white drop-shadow-[0_0_10px_rgba(189,243,255,0.3)]">
-              Orchestrate Agentic Workflows{' '}
-            </span>
-            <span className="animated-gradient-text">
-              from PRD
-            </span>
-            <sup className="text-primary-vividAzure">*</sup>
-            <span className="animated-gradient-text">
-              {' '}to Prod
-            </span>
+            <span className="animated-gradient-text">That's the Gap.</span>
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto">
-            AI-Assisted SDLC That Knows Your Team
+            Introducing CoWeave—a platform to <strong className="text-primary-lightAzure">codify your software development lifecycle</strong> with prompts and agentic workflows.
           </p>
         </motion.div>
 
@@ -63,19 +85,6 @@ const SolutionSection = () => {
             <FeatureCard key={index} {...feature} />
           ))}
         </div>
-
-        {/* Footnote */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="text-center mt-12"
-        >
-          <p className="text-xs md:text-sm text-gray-400 italic">
-            *PRD = Product Requirements Document | Prod = Production Deployment
-          </p>
-        </motion.div>
       </div>
     </AnimatedSection>
   )
