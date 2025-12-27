@@ -1,0 +1,15 @@
+node_modules
+dist
+.git
+.gitignore
+*.md
+.env
+.env.local
+.env.development
+.env.production
+# Keep .env.staging for K8s builds
+.vscode
+.idea
+k8s
+Dockerfile
+.dockerignore

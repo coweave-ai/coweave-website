@@ -1,0 +1,27 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: coweave-website
+  namespace: coweave-website
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  labels:
+    app: coweave-website
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - coweave-website.appemble.com  # Change to your desired hostname
+      secretName: coweave-website-tls
+  rules:
+    - host: coweave-website.appemble.com  # Change to your desired hostname
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: coweave-website
+                port:
+                  number: 80

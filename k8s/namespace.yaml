@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: coweave-website
+  labels:
+    app: coweave-website
+    environment: staging
