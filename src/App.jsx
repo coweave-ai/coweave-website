@@ -5,7 +5,6 @@ import { ParticleProvider } from './context/ParticleContext';
 
 import Layout from './components/Layout/Layout';
 import ScrollToTop from './components/common/ScrollToTop';
-import ParticleToggle from './components/common/ParticleToggle';
 
 // Pages
 import HomePage from './pages/HomePage';
@@ -47,7 +46,6 @@ function App() {
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Routes>
-          <ParticleToggle />
         </BrowserRouter>
       </ParticleProvider>
     </HelmetProvider>

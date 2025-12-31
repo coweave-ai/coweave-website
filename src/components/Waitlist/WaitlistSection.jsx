@@ -2,7 +2,6 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import WaitlistForm from './WaitlistForm'
 import AnimatedSection from '../common/AnimatedSection'
-import ParticleBackground from '../Hero/ParticleBackground'
 
 const WaitlistSection = () => {
   return (
@@ -11,11 +10,6 @@ const WaitlistSection = () => {
       className="py-20 md:py-40 bg-gradient-to-br from-primary-indigo via-primary-blue to-primary-darkAzure relative overflow-hidden"
       id="waitlist"
     >
-      {/* Particle Background */}
-      <ParticleBackground id="waitlist-particles" />
-
-      {/* Dark overlay to ensure particles stay behind */}
-      <div className="absolute inset-0" style={{ zIndex: 2 }} />
 
       <div className="container mx-auto px-6 relative" style={{ zIndex: 10 }}>
         {/* Section Header */}

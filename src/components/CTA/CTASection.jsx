@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import AnimatedSection from '../common/AnimatedSection'
-import ParticleBackground from '../Hero/ParticleBackground'
 import GlowButton from '../common/GlowButton'
 import urls from '../../config/urls'
 
@@ -13,8 +12,6 @@ const CTASection = () => {
       className="py-20 md:py-40 bg-gradient-to-br from-primary-indigo via-primary-blue to-primary-darkAzure relative overflow-hidden"
       id="cta"
     >
-      <ParticleBackground id="cta-particles" />
-      <div className="absolute inset-0 bg-gradient-to-br from-primary-indigo/50 via-primary-blue/50 to-primary-darkAzure/50" style={{ zIndex: 2 }} />
 
       <div className="container mx-auto px-6 relative" style={{ zIndex: 10 }}>
         <motion.div

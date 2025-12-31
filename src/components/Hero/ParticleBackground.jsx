@@ -17,6 +17,9 @@ const ParticleBackground = ({ id = 'tsparticles' }) => {
 
 
   const particlesConfig = {
+    fullScreen: {
+      enable: false
+    },
     background: {
       color: {
         value: 'transparent'
