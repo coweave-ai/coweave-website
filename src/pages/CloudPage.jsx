@@ -18,20 +18,25 @@ import {
   FaRocket,
   FaTimes,
   FaBuilding,
-  FaUserTie
+  FaUserTie,
+  FaSyncAlt,
+  FaShieldAlt
 } from 'react-icons/fa';
 
 const CloudPage = () => {
   const cloudBenefits = [
     {
+      icon: FaRocket,
       title: 'Start in Minutes',
       description: 'No infrastructure to set up. Sign up and start organizing your prompts immediately.',
     },
     {
+      icon: FaSyncAlt,
       title: 'Always Up to Date',
       description: 'Automatic updates and improvements. New features delivered continuously.',
     },
     {
+      icon: FaShieldAlt,
       title: 'Zero Maintenance',
       description: 'We handle security, backups, and scaling. Focus on your code, not infrastructure.',
     },
@@ -134,6 +139,7 @@ const CloudPage = () => {
       <SEO
         title="Prompt Optimization Studio - Eliminate AI Output Variance | CoWeave"
         description="Stop the inconsistency of 'vibe coding'. Transform generic AI assistants into context-aware team members by codifying your organizational knowledge into prompts."
+        keywords="prompt optimization, AI output variance, prompt management, Cursor prompts, Copilot prompts, Claude Code, AI coding assistant, team collaboration, version control, prompt engineering platform"
         url="/cloud"
       />
 
@@ -146,6 +152,11 @@ const CloudPage = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >
+            <div className="flex justify-center mb-6">
+              <div className="w-20 h-20 rounded-2xl bg-primary-vividAzure/20 flex items-center justify-center border border-primary-vividAzure/30">
+                <FaCloud className="w-10 h-10 text-primary-vividAzure" />
+              </div>
+            </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-4">
               <span className="animated-gradient-text">Prompt Optimization Studio</span>
             </h1>
@@ -197,6 +208,11 @@ const CloudPage = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
                 <GlassCard className="p-6 h-full text-center">
+                  <div className="mb-4 flex justify-center">
+                    <div className="w-14 h-14 rounded-xl bg-primary-vividAzure/20 flex items-center justify-center">
+                      <benefit.icon className="w-7 h-7 text-primary-vividAzure" />
+                    </div>
+                  </div>
                   <h3 className="text-xl font-bold text-white mb-3">{benefit.title}</h3>
                   <p className="text-gray-400">{benefit.description}</p>
                 </GlassCard>

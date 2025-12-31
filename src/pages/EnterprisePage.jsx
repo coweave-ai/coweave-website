@@ -228,9 +228,9 @@ const EnterprisePage = () => {
   ];
 
   const securityFeatures = [
-    { icon: FaLock, title: 'SOC 2 Type II', description: 'Certified compliance with industry security standards' },
-    { icon: FaKey, title: 'Encryption at Rest', description: 'AES-256 encryption for all stored data' },
+    { icon: FaLock, title: 'Encryption at Rest', description: 'AES-256 encryption for all stored data' },
     { icon: FaShieldAlt, title: 'Encryption in Transit', description: 'TLS 1.3 for all network communications' },
+    { icon: FaKey, title: 'SAML 2.0 SSO', description: 'Integrate with Okta, Azure AD, Google Workspace for single sign-on' },
     { icon: FaDatabase, title: 'Custom Retention Policies', description: 'Configure data retention policies to meet compliance requirements' },
     { icon: FaUsers, title: 'Role-Based Access Control (RBAC)', description: 'Granular permissions and access controls for teams and individuals' },
     { icon: FaClipboardCheck, title: 'Audit Trails', description: 'Complete audit trail of all user actions and API calls' },
@@ -287,7 +287,8 @@ const EnterprisePage = () => {
       <SEO
         title="CoWeave AI Platform - Human-Supervised SDLC Automation | CoWeave"
         description="Full-cycle SDLC automation platform with agentic workflows and deterministic orchestration. From PRD to production with human oversight at every step."
-        url="/enterprise"
+        keywords="SDLC automation, agentic workflows, enterprise software development, PRD to production, test-driven development, AI code generation, on-prem deployment, Claude AI, development velocity, automated testing"
+        url="/platform"
       />
 
       {/* Hero Section */}
@@ -299,6 +300,11 @@ const EnterprisePage = () => {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >
+            <div className="flex justify-center mb-6">
+              <div className="w-20 h-20 rounded-2xl bg-primary-vividAzure/20 flex items-center justify-center border border-primary-vividAzure/30">
+                <FaBuilding className="w-10 h-10 text-primary-vividAzure" />
+              </div>
+            </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-4">
               <span className="animated-gradient-text">CoWeave AI Platform</span>
             </h1>
