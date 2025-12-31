@@ -8,8 +8,8 @@ const Footer = () => {
     products: {
       title: 'Products',
       links: [
-        { label: 'PO Studio Cloud', href: '/cloud' },
-        { label: 'PO Studio Enterprise', href: '/enterprise' },
+        { label: 'Prompt Optimization Studio', href: '/cloud' },
+        { label: 'CoWeave AI Platform', href: '/platform' },
         { label: 'Pricing', href: '/pricing' },
       ],
     },

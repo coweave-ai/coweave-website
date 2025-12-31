@@ -34,7 +34,7 @@ function App() {
             <Route path="/" element={<Layout />}>
               <Route index element={<HomePage />} />
               <Route path="cloud" element={<CloudPage />} />
-              <Route path="enterprise" element={<EnterprisePage />} />
+              <Route path="platform" element={<EnterprisePage />} />
               <Route path="pricing" element={<PricingPage />} />
               <Route path="contact" element={<ContactPage />} />
               <Route path="blog" element={<BlogListPage />} />

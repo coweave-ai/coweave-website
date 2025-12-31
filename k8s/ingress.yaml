@@ -12,10 +12,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - coweave-website.appemble.com  # Change to your desired hostname
+        - manan-coweave-website.coweave.ai
       secretName: coweave-website-tls
   rules:
-    - host: coweave-website.appemble.com  # Change to your desired hostname
+    - host: manan-coweave-website.coweave.ai
       http:
         paths:
           - path: /

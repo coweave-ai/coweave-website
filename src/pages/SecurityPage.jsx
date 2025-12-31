@@ -170,10 +170,10 @@ const SecurityPage = () => {
                 Contact Sales
               </GlowButton>
               <Link
-                to="/enterprise"
+                to="/platform"
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-lightAzure hover:text-white border border-primary-vividAzure/30 hover:border-primary-vividAzure/60 rounded-xl transition-all duration-300"
               >
-                Enterprise Features
+                Platform Features
               </Link>
             </div>
           </motion.div>

@@ -31,15 +31,15 @@ const Navigation = () => {
 
   const productLinks = [
     {
-      label: 'PO Studio Cloud',
-      description: 'Managed SaaS solution',
+      label: 'Prompt Optimization Studio',
+      description: 'Cloud-based SaaS',
       href: '/cloud',
       icon: FaCloud,
     },
     {
-      label: 'PO Studio Enterprise',
-      description: 'Self-hosted with n8n',
-      href: '/enterprise',
+      label: 'CoWeave AI Platform',
+      description: 'Full SDLC Orchestration',
+      href: '/platform',
       icon: FaBuilding,
     },
   ];
