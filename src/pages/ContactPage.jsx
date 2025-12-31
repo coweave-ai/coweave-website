@@ -29,9 +29,9 @@ const ContactPage = () => {
     {
       icon: FaCalendarAlt,
       title: 'Schedule a Demo',
-      description: 'See PO Studio Enterprise in action',
+      description: 'See CoWeave AI Platform in action',
       action: 'Book a call',
-      href: 'https://calendly.com/coweave/demo',
+      href: 'https://cal.com/hersh-bhargava-1wdmf9/30min',
       actionType: 'external'
     },
     {
@@ -81,7 +81,7 @@ const ContactPage = () => {
     {
       step: '3',
       title: 'Custom Demo',
-      description: 'See PO Studio Enterprise in action with features relevant to your use case.'
+      description: 'See CoWeave AI Platform in action with features relevant to your use case.'
     },
     {
       step: '4',
@@ -93,7 +93,7 @@ const ContactPage = () => {
   return (
     <>
       <SEO
-        title="Contact Sales - PO Studio Enterprise | CoWeave"
+        title="Contact Sales - CoWeave AI Platform | CoWeave"
         description="Get in touch with our team to discuss enterprise features, custom deployments, n8n integration, and pricing."
         url="/contact"
       />
@@ -111,7 +111,7 @@ const ContactPage = () => {
               <span className="animated-gradient-text">Let's Talk</span>
             </h1>
             <p className="text-xl text-gray-300 mb-4">
-              Interested in PO Studio Enterprise? We'd love to hear from you.
+              Interested in CoWeave AI Platform? We'd love to hear from you.
             </p>
             <p className="text-lg text-gray-400">
               Our team typically responds within one business day.
@@ -336,21 +336,13 @@ const ContactPage = () => {
             <p className="text-xl text-gray-300 mb-8">
               Whether you choose Cloud or Enterprise, we're here to help you ship production-grade code consistently.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <GlowButton
-                href="mailto:sales@coweave.ai"
-                variant="primary"
-                size="large"
-              >
-                Email Sales Team
-              </GlowButton>
-              <Link
-                to="/"
-                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-lightAzure hover:text-white border border-primary-vividAzure/30 hover:border-primary-vividAzure/60 rounded-xl transition-all duration-300"
-              >
-                Back to Home
-              </Link>
-            </div>
+            <GlowButton
+              to="/"
+              variant="primary"
+              size="large"
+            >
+              Back to Home
+            </GlowButton>
           </motion.div>
         </div>
       </AnimatedSection>
