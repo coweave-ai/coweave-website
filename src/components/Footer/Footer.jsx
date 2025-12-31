@@ -18,7 +18,6 @@ const Footer = () => {
       links: [
         { label: 'Documentation', href: 'https://docs.coweave.ai', external: true },
         { label: 'Blog', href: '/blog' },
-        { label: 'Status', href: 'https://status.coweave.ai', external: true },
       ],
     },
     company: {
@@ -26,7 +25,6 @@ const Footer = () => {
       links: [
         { label: 'About', href: '/about' },
         { label: 'Contact', href: '/contact' },
-        { label: 'Careers', href: '/careers' },
       ],
     },
     legal: {
@@ -40,9 +38,9 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: FaTwitter, href: 'https://twitter.com/coweaveai', label: 'Twitter' },
-    { icon: FaLinkedin, href: 'https://linkedin.com/company/coweave', label: 'LinkedIn' },
-    { icon: FaGithub, href: 'https://github.com/coweave', label: 'GitHub' },
+    { icon: FaTwitter, href: '/', label: 'Twitter' },
+    { icon: FaLinkedin, href: '/', label: 'LinkedIn' },
+    { icon: FaGithub, href: '/', label: 'GitHub' },
   ];
 
   const renderLink = (link) => {
@@ -92,7 +90,7 @@ const Footer = () => {
                 />
               </Link>
               <p className="text-gray-400 text-sm mb-4 max-w-xs">
-                Production code. Done right. Codify your SDLC with prompts and agentic workflows.
+                Codify your SDLC.
               </p>
               <a
                 href="mailto:hello@coweave.ai"
@@ -104,16 +102,14 @@ const Footer = () => {
               {/* Social Links */}
               <div className="flex space-x-4 mt-6">
                 {socialLinks.map((social) => (
-                  <a
+                  <Link
                     key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    to={social.href}
                     className="text-gray-400 hover:text-primary-vividAzure transition-colors"
                     aria-label={social.label}
                   >
                     <social.icon className="w-5 h-5" />
-                  </a>
+                  </Link>
                 ))}
               </div>
             </div>
@@ -155,15 +151,6 @@ const Footer = () => {
               >
                 Terms
               </Link>
-              <a
-                href="https://status.coweave.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-500 hover:text-gray-400 transition-colors flex items-center gap-2"
-              >
-                <span className="w-2 h-2 bg-green-500 rounded-full"></span>
-                All systems operational
-              </a>
             </div>
           </div>
         </div>
