@@ -33,8 +33,8 @@ const ProofSection = () => {
     },
     {
       icon: FaBug,
-      value: '85%',
-      label: 'Code Coverage',
+      value: '85%+',
+      label: 'Test Coverage',
     },
   ]
 

@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { FaCloud, FaBuilding, FaCheck } from 'react-icons/fa'
 import AnimatedSection from '../common/AnimatedSection'
@@ -8,15 +9,15 @@ import urls from '../../config/urls'
 const ProductsSection = () => {
   const products = [
     {
-      name: 'PO Studio Cloud',
-      tagline: 'Get started in minutes',
-      description: 'Managed SaaS solution. No infrastructure to maintain. Start free, upgrade when ready.',
+      name: 'Prompt Optimization Studio',
+      tagline: 'Eliminate AI Output Variance',
+      description: 'Centralized prompt management platform that transforms generic AI assistants into context-aware team members.',
       features: [
-        'Prompt management & version control',
+        'Cloud-based SaaS',
+        'Start free, upgrade when ready',
+        'Works with any AI tool',
         'Team collaboration with RBAC',
-        'SAML SSO (Starter+)',
-        'API access for CI/CD',
-        'Automatic updates'
+        'Version control & API access'
       ],
       cta: {
         text: 'Start Free',
@@ -27,18 +28,18 @@ const ProductsSection = () => {
       highlighted: false
     },
     {
-      name: 'PO Studio Enterprise',
-      tagline: 'Full control, full integration',
-      description: 'Self-hosted on your infrastructure with complete n8n workflow integration.',
+      name: 'CoWeave AI Platform',
+      tagline: 'Full SDLC Orchestration with Agentic Workflows',
+      description: 'Human-supervised automation from PRD to production. Pre-built workflows for architecture, development, testing, deployment, and incident response.',
       features: [
-        'Everything in Cloud',
-        'n8n SSO integration',
-        'Workflow prompts',
-        'Air-gapped deployment',
-        'Custom SLA & support'
+        'Everything in PO Studio',
+        'AI Service + Workflow Execution Engine',
+        'Agentic workflows with deterministic orchestration',
+        'On-prem deployment with full data control',
+        '3-5x development velocity • 85%+ test coverage'
       ],
       cta: {
-        text: 'Contact Sales',
+        text: 'Schedule Demo',
         href: '/contact',
         variant: 'secondary',
         isInternal: true
@@ -63,12 +64,8 @@ const ProductsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-            <span className="text-white">Two Ways to </span>
-            <span className="animated-gradient-text">Fill the Gap</span>
+            <span className="animated-gradient-text">Choose Your Path</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-            Choose the deployment model that fits your organization
-          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
@@ -121,6 +118,22 @@ const ProductsSection = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* See Pricing Link */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="text-center mt-12"
+        >
+          <Link
+            to="/pricing"
+            className="text-lg text-primary-lightAzure hover:text-white transition-colors font-medium"
+          >
+            See Pricing →
+          </Link>
+        </motion.div>
       </div>
     </AnimatedSection>
   )
