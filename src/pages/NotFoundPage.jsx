@@ -9,6 +9,7 @@ const NotFoundPage = () => {
         title="Page Not Found | CoWeave"
         description="The page you're looking for doesn't exist."
         url="/404"
+        noindex={true}
       />
       <div className="min-h-screen pt-32 pb-20 flex items-center justify-center">
         <div className="container mx-auto px-6">

@@ -14,8 +14,9 @@ const HomePage = () => {
   return (
     <>
       <SEO
-        title="CoWeave - Production Code Done Right"
+        title="CoWeave - Production Code Done Right | AI-Powered SDLC Automation"
         description="CoWeave codifies your software development lifecycle with prompts and agentic workflows. Same quality, every developer, every time."
+        keywords="AI coding tools, SDLC automation, agentic workflows, prompt engineering, developer productivity, AI code generation, enterprise software, test-driven development, CoWeave, Prompt Optimization Studio"
         url="/"
       />
       <Hero />
