@@ -25,8 +25,8 @@ const SecurityPage = () => {
     },
     {
       icon: FaClipboardCheck,
-      title: 'SOC 2 Type II',
-      description: 'We are SOC 2 Type II compliant, ensuring your data is handled with the highest security standards.',
+      title: 'Audit Trails',
+      description: 'Complete audit trail of all user actions and API calls for compliance requirements.',
     },
     {
       icon: FaKey,
@@ -59,7 +59,7 @@ const SecurityPage = () => {
           >
             <div className="inline-flex items-center gap-2 bg-primary-vividAzure/20 px-4 py-2 rounded-full mb-8">
               <FaShieldAlt className="w-5 h-5 text-primary-vividAzure" />
-              <span className="text-primary-lightAzure font-medium">SOC 2 Type II Compliant</span>
+              <span className="text-primary-lightAzure font-medium">Enterprise-Grade Security</span>
             </div>
             <h1 className="text-5xl md:text-6xl font-heading font-bold mb-6">
               <span className="animated-gradient-text">Security at CoWeave</span>
@@ -159,7 +159,7 @@ const SecurityPage = () => {
               <span className="animated-gradient-text">Security Details?</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
-              Contact our team for security questionnaires, penetration test reports, or SOC 2 documentation.
+              Contact our team for security questionnaires, penetration test reports, or compliance documentation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <GlowButton
