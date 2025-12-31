@@ -40,9 +40,9 @@ const ProductsSection = () => {
       ],
       cta: {
         text: 'Schedule Demo',
-        href: '/contact',
-        variant: 'secondary',
-        isInternal: true
+        href: 'https://cal.com/hersh-bhargava-1wdmf9/30min',
+        variant: 'primary',
+        isInternal: false
       },
       icon: FaBuilding,
       highlighted: false
