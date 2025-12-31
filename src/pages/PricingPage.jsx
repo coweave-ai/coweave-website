@@ -108,7 +108,8 @@ const PricingPage = () => {
   const platformPlans = [
     {
       name: 'Starter',
-      price: 299,
+      monthlyPrice: 299,
+      yearlyPrice: 2990,
       users: 15,
       teams: 3,
       prompts: 100,
@@ -124,7 +125,8 @@ const PricingPage = () => {
     },
     {
       name: 'Professional',
-      price: 799,
+      monthlyPrice: 799,
+      yearlyPrice: 7990,
       users: 60,
       teams: 10,
       prompts: 500,
@@ -141,7 +143,8 @@ const PricingPage = () => {
     },
     {
       name: 'Enterprise',
-      price: null,
+      monthlyPrice: null,
+      yearlyPrice: null,
       users: 'Unlimited',
       teams: 'Unlimited',
       prompts: 'Unlimited',
@@ -264,6 +267,85 @@ const PricingPage = () => {
     }
   ];
 
+  // PO Studio detailed features by tier
+  const studioDetailedFeatures = [
+    { category: 'SCALE', features: [
+      { name: 'Users', free: '3', starter: '15', pro: '60', enterprise: 'Unlimited' },
+      { name: 'Teams', free: '1', starter: '3', pro: '10', enterprise: 'Unlimited' },
+      { name: 'Prompts', free: '10', starter: '100', pro: '500', enterprise: 'Unlimited' }
+    ]},
+    { category: 'PROMPT MANAGEMENT', features: [
+      { name: 'Hierarchical assembly', free: true, starter: true, pro: true, enterprise: true },
+      { name: 'Version control', free: 'Basic', starter: 'Full', pro: 'Full', enterprise: 'Full' },
+      { name: 'Team collaboration', free: true, starter: true, pro: true, enterprise: true },
+      { name: 'RBAC', free: true, starter: true, pro: true, enterprise: true },
+      { name: 'API Access', free: false, starter: true, pro: true, enterprise: true },
+      { name: 'Runtime caching', free: true, starter: true, pro: true, enterprise: true }
+    ]},
+    { category: 'SECURITY & COMPLIANCE', features: [
+      { name: 'SAML SSO', free: false, starter: false, pro: true, enterprise: true },
+      { name: 'Self-hosted deployment', free: false, starter: false, pro: false, enterprise: 'Upon request' },
+      { name: 'Air-gapped option', free: false, starter: false, pro: false, enterprise: true },
+      { name: 'Audit logging', free: 'Basic', starter: 'Full', pro: 'Full', enterprise: 'Full' }
+    ]},
+    { category: 'ANALYTICS', features: [
+      { name: 'Usage analytics', free: 'Basic', starter: 'Full', pro: 'Full', enterprise: 'Full' },
+      { name: 'Performance tracking', free: false, starter: true, pro: true, enterprise: true },
+      { name: 'Team insights', free: false, starter: false, pro: true, enterprise: true },
+      { name: 'Advanced analytics', free: false, starter: false, pro: false, enterprise: true }
+    ]},
+    { category: 'SUPPORT', features: [
+      { name: 'Community support', free: true, starter: false, pro: false, enterprise: false },
+      { name: 'Email support', free: false, starter: true, pro: false, enterprise: false },
+      { name: 'Priority support', free: false, starter: false, pro: true, enterprise: false },
+      { name: 'Dedicated support', free: false, starter: false, pro: false, enterprise: true },
+      { name: 'Custom SLA', free: false, starter: false, pro: false, enterprise: true }
+    ]}
+  ];
+
+  // Platform detailed features by tier
+  const platformDetailedFeatures = [
+    { category: 'SCALE', features: [
+      { name: 'Users', starter: '15', professional: '60', enterprise: 'Unlimited' },
+      { name: 'Teams', starter: '3', professional: '10', enterprise: 'Unlimited' },
+      { name: 'Prompts', starter: '100', professional: '500', enterprise: 'Unlimited' }
+    ]},
+    { category: 'CORE PLATFORM (ALL TIERS IDENTICAL)', features: [
+      { name: 'Full PO Studio', starter: true, professional: true, enterprise: true },
+      { name: 'AI Service', starter: true, professional: true, enterprise: true },
+      { name: 'Workflow Engine', starter: true, professional: true, enterprise: true },
+      { name: 'ALL Workflows', starter: true, professional: true, enterprise: true },
+      { name: 'ALL Agents', starter: true, professional: true, enterprise: true },
+      { name: 'Full Integrations', starter: true, professional: true, enterprise: true },
+      { name: 'PRD→TDD→Test', starter: true, professional: true, enterprise: true },
+      { name: '85%+ coverage', starter: true, professional: true, enterprise: true }
+    ]},
+    { category: 'DEPLOYMENT (ALL TIERS IDENTICAL)', features: [
+      { name: 'On-prem required', starter: true, professional: true, enterprise: true },
+      { name: 'Kubernetes', starter: true, professional: true, enterprise: true },
+      { name: 'Docker Compose', starter: true, professional: true, enterprise: true },
+      { name: 'Air-gapped', starter: false, professional: false, enterprise: true }
+    ]},
+    { category: 'ANALYTICS (TIER DIFFERENCES)', features: [
+      { name: 'Workflow analytics', starter: 'Standard', professional: 'Enhanced', enterprise: 'Advanced' },
+      { name: 'Team insights', starter: 'Standard', professional: 'Enhanced', enterprise: 'Advanced' },
+      { name: 'Custom reports', starter: false, professional: false, enterprise: true }
+    ]},
+    { category: 'SUPPORT (TIER DIFFERENCES)', features: [
+      { name: 'Support type', starter: 'Email', professional: 'Priority', enterprise: 'Dedicated' },
+      { name: 'Response time', starter: '24h', professional: '8h', enterprise: 'Custom SLA' },
+      { name: 'Success manager', starter: false, professional: false, enterprise: true },
+      { name: '24/7 support', starter: false, professional: false, enterprise: true },
+      { name: 'SLA guarantee', starter: false, professional: false, enterprise: '99.9% uptime' }
+    ]},
+    { category: 'REQUIREMENTS (ALL TIERS IDENTICAL)', features: [
+      { name: 'Claude BYOL', starter: true, professional: true, enterprise: true },
+      { name: 'PostgreSQL', starter: true, professional: true, enterprise: true },
+      { name: 'Redis', starter: true, professional: true, enterprise: true },
+      { name: 'PLG stack', starter: true, professional: true, enterprise: true }
+    ]}
+  ];
+
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
   };
@@ -283,6 +365,7 @@ const PricingPage = () => {
       <SEO
         title="Pricing - Simple, Transparent Pricing | CoWeave"
         description="Two products, one mission: Production code. Done right. Start free with Prompt Optimization Studio or schedule a demo for full SDLC automation."
+        keywords="CoWeave pricing, Prompt Optimization Studio pricing, enterprise software pricing, AI development tools pricing, SDLC automation cost, free tier, developer tools"
         url="/pricing"
       />
 
@@ -431,7 +514,7 @@ const PricingPage = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className={`relative bg-primary-blue/30 backdrop-blur-lg border rounded-2xl p-6 transition-all duration-300 ${
+                      className={`relative bg-primary-blue/30 backdrop-blur-lg border rounded-2xl p-6 transition-all duration-300 flex flex-col ${
                         plan.highlighted
                           ? 'border-primary-vividAzure shadow-[0_0_30px_rgba(63,214,248,0.3)]'
                           : 'border-primary-vividAzure/20 hover:border-primary-vividAzure/50'
@@ -473,7 +556,7 @@ const PricingPage = () => {
                         <p>{plan.prompts} prompts</p>
                       </div>
 
-                      <ul className="space-y-2 mb-6">
+                      <ul className="space-y-2 mb-6 flex-grow">
                         {plan.features.map((feature, i) => (
                           <li key={i} className="flex items-start text-gray-300 text-sm">
                             <FaCheck className="w-4 h-4 text-primary-vividAzure mr-2 mt-0.5 flex-shrink-0" />
@@ -486,7 +569,7 @@ const PricingPage = () => {
                         href={plan.cta.isInternal ? undefined : plan.cta.href}
                         to={plan.cta.isInternal ? plan.cta.href : undefined}
                         variant={plan.cta.variant}
-                        className="w-full"
+                        className="w-full mt-auto"
                         size="small"
                       >
                         {plan.cta.text}
@@ -495,7 +578,53 @@ const PricingPage = () => {
                   ))}
                 </div>
 
-                <p className="text-center text-gray-500 text-sm mb-8">*Yearly billing (2 months free)</p>
+                <p className="text-center text-gray-500 text-sm mb-12">*Yearly billing (2 months free)</p>
+
+                {/* PO Studio Detailed Features Table */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="mb-12"
+                >
+                  <h3 className="text-2xl font-heading font-bold text-center mb-8 text-white">
+                    What's Included in Each Tier
+                  </h3>
+                  <div className="max-w-5xl mx-auto overflow-x-auto">
+                    <table className="w-full bg-primary-blue/30 backdrop-blur-lg border border-primary-vividAzure/20 rounded-xl">
+                      <thead>
+                        <tr className="border-b border-primary-vividAzure/20">
+                          <th className="text-left p-4 text-gray-400 font-medium">Feature</th>
+                          <th className="text-center p-4 text-primary-lightAzure font-bold">Free</th>
+                          <th className="text-center p-4 text-primary-lightAzure font-bold">Starter</th>
+                          <th className="text-center p-4 text-primary-lightAzure font-bold">Pro</th>
+                          <th className="text-center p-4 text-primary-lightAzure font-bold">Enterprise</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {studioDetailedFeatures.map((category, catIndex) => (
+                          <React.Fragment key={catIndex}>
+                            <tr className="bg-primary-navy/50">
+                              <td colSpan={5} className="p-3 text-xs font-bold text-primary-vividAzure uppercase tracking-wider">
+                                {category.category}
+                              </td>
+                            </tr>
+                            {category.features.map((feature, featIndex) => (
+                              <tr key={featIndex} className="border-b border-primary-vividAzure/10 last:border-0">
+                                <td className="p-4 text-gray-300">{feature.name}</td>
+                                <td className="p-4 text-center">{renderFeatureValue(feature.free)}</td>
+                                <td className="p-4 text-center">{renderFeatureValue(feature.starter)}</td>
+                                <td className="p-4 text-center">{renderFeatureValue(feature.pro)}</td>
+                                <td className="p-4 text-center">{renderFeatureValue(feature.enterprise)}</td>
+                              </tr>
+                            ))}
+                          </React.Fragment>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </motion.div>
 
                 {/* Perfect For */}
                 <div className="max-w-3xl mx-auto text-center">
@@ -549,7 +678,32 @@ const PricingPage = () => {
                     </div>
                   </div>
 
-                  <p className="text-gray-400 mb-8">All Tiers Include Same Features — Choose for Scale & Support</p>
+                  <p className="text-gray-400 mb-6">All Tiers Include Same Features — Choose for Scale & Support</p>
+
+                  {/* Billing Toggle */}
+                  <div className="flex items-center justify-center gap-4 mb-8">
+                    <span className={`text-lg ${!isYearly ? 'text-white' : 'text-gray-400'}`}>
+                      Monthly
+                    </span>
+                    <button
+                      onClick={() => setIsYearly(!isYearly)}
+                      className={`relative w-14 h-7 rounded-full transition-colors ${
+                        isYearly ? 'bg-primary-vividAzure' : 'bg-gray-600'
+                      }`}
+                    >
+                      <span
+                        className={`absolute top-1 w-5 h-5 bg-white rounded-full transition-transform ${
+                          isYearly ? 'left-8' : 'left-1'
+                        }`}
+                      />
+                    </button>
+                    <span className={`text-lg ${isYearly ? 'text-white' : 'text-gray-400'}`}>
+                      Yearly{' '}
+                      <span className="text-primary-vividAzure text-sm font-medium">
+                        (Save 17%)
+                      </span>
+                    </span>
+                  </div>
                 </div>
 
                 {/* Platform Pricing Cards */}
@@ -561,7 +715,7 @@ const PricingPage = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.5, delay: index * 0.1 }}
-                      className={`relative bg-primary-blue/30 backdrop-blur-lg border rounded-2xl p-6 transition-all duration-300 ${
+                      className={`relative bg-primary-blue/30 backdrop-blur-lg border rounded-2xl p-6 transition-all duration-300 flex flex-col ${
                         plan.highlighted
                           ? 'border-primary-vividAzure shadow-[0_0_30px_rgba(63,214,248,0.3)]'
                           : 'border-primary-vividAzure/20 hover:border-primary-vividAzure/50'
@@ -576,10 +730,17 @@ const PricingPage = () => {
                       <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
 
                       <div className="mb-4">
-                        {plan.price !== null ? (
+                        {plan.monthlyPrice !== null ? (
                           <>
-                            <span className="text-4xl font-bold text-white">${plan.price}</span>
+                            <span className="text-4xl font-bold text-white">
+                              ${isYearly ? Math.round(plan.yearlyPrice / 12) : plan.monthlyPrice}
+                            </span>
                             <span className="text-gray-400">/month</span>
+                            {isYearly && (
+                              <p className="text-sm text-primary-lightAzure mt-1">
+                                ${plan.yearlyPrice}/year
+                              </p>
+                            )}
                             <p className="text-sm text-amber-400 mt-1">+ BYOL</p>
                           </>
                         ) : (
@@ -604,7 +765,7 @@ const PricingPage = () => {
                         <p>{plan.analytics}</p>
                       </div>
 
-                      <div className="text-sm text-gray-400 mb-4">
+                      <div className="text-sm text-gray-400 mb-4 flex-grow">
                         <p className="font-medium text-gray-300 mb-2">SUPPORT</p>
                         <p>{plan.support}</p>
                         <p>{plan.responseTime}</p>
@@ -616,7 +777,7 @@ const PricingPage = () => {
                       <GlowButton
                         to={plan.cta.href}
                         variant={plan.cta.variant}
-                        className="w-full"
+                        className="w-full mt-auto"
                         size="small"
                       >
                         {plan.cta.text}
@@ -625,8 +786,10 @@ const PricingPage = () => {
                   ))}
                 </div>
 
+                <p className="text-center text-gray-500 text-sm mb-12">*Yearly billing (2 months free)</p>
+
                 {/* All Tiers Include */}
-                <div className="max-w-4xl mx-auto bg-primary-blue/20 backdrop-blur-lg border border-primary-vividAzure/30 rounded-xl p-6 mb-8">
+                <div className="max-w-4xl mx-auto bg-primary-blue/20 backdrop-blur-lg border border-primary-vividAzure/30 rounded-xl p-6 mb-12">
                   <h3 className="text-lg font-bold text-white mb-4 text-center">ALL TIERS INCLUDE:</h3>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                     {platformIncludes.map((item, index) => (
@@ -637,6 +800,50 @@ const PricingPage = () => {
                     ))}
                   </div>
                 </div>
+
+                {/* Platform Detailed Features Table */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6 }}
+                  className="mb-12"
+                >
+                  <h3 className="text-2xl font-heading font-bold text-center mb-8 text-white">
+                    What's Included in Each Tier
+                  </h3>
+                  <div className="max-w-4xl mx-auto overflow-x-auto">
+                    <table className="w-full bg-primary-blue/30 backdrop-blur-lg border border-primary-vividAzure/20 rounded-xl">
+                      <thead>
+                        <tr className="border-b border-primary-vividAzure/20">
+                          <th className="text-left p-4 text-gray-400 font-medium">Feature</th>
+                          <th className="text-center p-4 text-primary-lightAzure font-bold">Starter</th>
+                          <th className="text-center p-4 text-primary-lightAzure font-bold">Professional</th>
+                          <th className="text-center p-4 text-primary-lightAzure font-bold">Enterprise</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {platformDetailedFeatures.map((category, catIndex) => (
+                          <React.Fragment key={catIndex}>
+                            <tr className="bg-primary-navy/50">
+                              <td colSpan={4} className="p-3 text-xs font-bold text-primary-vividAzure uppercase tracking-wider">
+                                {category.category}
+                              </td>
+                            </tr>
+                            {category.features.map((feature, featIndex) => (
+                              <tr key={featIndex} className="border-b border-primary-vividAzure/10 last:border-0">
+                                <td className="p-4 text-gray-300">{feature.name}</td>
+                                <td className="p-4 text-center">{renderFeatureValue(feature.starter)}</td>
+                                <td className="p-4 text-center">{renderFeatureValue(feature.professional)}</td>
+                                <td className="p-4 text-center">{renderFeatureValue(feature.enterprise)}</td>
+                              </tr>
+                            ))}
+                          </React.Fragment>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </motion.div>
 
                 {/* Perfect For */}
                 <div className="max-w-3xl mx-auto text-center">
@@ -670,7 +877,7 @@ const PricingPage = () => {
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
               <span className="animated-gradient-text">Compare Products</span>
             </h2>
-            <p className="text-gray-400">Prompt Optimization Studio vs CoWeave AI Platform</p>
+            <p className="text-gray-400 text-lg">See which product fits your needs</p>
           </motion.div>
 
           <motion.div
@@ -678,35 +885,52 @@ const PricingPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="max-w-4xl mx-auto overflow-x-auto"
+            className="max-w-5xl mx-auto"
           >
-            <table className="w-full bg-primary-blue/30 backdrop-blur-lg border border-primary-vividAzure/20 rounded-xl">
-              <thead>
-                <tr className="border-b border-primary-vividAzure/20">
-                  <th className="text-left p-4 text-gray-400 font-medium">Feature</th>
-                  <th className="text-center p-4 text-primary-lightAzure font-bold">PO Studio</th>
-                  <th className="text-center p-4 text-primary-lightAzure font-bold">CoWeave Platform</th>
-                </tr>
-              </thead>
-              <tbody>
-                {comparisonFeatures.map((category, catIndex) => (
-                  <React.Fragment key={catIndex}>
-                    <tr className="bg-primary-navy/50">
-                      <td colSpan={3} className="p-3 text-xs font-bold text-primary-vividAzure uppercase tracking-wider">
-                        {category.category}
-                      </td>
-                    </tr>
-                    {category.features.map((feature, featIndex) => (
-                      <tr key={featIndex} className="border-b border-primary-vividAzure/10 last:border-0">
-                        <td className="p-4 text-gray-300">{feature.name}</td>
-                        <td className="p-4 text-center">{renderFeatureValue(feature.studio)}</td>
-                        <td className="p-4 text-center">{renderFeatureValue(feature.platform)}</td>
+            {/* Comparison Table */}
+            <div className="overflow-x-auto">
+              <table className="w-full bg-primary-blue/20 backdrop-blur-lg border border-primary-vividAzure/20 rounded-xl">
+                <thead>
+                  <tr className="border-b border-primary-vividAzure/30">
+                    <th className="p-6 text-left text-gray-400 font-medium w-1/2">Feature</th>
+                    <th className="p-4 text-center w-1/4 bg-primary-blue/30">
+                      <div className="flex items-center justify-center gap-2 mb-1">
+                        <FaCloud className="w-4 h-4 text-primary-vividAzure" />
+                        <span className="text-lg font-bold text-white">PO Studio</span>
+                      </div>
+                      <p className="text-xs text-gray-400">Cloud SaaS</p>
+                      <p className="text-primary-lightAzure font-semibold text-sm mt-1">Starting Free</p>
+                    </th>
+                    <th className="p-4 text-center w-1/4 bg-primary-blue/30">
+                      <div className="flex items-center justify-center gap-2 mb-1">
+                        <FaBuilding className="w-4 h-4 text-primary-vividAzure" />
+                        <span className="text-lg font-bold text-white">Platform</span>
+                      </div>
+                      <p className="text-xs text-gray-400">On-Prem + BYOL</p>
+                      <p className="text-primary-lightAzure font-semibold text-sm mt-1">$299/mo+</p>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {comparisonFeatures.map((category, catIndex) => (
+                    <React.Fragment key={catIndex}>
+                      <tr className="bg-primary-navy/60">
+                        <td colSpan={3} className="p-4 text-sm font-bold text-primary-vividAzure uppercase tracking-wider border-b border-primary-vividAzure/20">
+                          {category.category}
+                        </td>
                       </tr>
-                    ))}
-                  </React.Fragment>
-                ))}
-              </tbody>
-            </table>
+                      {category.features.map((feature, featIndex) => (
+                        <tr key={featIndex} className="border-b border-primary-vividAzure/10 hover:bg-primary-blue/30 transition-colors">
+                          <td className="p-4 text-gray-300 font-medium">{feature.name}</td>
+                          <td className="p-4 text-center w-1/4">{renderFeatureValue(feature.studio)}</td>
+                          <td className="p-4 text-center w-1/4">{renderFeatureValue(feature.platform)}</td>
+                        </tr>
+                      ))}
+                    </React.Fragment>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </motion.div>
         </div>
       </AnimatedSection>
