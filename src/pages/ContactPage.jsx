@@ -37,7 +37,7 @@ const ContactPage = () => {
     {
       icon: FaComments,
       title: 'General Inquiries',
-      description: 'Questions about CoWeave or PO Studio',
+      description: 'Questions about CoWeave or CE Studio',
       action: 'hello@coweave.ai',
       href: 'mailto:hello@coweave.ai',
       actionType: 'email'
@@ -264,7 +264,7 @@ const ContactPage = () => {
               >
                 <h3 className="text-2xl font-bold text-white mb-4">Not Ready for Enterprise?</h3>
                 <p className="text-gray-400 mb-6">
-                  Start with PO Studio Cloud. Get up and running in minutes with our managed SaaS solution. Upgrade to Enterprise anytime.
+                  Start with CE Studio Cloud. Get up and running in minutes with our managed SaaS solution. Upgrade to Enterprise anytime.
                 </p>
                 <ul className="space-y-2 mb-6">
                   {['Free tier available', 'No credit card required', 'Upgrade anytime'].map((item, i) => (

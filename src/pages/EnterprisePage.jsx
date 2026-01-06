@@ -99,8 +99,8 @@ const EnterprisePage = () => {
     },
     {
       icon: FaBrain,
-      title: 'AI Service + Prompt Optimization Studio',
-      description: 'Context-aware AI powered by Claude. Full Prompt Optimization Studio included for prompt management.'
+      title: 'AI Service + Context Engineering Studio',
+      description: 'Context-aware AI powered by Claude. Full Context Engineering Studio included for context engineering.'
     },
     {
       icon: FaPlug,
@@ -509,10 +509,10 @@ const EnterprisePage = () => {
               <span className="animated-gradient-text">Real Results</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Real-World Impact: PO Studio Build
+              Real-World Impact: CE Studio Build
             </p>
             <p className="text-lg text-gray-400 mt-4">
-              We built PO Studio—a complete enterprise application—using CoWeave AI Platform.
+              We built CE Studio—a complete enterprise application—using CoWeave AI Platform.
             </p>
           </motion.div>
 
@@ -897,7 +897,7 @@ const EnterprisePage = () => {
         </div>
       </AnimatedSection>
 
-      {/* Start with PO Studio Section */}
+      {/* Start with CE Studio Section */}
       <AnimatedSection
         animation="fade"
         className="py-20 bg-gradient-to-br from-primary-navy via-primary-indigo to-primary-blue"
@@ -911,14 +911,14 @@ const EnterprisePage = () => {
             className="max-w-3xl mx-auto text-center"
           >
             <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-              <span className="animated-gradient-text">Start with Prompt Optimization Studio</span>
+              <span className="animated-gradient-text">Start with Context Engineering Studio</span>
             </h2>
             <p className="text-lg text-gray-300 mb-8">
-              Not ready for full SDLC orchestration? Start with PO Studio Cloud to eliminate AI output variance.
+              Not ready for full SDLC orchestration? Start with CE Studio Cloud to eliminate AI output variance.
             </p>
 
             <GlassCard className="p-6 mb-8">
-              <h3 className="text-lg font-bold text-white mb-4">Start with PO Studio Cloud:</h3>
+              <h3 className="text-lg font-bold text-white mb-4">Start with CE Studio Cloud:</h3>
               <ul className="text-left space-y-2 max-w-md mx-auto mb-6">
                 <li className="flex items-start gap-3 text-gray-300">
                   <FaCheck className="w-4 h-4 text-primary-vividAzure mt-1" />
@@ -942,7 +942,7 @@ const EnterprisePage = () => {
                 to="/cloud"
                 className="text-primary-lightAzure hover:text-white transition-colors font-medium"
               >
-                Learn About PO Studio →
+                Learn About CE Studio →
               </Link>
             </GlassCard>
           </motion.div>

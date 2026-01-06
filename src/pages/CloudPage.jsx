@@ -13,50 +13,38 @@ import {
   FaLock,
   FaHistory,
   FaPlug,
-  FaCog,
   FaChartLine,
-  FaRocket,
   FaTimes,
   FaBuilding,
   FaUserTie,
-  FaSyncAlt,
-  FaShieldAlt
+  FaCubes,
+  FaLayerGroup,
+  FaCodeBranch,
+  FaTasks,
+  FaArrowDown
 } from 'react-icons/fa';
 
 const CloudPage = () => {
-  const cloudBenefits = [
-    {
-      icon: FaRocket,
-      title: 'Start in Minutes',
-      description: 'No infrastructure to set up. Sign up and start organizing your prompts immediately.',
-    },
-    {
-      icon: FaSyncAlt,
-      title: 'Always Up to Date',
-      description: 'Automatic updates and improvements. New features delivered continuously.',
-    },
-    {
-      icon: FaShieldAlt,
-      title: 'Zero Maintenance',
-      description: 'We handle security, backups, and scaling. Focus on your code, not infrastructure.',
-    },
-  ];
-
   const features = [
     {
+      icon: FaCubes,
+      title: 'Component-Based Context Engineering',
+      description: 'Systematically engineer context through hierarchical components: Base Context, Role Contexts, Repository Contexts, and Workflow Prompts.',
+    },
+    {
       icon: FaHistory,
-      title: 'Prompt Version Control',
-      description: 'Track every change to your prompts. Roll back when needed. Never lose important context.',
+      title: 'Context Version Control',
+      description: 'Track every change to your context components. Roll back when needed. Never lose important context.',
     },
     {
       icon: FaUsers,
       title: 'Team Collaboration',
-      description: 'Role-based access control. Share prompts across teams securely with granular permissions.',
+      description: 'Role-based access control. Share context across teams securely with granular permissions.',
     },
     {
       icon: FaPlug,
       title: 'API Access',
-      description: 'Integrate with your CI/CD pipeline. Programmatic prompt assembly for automation. (Starter+)',
+      description: 'Integrate with your CI/CD pipeline. Programmatic context assembly for automation. (Starter+)',
     },
     {
       icon: FaLock,
@@ -64,14 +52,36 @@ const CloudPage = () => {
       description: 'Enterprise-grade authentication. Single sign-on with your identity provider (Professional).',
     },
     {
-      icon: FaCog,
-      title: 'Workflow Templates',
-      description: 'Pre-built prompt templates for common SDLC workflows. Customize for your team.',
-    },
-    {
       icon: FaChartLine,
       title: 'Usage Analytics',
-      description: 'Track prompt usage, performance, and team adoption with built-in analytics.',
+      description: 'Track context usage, performance, and team adoption with built-in analytics.',
+    },
+  ];
+
+  const contextArchitecture = [
+    {
+      icon: FaLayerGroup,
+      title: 'Base Context',
+      subtitle: 'Team-wide standards and conventions',
+      description: 'Foundation layer for all assemblies. Define coding standards, architectural principles, and testing requirements.',
+    },
+    {
+      icon: FaUserTie,
+      title: 'Role Contexts',
+      subtitle: 'Expertise-level specific information',
+      description: 'Create contexts for different roles: Senior Developer, Junior Developer, Frontend, Backend, QA, DevOps.',
+    },
+    {
+      icon: FaCodeBranch,
+      title: 'Repository Contexts',
+      subtitle: 'Project-specific knowledge and patterns',
+      description: 'Define conventions for each codebase: payment-service, auth-service, user-api.',
+    },
+    {
+      icon: FaTasks,
+      title: 'Workflow Prompts',
+      subtitle: 'Task-specific instructions for SDLC stages',
+      description: 'Create prompts for different workflows: Architecture Design, Development, QA Testing, Code Review.',
     },
   ];
 
@@ -83,18 +93,18 @@ const CloudPage = () => {
     },
     {
       step: '2',
-      title: 'Organize Prompts',
-      description: 'Create base prompts, role prompts, and repository prompts. Build your prompt library.',
+      title: 'Engineer Context Components',
+      description: 'Create base context, role contexts, repository contexts, and workflow prompts. Build your context architecture.',
     },
     {
       step: '3',
       title: 'Assemble & Deploy',
-      description: 'Combine prompts for specific contexts. Use the API to integrate with your workflow or AI tool.',
+      description: 'Combine context components for specific scenarios. Use the API to integrate with your workflow or AI tool.',
     },
     {
       step: '4',
       title: 'Iterate & Improve',
-      description: 'Track usage, gather feedback, and continuously improve your prompts.',
+      description: 'Track usage, gather feedback, and continuously improve your context architecture.',
     },
   ];
 
@@ -104,9 +114,9 @@ const CloudPage = () => {
       icon: FaUserTie,
       benefits: [
         'Less Context Gathering – No more copy-pasting standards',
-        'Experimentation – Personal prompts for testing ideas',
+        'Experimentation – Personal context for testing ideas',
         'Learning – See team standards, understand patterns',
-        'Productivity – Focus on problems, not prompt engineering'
+        'Productivity – Focus on problems, not context engineering'
       ]
     },
     {
@@ -125,21 +135,19 @@ const CloudPage = () => {
       icon: FaBuilding,
       benefits: [
         'Standardization – Institutional knowledge preserved',
-        'Compliance – Audit trail of all prompt changes',
+        'Compliance – Audit trail of all context changes',
         'Scalability – Onboard teams without knowledge loss',
         'Quality – Predictable AI behavior across organization'
       ]
     }
   ];
 
-  const aiTools = ['Cursor', 'Copilot', 'Claude Code', 'Windsurf', 'Aider'];
-
   return (
     <>
       <SEO
-        title="Prompt Optimization Studio - Eliminate AI Output Variance | CoWeave"
-        description="Stop the inconsistency of 'vibe coding'. Transform generic AI assistants into context-aware team members by codifying your organizational knowledge into prompts."
-        keywords="prompt optimization, AI output variance, prompt management, Cursor prompts, Copilot prompts, Claude Code, AI coding assistant, team collaboration, version control, prompt engineering platform"
+        title="Context Engineering Studio - Eliminate AI Output Variance | CoWeave"
+        description="Stop the inconsistency of 'vibe coding'. Transform generic AI assistants into context-aware team members by codifying your organizational knowledge into context."
+        keywords="context engineering, AI output variance, context management, Cursor context, Copilot context, Claude Code, AI coding assistant, team collaboration, version control, context engineering platform"
         url="/cloud"
       />
 
@@ -158,14 +166,17 @@ const CloudPage = () => {
               </div>
             </div>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-heading font-bold mb-4">
-              <span className="animated-gradient-text">Prompt Optimization Studio</span>
+              <span className="animated-gradient-text">Context Engineering Studio</span>
             </h1>
             <p className="text-2xl md:text-3xl text-white font-semibold mb-6">
               Eliminate AI Output Variance Across Your Team
             </p>
 
+            <p className="text-lg text-gray-300 mb-4 max-w-3xl mx-auto">
+              Stop the inconsistency of 'vibe coding'—where every developer gets different results from AI tools.
+            </p>
             <p className="text-lg text-gray-300 mb-12 max-w-3xl mx-auto">
-              Stop the inconsistency of 'vibe coding'—where every developer gets different results from AI tools. Transform generic AI assistants into context-aware team members by codifying your organizational knowledge into prompts.
+              Transform generic AI assistants into context-aware team members by codifying your organizational knowledge into context.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
@@ -191,36 +202,6 @@ const CloudPage = () => {
           </motion.div>
         </div>
       </section>
-
-      {/* Cloud Benefits Section */}
-      <AnimatedSection
-        animation="fade"
-        className="py-20 bg-primary-navy"
-      >
-        <div className="container mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {cloudBenefits.map((benefit, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <GlassCard className="p-6 h-full text-center">
-                  <div className="mb-4 flex justify-center">
-                    <div className="w-14 h-14 rounded-xl bg-primary-vividAzure/20 flex items-center justify-center">
-                      <benefit.icon className="w-7 h-7 text-primary-vividAzure" />
-                    </div>
-                  </div>
-                  <h3 className="text-xl font-bold text-white mb-3">{benefit.title}</h3>
-                  <p className="text-gray-400">{benefit.description}</p>
-                </GlassCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </AnimatedSection>
 
       {/* The Problem Section */}
       <AnimatedSection
@@ -285,30 +266,6 @@ const CloudPage = () => {
         </div>
       </AnimatedSection>
 
-      {/* The Solution Section */}
-      <AnimatedSection
-        animation="fade"
-        className="py-20 bg-primary-navy"
-      >
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-              <span className="animated-gradient-text">Centralized Prompt Management Platform</span>
-              <span className="text-white"> to Eliminate AI Output Variance and Codify Organizational Knowledge</span>
-            </h2>
-            <p className="text-xl text-gray-300">
-              Stop the variance tax by codifying your team's best practices into reusable prompts that ensure consistent AI outputs across your entire engineering organization.
-            </p>
-          </motion.div>
-        </div>
-      </AnimatedSection>
-
       {/* Features Section */}
       <AnimatedSection
         animation="fade"
@@ -324,10 +281,10 @@ const CloudPage = () => {
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
               <span className="text-white">Everything You Need to </span>
-              <span className="animated-gradient-text">Manage Prompts</span>
+              <span className="animated-gradient-text">Engineer Context</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Built for teams that take prompt engineering seriously
+              Built for teams that take context engineering seriously
             </p>
           </motion.div>
 
@@ -350,7 +307,7 @@ const CloudPage = () => {
         </div>
       </AnimatedSection>
 
-      {/* How It Works Section */}
+      {/* Context Architecture Section */}
       <AnimatedSection
         animation="fade"
         className="py-20 bg-primary-navy"
@@ -364,10 +321,96 @@ const CloudPage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+              <span className="animated-gradient-text">Component-Based Context Assembly</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Engineer context through four hierarchical component types that compose into assembled context for AI agents.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+            {contextArchitecture.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <GlassCard className="p-6 h-full">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 bg-gradient-to-br from-primary-vividAzure to-primary-lightAzure rounded-xl flex items-center justify-center">
+                        <item.icon className="w-6 h-6 text-primary-navy" />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white mb-1">{item.title}</h3>
+                      <p className="text-primary-lightAzure text-sm mb-3">{item.subtitle}</p>
+                      <p className="text-gray-400">{item.description}</p>
+                    </div>
+                  </div>
+                </GlassCard>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Assembly Hierarchy */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="max-w-md mx-auto"
+          >
+            <h3 className="text-2xl font-bold text-white text-center mb-8">Assembly Hierarchy</h3>
+            <div className="space-y-4">
+              {[
+                { label: 'Base Context', sublabel: '(Foundation)' },
+                { label: 'Role Context', sublabel: '(Expertise Layer)' },
+                { label: 'Repository Context', sublabel: '(Project Layer)' },
+                { label: 'Workflow Prompt', sublabel: '(Task Layer)' },
+                { label: 'Assembled Context', sublabel: '→ AI Agent', highlight: true },
+              ].map((item, index) => (
+                <div key={index}>
+                  <div className={`text-center py-3 px-6 rounded-lg ${
+                    item.highlight
+                      ? 'bg-gradient-to-r from-primary-vividAzure to-primary-lightAzure text-primary-navy font-bold'
+                      : 'bg-primary-blue/30 border border-primary-vividAzure/20'
+                  }`}>
+                    <span className={item.highlight ? '' : 'text-white'}>{item.label}</span>
+                    <span className={`text-sm ml-2 ${item.highlight ? 'text-primary-navy/70' : 'text-gray-400'}`}>{item.sublabel}</span>
+                  </div>
+                  {index < 4 && (
+                    <div className="text-center py-2">
+                      <FaArrowDown className="w-4 h-4 text-primary-vividAzure mx-auto" />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </AnimatedSection>
+
+      {/* How It Works Section */}
+      <AnimatedSection
+        animation="fade"
+        className="py-20 bg-gradient-to-br from-primary-navy via-primary-blue to-primary-indigo"
+      >
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
               <span className="animated-gradient-text">How It Works</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Get from zero to organized prompts in four simple steps
+              Get from zero to engineered context in four simple steps
             </p>
           </motion.div>
 
@@ -404,7 +447,7 @@ const CloudPage = () => {
       {/* Real Example Section */}
       <AnimatedSection
         animation="fade"
-        className="py-20 bg-gradient-to-br from-primary-navy via-primary-indigo to-primary-blue"
+        className="py-20 bg-primary-navy"
       >
         <div className="container mx-auto px-6">
           <motion.div
@@ -416,9 +459,9 @@ const CloudPage = () => {
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
               <span className="animated-gradient-text">Real-World Impact</span>
+              <span className="text-white">: E-Commerce Team</span>
             </h2>
-            <p className="text-xl text-gray-300">E-Commerce Team Example</p>
-            <p className="text-lg text-gray-400 mt-2">Scenario: New API Endpoint Implementation • Team: 15 developers</p>
+            <p className="text-lg text-gray-400 mt-2">Scenario: New API Endpoint Implementation • Team: 15 developers at e-commerce company</p>
           </motion.div>
 
           <motion.div
@@ -431,7 +474,7 @@ const CloudPage = () => {
             <GlassCard className="p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-xl font-bold text-red-400 mb-4">WITHOUT PO STUDIO:</h3>
+                  <h3 className="text-xl font-bold text-red-400 mb-4">WITHOUT CE STUDIO:</h3>
                   <ul className="space-y-2 text-gray-300">
                     <li>• Each dev manually explains REST patterns, error handling, auth approach, testing standards</li>
                     <li>• Results vary: Some use Express patterns, others custom</li>
@@ -440,8 +483,8 @@ const CloudPage = () => {
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-green-400 mb-4">WITH PO STUDIO:</h3>
-                  <p className="text-gray-300 mb-4">Team-wide prompts codify TypeScript standards, Express.js structure, security patterns, and testing requirements.</p>
+                  <h3 className="text-xl font-bold text-green-400 mb-4">WITH CE STUDIO:</h3>
+                  <p className="text-gray-300 mb-4">Team-wide context codifies TypeScript standards, Express.js structure, security patterns, and testing requirements.</p>
                   <p className="text-gray-400 mb-2">Developer says: <span className="text-white">"Add refund endpoint"</span></p>
                   <p className="text-gray-400 mb-4">AI receives: <span className="text-primary-lightAzure">Team context automatically</span></p>
                   <ul className="space-y-2">
@@ -472,7 +515,7 @@ const CloudPage = () => {
       {/* The Bottom Line Section */}
       <AnimatedSection
         animation="fade"
-        className="py-20 bg-primary-navy"
+        className="py-20 bg-gradient-to-br from-primary-navy via-primary-blue to-primary-indigo"
       >
         <div className="container mx-auto px-6">
           <motion.div
@@ -516,57 +559,6 @@ const CloudPage = () => {
         </div>
       </AnimatedSection>
 
-      {/* Integration Section */}
-      <AnimatedSection
-        animation="fade"
-        className="py-20 bg-gradient-to-br from-primary-navy via-primary-blue to-primary-indigo"
-      >
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="text-white">Works with Your </span>
-              <span className="animated-gradient-text">Existing AI Tools</span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              PO Studio provides prompt management and assembly. You continue using the AI coding tools you already love.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <div className="flex flex-wrap justify-center gap-4 mb-8">
-              {aiTools.map((tool, index) => (
-                <div key={index} className="px-6 py-3 bg-primary-blue/30 border border-primary-vividAzure/20 rounded-lg text-gray-300 font-medium">
-                  {tool}
-                </div>
-              ))}
-            </div>
-            <div className="text-3xl text-primary-vividAzure mb-4">↓</div>
-            <GlassCard className="p-6 inline-block">
-              <div className="flex items-center gap-3">
-                <FaPlug className="w-6 h-6 text-primary-vividAzure" />
-                <span className="text-white font-bold">PO Studio API</span>
-              </div>
-              <p className="text-gray-400 mt-2">(Assembles your team's context)</p>
-            </GlassCard>
-            <p className="text-gray-400 mt-6">
-              API Access included in Starter and Professional tiers
-            </p>
-          </motion.div>
-        </div>
-      </AnimatedSection>
-
       {/* Pricing Section */}
       <AnimatedSection
         animation="fade"
@@ -590,9 +582,9 @@ const CloudPage = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
-              { name: 'FREE', price: '$0', period: '/forever', users: '3 users', teams: '1 team', prompts: '10 prompts', cta: 'Start Free' },
-              { name: 'STARTER', price: '$29', period: '/month', users: '15 users', teams: '3 teams', prompts: '100 prompts', cta: 'Start Trial', highlighted: true },
-              { name: 'PROFESSIONAL', price: '$99', period: '/month', users: '60 users', teams: '10 teams', prompts: '500 prompts', cta: 'Start Trial' },
+              { name: 'FREE', price: '$0', period: '/forever', users: '3 users', teams: '1 team', contexts: '10 context components', cta: 'Start Free' },
+              { name: 'STARTER', price: '$29', period: '/month', users: '15 users', teams: '3 teams', contexts: '100 context components', cta: 'Start Trial', highlighted: true },
+              { name: 'PROFESSIONAL', price: '$99', period: '/month', users: '60 users', teams: '10 teams', contexts: '500 context components', cta: 'Start Trial' },
             ].map((plan, index) => (
               <motion.div
                 key={index}
@@ -614,7 +606,7 @@ const CloudPage = () => {
                 <ul className="text-gray-300 space-y-2 mb-6">
                   <li>{plan.users}</li>
                   <li>{plan.teams}</li>
-                  <li>{plan.prompts}</li>
+                  <li>{plan.contexts}</li>
                 </ul>
                 <GlowButton
                   href={urls.signup}
@@ -661,7 +653,7 @@ const CloudPage = () => {
               <span className="animated-gradient-text">Ready for Full SDLC Automation?</span>
             </h2>
             <p className="text-lg text-gray-300 mb-8">
-              PO Studio eliminates variance at the prompt level. CoWeave AI Platform eliminates variance at the process level.
+              CE Studio eliminates variance at the context level. CoWeave AI Platform eliminates variance at the process level.
             </p>
 
             <GlassCard className="p-6 mb-8">
@@ -669,7 +661,7 @@ const CloudPage = () => {
               <ul className="text-left space-y-2 max-w-md mx-auto mb-6">
                 <li className="flex items-start gap-3 text-gray-300">
                   <FaCheck className="w-4 h-4 text-primary-vividAzure mt-1" />
-                  <span>Everything in PO Studio</span>
+                  <span>Everything in CE Studio</span>
                 </li>
                 <li className="flex items-start gap-3 text-gray-300">
                   <FaCheck className="w-4 h-4 text-primary-vividAzure mt-1" />
@@ -724,7 +716,7 @@ const CloudPage = () => {
               <span className="animated-gradient-text">Ready to Get Started?</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
-              Join teams already using PO Studio Cloud to manage their prompts and ship production-grade code consistently.
+              Join teams already using Context Engineering Studio to engineer their context and ship production-grade code consistently.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
               <GlowButton

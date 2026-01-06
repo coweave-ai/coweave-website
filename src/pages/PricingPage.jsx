@@ -20,7 +20,7 @@ const PricingPage = () => {
   const [isYearly, setIsYearly] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
 
-  // PO Studio Plans
+  // CE Studio Plans
   const studioPlans = [
     {
       name: 'Free',
@@ -28,9 +28,9 @@ const PricingPage = () => {
       yearlyPrice: 0,
       users: 3,
       teams: 1,
-      prompts: 10,
+      contexts: 10,
       features: [
-        'Prompt management',
+        'Context management',
         'Team collaboration',
         'Version control',
         'Basic analytics',
@@ -48,7 +48,7 @@ const PricingPage = () => {
       yearlyPrice: 290,
       users: 15,
       teams: 3,
-      prompts: 100,
+      contexts: 100,
       features: [
         'Everything in Free',
         'API Access',
@@ -68,7 +68,7 @@ const PricingPage = () => {
       yearlyPrice: 990,
       users: 60,
       teams: 10,
-      prompts: 500,
+      contexts: 500,
       features: [
         'Everything in Starter',
         'SAML SSO',
@@ -87,7 +87,7 @@ const PricingPage = () => {
       yearlyPrice: null,
       users: 'Unlimited',
       teams: 'Unlimited',
-      prompts: 'Unlimited',
+      contexts: 'Unlimited',
       features: [
         'Everything in Pro',
         'Self-hosted deployment',
@@ -112,7 +112,7 @@ const PricingPage = () => {
       yearlyPrice: 2990,
       users: 15,
       teams: 3,
-      prompts: 100,
+      contexts: 100,
       analytics: 'Standard',
       support: 'Email support',
       responseTime: '24h response',
@@ -129,7 +129,7 @@ const PricingPage = () => {
       yearlyPrice: 7990,
       users: 60,
       teams: 10,
-      prompts: 500,
+      contexts: 500,
       analytics: 'Enhanced',
       support: 'Priority support',
       responseTime: '8h response',
@@ -147,7 +147,7 @@ const PricingPage = () => {
       yearlyPrice: null,
       users: 'Unlimited',
       teams: 'Unlimited',
-      prompts: 'Unlimited',
+      contexts: 'Unlimited',
       analytics: 'Advanced',
       support: 'Dedicated success mgr',
       responseTime: 'Custom SLA (99.9%)',
@@ -163,7 +163,7 @@ const PricingPage = () => {
 
   // Platform included features
   const platformIncludes = [
-    'Full Prompt Optimization Studio',
+    'Full Context Engineering Studio',
     'AI Service + Workflow Execution Engine',
     'ALL Workflows & Agents (Architect, Dev, QA, DevOps, Doc, RCA)',
     'Full GitHub/GitLab/Jira/Linear/Slack/CI-CD integration',
@@ -185,8 +185,8 @@ const PricingPage = () => {
       { name: 'Requires Claude license', studio: false, platform: true },
       { name: 'Claude BYOL', studio: 'N/A', platform: 'Required' }
     ]},
-    { category: 'PROMPT MANAGEMENT', features: [
-      { name: 'Prompt version control', studio: true, platform: true },
+    { category: 'CONTEXT MANAGEMENT', features: [
+      { name: 'Context version control', studio: true, platform: true },
       { name: 'Team collaboration', studio: true, platform: true },
       { name: 'RBAC', studio: true, platform: true },
       { name: 'API Access', studio: 'Starter+', platform: true },
@@ -222,24 +222,24 @@ const PricingPage = () => {
   // FAQs
   const faqs = [
     {
-      question: "What's the difference between PO Studio and CoWeave Platform?",
-      answer: "Prompt Optimization Studio eliminates AI output variance by codifying organizational knowledge into prompts. It's a cloud-based prompt management platform that works with any AI tool. CoWeave AI Platform is a complete SDLC automation platform featuring agentic workflows with deterministic orchestration. It includes PO Studio plus AI Service, Workflow Execution Engine, and all workflows & agents. Requires on-prem deployment and Claude BYOL."
+      question: "What's the difference between CE Studio and CoWeave Platform?",
+      answer: "Context Engineering Studio eliminates AI output variance by codifying organizational knowledge into context. It's a cloud-based context engineering platform that works with any AI tool. CoWeave AI Platform is a complete SDLC automation platform featuring agentic workflows with deterministic orchestration. It includes CE Studio plus AI Service, Workflow Execution Engine, and all workflows & agents. Requires on-prem deployment and Claude BYOL."
     },
     {
       question: 'Can I try before purchasing?',
-      answer: "Yes! PO Studio has a free tier with 3 users and 10 prompts. No credit card required. For CoWeave AI Platform, schedule a demo to see it in action. We offer proof-of-concept deployments for qualified teams."
+      answer: "Yes! CE Studio has a free tier with 3 users and 10 context components. No credit card required. For CoWeave AI Platform, schedule a demo to see it in action. We offer proof-of-concept deployments for qualified teams."
     },
     {
-      question: 'Do I need a Claude license for PO Studio?',
-      answer: "No. PO Studio works with any AI coding tool (Cursor, Copilot, Claude Code, Windsurf, Aider, etc.). You continue using whatever AI tools you already have."
+      question: 'Do I need a Claude license for CE Studio?',
+      answer: "No. CE Studio works with any AI coding tool (Cursor, Copilot, Claude Code, Windsurf, Aider, etc.). You continue using whatever AI tools you already have."
     },
     {
       question: 'Do I need a Claude license for CoWeave Platform?',
       answer: "Yes. CoWeave AI Platform requires Bring Your Own License (BYOL). We recommend Claude Max or Enterprise Claude. Currently supports Claude only (other LLMs coming soon)."
     },
     {
-      question: 'What happens if I exceed my prompt limit?',
-      answer: "You can upgrade to a higher tier anytime. Your existing prompts and settings transfer seamlessly."
+      question: 'What happens if I exceed my context component limit?',
+      answer: "You can upgrade to a higher tier anytime. Your existing context components and settings transfer seamlessly."
     },
     {
       question: 'Can I switch between monthly and yearly billing?',
@@ -247,34 +247,34 @@ const PricingPage = () => {
     },
     {
       question: 'Do all Platform tiers have the same features?',
-      answer: "Yes! All CoWeave AI Platform tiers include identical features: Full PO Studio, AI Service, Workflow Execution Engine, and ALL workflows & agents. Tiers differ only in: Scale (users, teams, prompts), Analytics level (Standard, Enhanced, Advanced), and Support level (Email, Priority, Dedicated)."
+      answer: "Yes! All CoWeave AI Platform tiers include identical features: Full CE Studio, AI Service, Workflow Execution Engine, and ALL workflows & agents. Tiers differ only in: Scale (users, teams, context components), Analytics level (Standard, Enhanced, Advanced), and Support level (Email, Priority, Dedicated)."
     },
     {
       question: 'Is my data secure?',
-      answer: "Yes. PO Studio is SOC 2 Type II compliant with AES-256 encryption at rest and TLS 1.3 in transit. CoWeave Platform deploys on your infrastructure (on-prem or VPC). Your code never leaves your network. Only outbound port 443 to Claude API. Air-gapped option available."
+      answer: "Yes. CE Studio is SOC 2 Type II compliant with AES-256 encryption at rest and TLS 1.3 in transit. CoWeave Platform deploys on your infrastructure (on-prem or VPC). Your code never leaves your network. Only outbound port 443 to Claude API. Air-gapped option available."
     },
     {
       question: 'What kind of support do you offer?',
-      answer: "PO Studio: Free (Community), Starter (Email), Professional (Priority), Enterprise (Dedicated + Custom SLA). CoWeave Platform: Starter (Email, 24h), Professional (Priority, 8h), Enterprise (Dedicated success manager + 24/7 + Custom SLA)."
+      answer: "CE Studio: Free (Community), Starter (Email), Professional (Priority), Enterprise (Dedicated + Custom SLA). CoWeave Platform: Starter (Email, 24h), Professional (Priority, 8h), Enterprise (Dedicated success manager + 24/7 + Custom SLA)."
     },
     {
       question: 'Can I cancel my subscription at any time?',
       answer: "Yes. You can cancel anytime from your account settings. Your data remains accessible until the end of your billing period."
     },
     {
-      question: 'Can I get PO Studio on-prem?',
+      question: 'Can I get CE Studio on-prem?',
       answer: "Yes. On-prem deployment is available upon request for Enterprise customers who require it for compliance."
     }
   ];
 
-  // PO Studio detailed features by tier
+  // CE Studio detailed features by tier
   const studioDetailedFeatures = [
     { category: 'SCALE', features: [
       { name: 'Users', free: '3', starter: '15', pro: '60', enterprise: 'Unlimited' },
       { name: 'Teams', free: '1', starter: '3', pro: '10', enterprise: 'Unlimited' },
-      { name: 'Prompts', free: '10', starter: '100', pro: '500', enterprise: 'Unlimited' }
+      { name: 'Context Components', free: '10', starter: '100', pro: '500', enterprise: 'Unlimited' }
     ]},
-    { category: 'PROMPT MANAGEMENT', features: [
+    { category: 'CONTEXT MANAGEMENT', features: [
       { name: 'Hierarchical assembly', free: true, starter: true, pro: true, enterprise: true },
       { name: 'Version control', free: 'Basic', starter: 'Full', pro: 'Full', enterprise: 'Full' },
       { name: 'Team collaboration', free: true, starter: true, pro: true, enterprise: true },
@@ -308,10 +308,10 @@ const PricingPage = () => {
     { category: 'SCALE', features: [
       { name: 'Users', starter: '15', professional: '60', enterprise: 'Unlimited' },
       { name: 'Teams', starter: '3', professional: '10', enterprise: 'Unlimited' },
-      { name: 'Prompts', starter: '100', professional: '500', enterprise: 'Unlimited' }
+      { name: 'Context Components', starter: '100', professional: '500', enterprise: 'Unlimited' }
     ]},
     { category: 'CORE PLATFORM (ALL TIERS IDENTICAL)', features: [
-      { name: 'Full PO Studio', starter: true, professional: true, enterprise: true },
+      { name: 'Full CE Studio', starter: true, professional: true, enterprise: true },
       { name: 'AI Service', starter: true, professional: true, enterprise: true },
       { name: 'Workflow Engine', starter: true, professional: true, enterprise: true },
       { name: 'ALL Workflows', starter: true, professional: true, enterprise: true },
@@ -364,8 +364,8 @@ const PricingPage = () => {
     <>
       <SEO
         title="Pricing - Simple, Transparent Pricing | CoWeave"
-        description="Two products, one mission: Production code. Done right. Start free with Prompt Optimization Studio or schedule a demo for full SDLC automation."
-        keywords="CoWeave pricing, Prompt Optimization Studio pricing, enterprise software pricing, AI development tools pricing, SDLC automation cost, free tier, developer tools"
+        description="Two products, one mission: Production code. Done right. Start free with Context Engineering Studio or schedule a demo for full SDLC automation."
+        keywords="CoWeave pricing, Context Engineering Studio pricing, enterprise software pricing, AI development tools pricing, SDLC automation cost, free tier, developer tools"
         url="/pricing"
       />
 
@@ -385,7 +385,7 @@ const PricingPage = () => {
               Two products, one mission: Production code. Done right.
             </p>
             <p className="text-lg text-gray-300">
-              Start free with Prompt Optimization Studio or schedule a demo for full SDLC automation with CoWeave AI Platform.
+              Start free with Context Engineering Studio or schedule a demo for full SDLC automation with CoWeave AI Platform.
             </p>
           </motion.div>
         </div>
@@ -414,7 +414,7 @@ const PricingPage = () => {
                 <div className="flex items-center gap-3 mb-2">
                   <FaCloud className={`w-6 h-6 ${selectedProduct === 'studio' ? 'text-primary-vividAzure' : 'text-gray-400'}`} />
                   <span className={`text-xl font-bold ${selectedProduct === 'studio' ? 'text-white' : 'text-gray-300'}`}>
-                    Prompt Optimization Studio
+                    Context Engineering Studio
                   </span>
                 </div>
                 <p className={`text-sm ${selectedProduct === 'studio' ? 'text-primary-lightAzure' : 'text-gray-500'}`}>
@@ -445,7 +445,7 @@ const PricingPage = () => {
         </div>
       </AnimatedSection>
 
-      {/* PO Studio Pricing */}
+      {/* CE Studio Pricing */}
       <AnimatePresence mode="wait">
         {selectedProduct === 'studio' && (
           <motion.div
@@ -460,7 +460,7 @@ const PricingPage = () => {
                 {/* Studio Header */}
                 <div className="text-center mb-8">
                   <h2 className="text-3xl md:text-4xl font-heading font-bold mb-4">
-                    <span className="animated-gradient-text">Prompt Optimization Studio</span>
+                    <span className="animated-gradient-text">Context Engineering Studio</span>
                   </h2>
                   <p className="text-xl text-primary-lightAzure mb-6">
                     Eliminate AI Output Variance Across Your Team
@@ -469,7 +469,7 @@ const PricingPage = () => {
                   {/* Feature highlights */}
                   <div className="max-w-3xl mx-auto bg-primary-blue/30 backdrop-blur-lg border border-primary-vividAzure/20 rounded-xl p-6 mb-8">
                     <p className="text-gray-300 mb-4">
-                      Centralized prompt management platform that transforms generic AI assistants into context-aware team members by codifying organizational knowledge.
+                      Component-based context engineering platform that transforms generic AI assistants into context-aware team members by codifying organizational knowledge.
                     </p>
                     <div className="flex flex-wrap justify-center gap-4 text-sm">
                       <span className="text-primary-lightAzure">✓ Cloud-based SaaS • No infrastructure required</span>
@@ -553,7 +553,7 @@ const PricingPage = () => {
                       <div className="text-sm text-gray-400 mb-4 space-y-1">
                         <p>{plan.users} users</p>
                         <p>{plan.teams} {plan.teams === 1 ? 'team' : 'teams'}</p>
-                        <p>{plan.prompts} prompts</p>
+                        <p>{plan.contexts} context components</p>
                       </div>
 
                       <ul className="space-y-2 mb-6 flex-grow">
@@ -580,7 +580,7 @@ const PricingPage = () => {
 
                 <p className="text-center text-gray-500 text-sm mb-12">*Yearly billing (2 months free)</p>
 
-                {/* PO Studio Detailed Features Table */}
+                {/* CE Studio Detailed Features Table */}
                 <motion.div
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
@@ -756,7 +756,7 @@ const PricingPage = () => {
                         <p className="font-medium text-gray-300 mb-2">SCALE</p>
                         <p>{plan.users} users</p>
                         <p>{plan.teams} teams</p>
-                        <p>{plan.prompts} prompts</p>
+                        <p>{plan.contexts} context components</p>
                       </div>
 
                       {/* Analytics & Support */}
@@ -896,7 +896,7 @@ const PricingPage = () => {
                     <th className="p-4 text-center w-1/4 bg-primary-blue/30">
                       <div className="flex items-center justify-center gap-2 mb-1">
                         <FaCloud className="w-4 h-4 text-primary-vividAzure" />
-                        <span className="text-lg font-bold text-white">PO Studio</span>
+                        <span className="text-lg font-bold text-white">CE Studio</span>
                       </div>
                       <p className="text-xs text-gray-400">Cloud SaaS</p>
                       <p className="text-primary-lightAzure font-semibold text-sm mt-1">Starting Free</p>
@@ -954,7 +954,7 @@ const PricingPage = () => {
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            {/* PO Studio Decision */}
+            {/* CE Studio Decision */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -962,12 +962,12 @@ const PricingPage = () => {
               transition={{ duration: 0.5 }}
             >
               <GlassCard className="p-8 h-full">
-                <h3 className="text-xl font-bold text-white mb-4">Choose PROMPT OPTIMIZATION STUDIO if you:</h3>
+                <h3 className="text-xl font-bold text-white mb-4">Choose CONTEXT ENGINEERING STUDIO if you:</h3>
                 <ul className="space-y-3 mb-6">
                   {[
                     'Use AI coding tools (Cursor, Copilot, Claude Code, etc.)',
                     'Experience 2-3x code review overhead from inconsistent AI outputs',
-                    'Need to codify organizational knowledge into prompts',
+                    'Need to codify organizational knowledge into context',
                     'Want cloud-based SaaS with no infrastructure setup',
                     "Don't have a Claude license (works with any AI tool)",
                     'Want to start free and upgrade when ready'

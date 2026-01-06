@@ -31,7 +31,7 @@ const Navigation = () => {
 
   const productLinks = [
     {
-      label: 'Prompt Optimization Studio',
+      label: 'Context Engineering Studio',
       description: 'Cloud-based SaaS',
       href: '/cloud',
       icon: FaCloud,

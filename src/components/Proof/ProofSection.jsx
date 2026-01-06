@@ -59,7 +59,7 @@ const ProofSection = () => {
             <span className="text-white">, Not Promises</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            We built PO Studio—a complete enterprise application—using CoWeave.
+            We built CE Studio—a complete enterprise application—using CoWeave.
             Here's what happened.
           </p>
         </motion.div>

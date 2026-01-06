@@ -8,7 +8,7 @@ const Footer = () => {
     products: {
       title: 'Products',
       links: [
-        { label: 'Prompt Optimization Studio', href: '/cloud' },
+        { label: 'Context Engineering Studio', href: '/cloud' },
         { label: 'CoWeave AI Platform', href: '/platform' },
         { label: 'Pricing', href: '/pricing' },
       ],

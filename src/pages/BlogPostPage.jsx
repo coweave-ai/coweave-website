@@ -137,14 +137,14 @@ const BlogPostPage = () => {
               Ready to eliminate the variance cost?
             </h2>
             <p className="text-gray-400 mb-8">
-              Start managing your prompts with PO Studio today.
+              Start managing your context with CE Studio today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/cloud"
                 className="inline-flex items-center justify-center px-6 py-3 bg-primary-vividAzure text-white font-semibold rounded-xl hover:bg-primary-vividAzure/80 transition-colors"
               >
-                Try PO Studio Cloud
+                Try CE Studio Cloud
               </Link>
               <Link
                 to="/blog"

@@ -103,7 +103,7 @@ const CareersPage = () => {
               variant="primary"
               size="large"
             >
-              Try PO Studio Free
+              Try CE Studio Free
             </GlowButton>
           </motion.div>
         </div>

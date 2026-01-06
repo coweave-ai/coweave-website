@@ -9,9 +9,9 @@ import urls from '../../config/urls'
 const ProductsSection = () => {
   const products = [
     {
-      name: 'Prompt Optimization Studio',
+      name: 'Context Engineering Studio',
       tagline: 'Eliminate AI Output Variance',
-      description: 'Centralized prompt management platform that transforms generic AI assistants into context-aware team members.',
+      description: 'Component-based context engineering platform that transforms generic AI assistants into context-aware team members.',
       features: [
         'Cloud-based SaaS',
         'Start free, upgrade when ready',
@@ -32,7 +32,7 @@ const ProductsSection = () => {
       tagline: 'Full SDLC Orchestration with Agentic Workflows',
       description: 'Human-supervised automation from PRD to production. Pre-built workflows for architecture, development, testing, deployment, and incident response.',
       features: [
-        'Everything in PO Studio',
+        'Everything in CE Studio',
         'AI Service + Workflow Execution Engine',
         'Agentic workflows with deterministic orchestration',
         'On-prem deployment with full data control',
