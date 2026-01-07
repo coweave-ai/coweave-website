@@ -4,7 +4,7 @@
  * Uses environment variables to switch between staging and production URLs.
  *
  * Production (Vercel): app.coweave.ai
- * Staging (K8s): po-studio-cloud.appemble.com
+ * Staging (K8s): beta-ce-studio.coweave.ai
  */
 
 const APP_BASE_URL = import.meta.env.VITE_APP_URL || 'https://app.coweave.ai';
