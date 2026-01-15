@@ -94,19 +94,19 @@ const Paragraph = ({ children }) => (
 
 // Lists
 const UnorderedList = ({ children }) => (
-  <ul className="list-disc list-inside space-y-2 my-4 text-gray-300">
+  <ul className="list-disc pl-6 space-y-2 my-4 text-gray-300 marker:text-primary-vividAzure">
     {children}
   </ul>
 );
 
 const OrderedList = ({ children }) => (
-  <ol className="list-decimal list-inside space-y-2 my-4 text-gray-300">
+  <ol className="list-decimal pl-6 space-y-3 my-4 text-gray-300 marker:text-primary-vividAzure marker:font-semibold">
     {children}
   </ol>
 );
 
 const ListItem = ({ children }) => (
-  <li className="text-gray-300">{children}</li>
+  <li className="text-gray-300 pl-2">{children}</li>
 );
 
 // Blockquote
@@ -124,6 +124,47 @@ const Strong = ({ children }) => (
 // Horizontal rule
 const HorizontalRule = () => (
   <hr className="border-primary-vividAzure/30 my-8" />
+);
+
+// Table components - using not-prose to escape Tailwind typography styles
+const Table = ({ children }) => (
+  <div className="not-prose my-8 overflow-x-auto">
+    <div className="rounded-xl border border-primary-vividAzure/30 bg-primary-blue/20 backdrop-blur-sm">
+      <table className="w-full border-collapse text-sm">
+        {children}
+      </table>
+    </div>
+  </div>
+);
+
+const TableHead = ({ children }) => (
+  <thead className="bg-primary-vividAzure/20 border-b border-primary-vividAzure/30">
+    {children}
+  </thead>
+);
+
+const TableBody = ({ children }) => (
+  <tbody className="divide-y divide-primary-vividAzure/10">
+    {children}
+  </tbody>
+);
+
+const TableRow = ({ children }) => (
+  <tr className="hover:bg-primary-vividAzure/10 transition-colors duration-150">
+    {children}
+  </tr>
+);
+
+const TableHeader = ({ children }) => (
+  <th className="px-5 py-4 text-left font-semibold text-primary-lightAzure whitespace-nowrap">
+    {children}
+  </th>
+);
+
+const TableCell = ({ children }) => (
+  <td className="px-5 py-4 text-gray-300">
+    {children}
+  </td>
 );
 
 /**
@@ -150,6 +191,12 @@ export const mdxComponents = {
   blockquote: Blockquote,
   strong: Strong,
   hr: HorizontalRule,
+  table: Table,
+  thead: TableHead,
+  tbody: TableBody,
+  tr: TableRow,
+  th: TableHeader,
+  td: TableCell,
 };
 
 export default mdxComponents;
