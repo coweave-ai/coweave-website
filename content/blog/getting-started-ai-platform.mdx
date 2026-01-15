@@ -1,0 +1,365 @@
+# Getting Started with CoWeave AI Platform
+
+Your complete guide to SDLC automation. Set up your workflows, connect your context, and go from PRD to production with AI orchestration.
+
+---
+
+## What You're Setting Up
+
+CoWeave AI Platform combines two powerful systems:
+
+| Component | Purpose | Setup Time |
+|-----------|---------|------------|
+| **Context Engineering Studio** | Codify your team's standards and practices | 1-2 days |
+| **n8n Workflow Engine** | Orchestrate AI agents through your SDLC | 1 day |
+
+**Total setup: ~3 days to your first automated workflow.**
+
+---
+
+## Prerequisites
+
+Before you begin:
+
+- [ ] On-prem deployment completed (K8s cluster running)
+- [ ] Claude license configured (BYOL - Max or Enterprise)
+- [ ] GitHub/GitLab repository connected
+- [ ] Admin credentials for n8n and CE Studio
+
+---
+
+## Day 1: Context Engineering Studio Setup
+
+Before automating workflows, you need to codify your team's standards. The AI agents use these contexts to produce consistent, on-brand code.
+
+**Follow our CE Studio guide:** [Getting Started with Context Engineering Studio](/blog/getting-started-ce-studio)
+
+Quick summary of what you'll set up:
+
+| Context Type | What It Contains |
+|--------------|------------------|
+| **Base Context** | Team-wide coding standards, architecture principles |
+| **Role Contexts** | Expertise-level guidance (Senior Dev, QA, etc.) |
+| **Repository Contexts** | Project-specific patterns and conventions |
+| **Workflow Prompts** | Task-specific instructions for each SDLC phase |
+
+**Why this matters:** Without proper context, AI agents produce generic code. With your context, they produce code that matches your team's standards.
+
+---
+
+## Day 2: n8n Workflow Engine
+
+### Step 1: Sign Into n8n
+
+1. Navigate to your n8n instance URL (provided by your admin)
+2. Log in with your credentials
+3. You'll see the n8n dashboard with workflow categories
+
+### Step 2: Explore the Workflow Library
+
+CoWeave comes with **45 pre-built workflows** organized by SDLC phase:
+
+| Category | Workflows | Purpose |
+|----------|-----------|---------|
+| **Architecture** | 2 | Design systems, review architecture |
+| **Development** | 6 | Implement features, TDD, diagnostics |
+| **Code Review** | 2 | AI-driven code review, completeness check |
+| **QA & Testing** | 12 | Test execution, infrastructure, deployment |
+| **RCA** | 1 | Root cause analysis of failures |
+| **Git Integration** | 2 | Setup repos, commit and publish |
+| **GitHub** | 7 | Issues, PRs, branches, files |
+| **Google Workspace** | 6 | Docs, Sheets, Slides automation |
+
+**To explore:**
+1. Click **Workflows** in the left sidebar
+2. Browse by folder/category
+3. Click any workflow to see its structure
+
+### Step 3: Hello World - Your First Workflow
+
+Let's run a simple workflow to understand how things work.
+
+**Run the Git Setup Workflow:**
+
+1. Find `git-setup-workflow` in the workflow list
+2. Click to open it
+3. Click **Execute Workflow** (play button)
+4. Enter the required parameters:
+   - Repository URL
+   - Branch name
+   - Workspace path
+5. Watch the execution progress through each node
+
+**What you'll see:**
+- Each node lights up as it executes
+- Data flows from node to node
+- Final output shows in the last node
+
+**Congratulations!** You just ran your first CoWeave workflow.
+
+---
+
+### Step 4: Understanding Workflow Structure
+
+Every CoWeave workflow follows a pattern:
+
+```
+Trigger → Prepare Context → Call AI Agent → Process Output → Next Step
+```
+
+**Key node types:**
+
+| Node Type | Purpose | Example |
+|-----------|---------|---------|
+| **Webhook Trigger** | Starts the workflow | GitHub issue created |
+| **Code Node** | Prepares data/context | Assemble prompts |
+| **HTTP Request** | Calls Claude AI | Send to MCP endpoint |
+| **Switch** | Route based on conditions | Success vs. failure path |
+| **Set** | Transform data | Format output |
+
+**The AI Call Pattern:**
+
+Every AI workflow contains:
+1. **Prepare Message** - Assembles context from CE Studio + runtime data
+2. **Call Claude AI** - Sends to `/mcp-workflow` endpoint with role
+3. **Process Response** - Extracts artifacts, updates external memory
+
+---
+
+## Day 3: Your First SDLC Automation
+
+Now let's connect everything for real SDLC automation.
+
+### The Full Pipeline
+
+```
+GitHub Issue → Architect AI → Developer AI → Code Review → QA → RCA (if needed)
+```
+
+### Step 1: Create a Test Issue
+
+1. Go to your connected GitHub repository
+2. Create a new issue with a clear requirement
+3. Add the label that triggers automation (e.g., `coweave-ready`)
+
+### Step 2: Watch the Magic
+
+The platform automatically:
+
+1. **Downloads the issue** to the workspace
+2. **Architect AI** creates Technical Design Document
+3. **Developer AI** implements based on TDD
+4. **Code Review AI** validates the implementation
+5. **QA AI** runs tests
+6. **RCA AI** analyzes any failures and guides next iteration
+
+### Step 3: Monitor Progress
+
+**In n8n:**
+- Go to **Executions** to see running/completed workflows
+- Click any execution to see step-by-step progress
+- View input/output data at each node
+
+**In your repository:**
+- Check the `work-in-progress/issue-{N}/` directory
+- View AI artifacts in `external-memory/iteration-{N}/`
+- See generated code in the appropriate branches
+
+---
+
+## Understanding External Memory
+
+CoWeave's unique feature: **Git-based AI memory**.
+
+Every AI decision is persisted:
+
+```
+work-in-progress/issue-{N}/
+├── documents/              # Human inputs (TDD, PRD, specs)
+└── external-memory/
+    └── iteration-{N}/
+        ├── architecture/   # Architect AI outputs
+        ├── dev/           # Developer AI outputs
+        ├── dev-review/    # Code review findings
+        ├── qa/            # Test results
+        └── rca/           # Root cause analysis
+```
+
+**Why this matters:**
+- Full audit trail of AI decisions
+- Agents share context across iterations
+- Humans can review and override at any point
+
+---
+
+## The 11 AI Roles
+
+Your platform includes specialized AI agents:
+
+| Role | What It Does |
+|------|--------------|
+| **Architect AI** | System design, architecture patterns |
+| **Developer AI** | Code implementation |
+| **Code Reviewer AI** | Reviews code, identifies gaps |
+| **QA AI** | Test execution and validation |
+| **RCA AI** | Root cause analysis of failures |
+| **Classifier AI** | Issue routing and classification |
+| **Documentation AI** | Auto-generates docs |
+| **PM AI** | PRD generation |
+| **Support AI** | Customer support assistance |
+| **Pre-Sales AI** | Technical sales support |
+| **Post-Sales AI** | Customer success |
+
+Each role uses your **CE Studio contexts** for consistent outputs.
+
+---
+
+## Connecting CE Studio to Workflows
+
+The power comes from combining them:
+
+### How Context Flows
+
+```
+CE Studio                    n8n Workflow
+─────────                    ────────────
+Base Context ─────┐
+                  │
+Role Context ─────┼──→ Prompt Assembly ──→ Claude AI ──→ Output
+                  │
+Repo Context ─────┤
+                  │
+Workflow Prompt ──┘
+```
+
+### Setting Up the Connection
+
+1. In CE Studio, create contexts for each AI role
+2. In n8n, workflows automatically fetch assembled context
+3. The `Prepare Message` node combines:
+   - Your CE Studio context (standards)
+   - Runtime data (issue details, file paths)
+   - Iteration context (previous results)
+
+---
+
+## Common Workflows to Try
+
+### 1. Architecture Design
+
+**Workflow:** `architect-design-multiple-issues-workflow`
+
+**What it does:**
+- Reads requirements from GitHub issues
+- Creates comprehensive Technical Design Document
+- Generates database schema, API contracts, security design
+
+**Try it:**
+1. Create an issue with feature requirements
+2. Trigger the architecture workflow
+3. Review the TDD in `external-memory/iteration-1/architecture/`
+
+### 2. Development Implementation
+
+**Workflow:** `developer-implement-multiple-issues-workflow`
+
+**What it does:**
+- Reads TDD and requirements
+- Implements using TDD methodology
+- Creates tests first, then implementation
+- Commits to Git automatically
+
+### 3. Code Review
+
+**Workflow:** `developer-reviewer-multiple-issues-workflow`
+
+**What it does:**
+- Reviews implementation against TDD
+- Identifies gaps with severity (CRITICAL/HIGH/MEDIUM/LOW)
+- Creates GAP_ANALYSIS.md for next iteration
+
+### 4. PRD Generation
+
+**Workflow:** `prd-generator-workflow`
+
+**What it does:**
+- Takes meeting notes or requirements input
+- Generates comprehensive PRD
+- Multiple input modes (single source, multi-source, with Claude analysis)
+
+---
+
+## Iteration Loop
+
+CoWeave uses an iterative improvement loop:
+
+```
+Iteration 1: Developer → Review → QA → RCA (finds issues)
+                                          ↓
+Iteration 2: Developer (with RCA guidance) → Review → QA → RCA
+                                                            ↓
+Iteration N: Continue until QA passes
+```
+
+**Each iteration:**
+- Reads previous iteration's feedback
+- Focuses on remaining gaps
+- Updates IMPLEMENTATION_PLAN.md incrementally
+- Persists new artifacts
+
+---
+
+## Quick Reference: Key URLs
+
+| Service | URL Pattern |
+|---------|-------------|
+| **n8n Dashboard** | `https://n8n.your-domain.com` |
+| **CE Studio** | `https://ce-studio.your-domain.com` |
+| **AI Service** | `https://ai.your-domain.com/mcp-workflow` |
+| **Metrics** | `https://grafana.your-domain.com` |
+
+---
+
+## Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Workflow not triggering | Check webhook URL, verify GitHub integration |
+| AI returns generic output | Verify CE Studio contexts are configured |
+| Execution fails at AI call | Check Claude API connection, verify BYOL license |
+| Session locked | Run `clear-github-issue-lock-workflow` |
+
+---
+
+## Next Steps
+
+| When | What to Do |
+|------|------------|
+| **Week 2** | Run full SDLC cycle on a real feature |
+| **Week 3** | Customize workflow prompts in CE Studio |
+| **Month 2** | Add custom workflows for your team's processes |
+
+---
+
+## Ready to Automate Your SDLC?
+
+You now have:
+- [ ] CE Studio configured with your team's standards
+- [ ] n8n workflows explored and understood
+- [ ] First workflow executed successfully
+- [ ] Understanding of external memory system
+
+**Your AI-powered SDLC is ready to go.**
+
+---
+
+**Related Articles:**
+- [Getting Started with Context Engineering Studio](/blog/getting-started-ce-studio)
+- [The Reimagined Engineering Reality](/blog/reimagined-engineering-reality)
+- [The Variance Cost](/blog/variance-cost)
+
+---
+
+**CoWeave** - Production code. Done right. Codify your SDLC with context assembly and agentic workflows.
+
+hello@coweave.ai

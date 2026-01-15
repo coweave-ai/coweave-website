@@ -1,0 +1,264 @@
+# CoWeave Workflows in Practice: From Issue to PR with Multi-Agent Orchestration
+
+You've heard the promise: AI agents that can architect, implement, review, and test code automatically. But anyone who's tried to chain multiple AI interactions together knows the reality—context gets lost, agents contradict each other, and you spend more time babysitting the process than you would have spent coding yourself.
+
+The problem isn't the AI. It's the orchestration. When agents can't share context, can't resume previous work, and can't build on each other's outputs, multi-agent workflows fail. This guide shows how CoWeave solves this with persistent sessions, hierarchical contexts, and deterministic SDLC workflows.
+
+---
+
+## The Multi-Agent Challenge
+
+Consider what happens when you try to automate a feature implementation with multiple AI agents:
+
+**Agent 1 (Architect)** designs the system architecture. It understands the requirements, considers trade-offs, and produces a technical design document.
+
+**Agent 2 (Developer)** needs to implement that design. But it doesn't know what Agent 1 decided. You copy-paste the design doc into the prompt, losing nuance. The implementation drifts from the architecture.
+
+**Agent 3 (Reviewer)** reviews the code. But it doesn't know the original requirements or the architectural decisions. It flags "issues" that are actually intentional design choices.
+
+**Agent 4 (Tester)** writes tests. But it doesn't know what was already covered, what edge cases the architect identified, or what the reviewer already validated.
+
+The result? Agents working at cross-purposes, duplicated effort, and a human spending hours reconciling contradictory outputs. This isn't AI-assisted development—it's AI-complicated development.
+
+---
+
+## The Solution: Hierarchical Context + Persistent Sessions
+
+CoWeave solves this with two key innovations: a 4-layer context system that ensures consistency, and persistent sessions that maintain continuity across agent handoffs.
+
+### The 4-Layer Context System
+
+Every AI interaction in CoWeave assembles context from four layers:
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│  LAYER 4: Workflow Prompts                                   │
+│  Task-specific instructions (9-14 phases per workflow)       │
+├─────────────────────────────────────────────────────────────┤
+│  LAYER 3: Repository Context                                 │
+│  Runtime environment: issue details, paths, iteration info   │
+├─────────────────────────────────────────────────────────────┤
+│  LAYER 2: Role Context                                       │
+│  AI personas: architect, developer, reviewer, tester         │
+├─────────────────────────────────────────────────────────────┤
+│  LAYER 1: Base Context                                       │
+│  Universal standards: coding, testing, security, docs        │
+└─────────────────────────────────────────────────────────────┘
+```
+
+**Layer 1: Base Context** defines your organization's universal standards—coding conventions, testing requirements (70% coverage minimum), security guidelines, documentation formats. Update once, apply everywhere.
+
+**Layer 2: Role Context** defines AI personas with specific expertise. The architect thinks about system design and trade-offs. The developer focuses on implementation patterns. The reviewer follows a 14-phase review process. Each role has clear decision-making authority and escalation triggers.
+
+**Layer 3: Repository Context** injects runtime information—the specific issue being worked, workspace paths, iteration number, and references to documents from previous phases. This layer is populated automatically at execution time.
+
+**Layer 4: Workflow Prompts** provide task-specific instructions. Each workflow (architecture design, code review, QA testing) has detailed phase-by-phase guidance ensuring consistent, thorough execution.
+
+When an agent runs, these layers compose into a complete prompt. Every agent—regardless of role—operates from the same base standards. Every agent in the same workflow sees the same repository context. The result: consistency without redundancy.
+
+---
+
+## Multi-Agent Workflow in Action
+
+Here's what a real multi-agent workflow looks like, from GitHub issue to merged PR:
+
+```
+┌─────────────────────────────────────────────────────────────────────┐
+│  GitHub Issue #123: "Add user authentication"                       │
+└─────────────────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  ITERATION 1: Architecture Design                                   │
+│  ─────────────────────────────────                                  │
+│  Agent: architect-ai                                                │
+│  Session: NEW → creates session abc-123                             │
+│  Output: Technical design document, TDD template                    │
+│  Artifacts: /issue-123/documents/TECHNICAL_DESIGN.md                │
+└─────────────────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  ITERATION 2: Implementation                                        │
+│  ───────────────────────────                                        │
+│  Agent: developer-ai                                                │
+│  Session: RESUME abc-123 (--resume flag)                            │
+│  Context: Sees architect's design, can reference decisions          │
+│  Output: Implementation code + test files                           │
+│  Artifacts: /issue-123/external-memory/iteration-1/dev/             │
+└─────────────────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  ITERATION 3: Code Review                                           │
+│  ────────────────────────                                           │
+│  Agent: code-reviewer-ai                                            │
+│  Session: RESUME abc-123                                            │
+│  Context: Sees architecture + implementation + original requirements│
+│  Output: GAP_ANALYSIS.md with severity ratings (CRITICAL/HIGH/MED)  │
+│  Artifacts: /issue-123/external-memory/iteration-1/dev-review/      │
+└─────────────────────────────────────────────────────────────────────┘
+                                 │
+                         ┌───────┴───────┐
+                         │  Gaps found?  │
+                         └───────┬───────┘
+                    No ──────────┼────────── Yes
+                                 │            │
+                                 │            ▼
+                                 │  ┌─────────────────────────────────┐
+                                 │  │  ITERATION 4: Fix Gaps          │
+                                 │  │  Agent: developer-ai            │
+                                 │  │  Session: RESUME abc-123        │
+                                 │  │  Input: Gap analysis + focus    │
+                                 │  │  Output: Fixed implementation   │
+                                 │  └─────────────────────────────────┘
+                                 │            │
+                                 ◄────────────┘
+                                 │
+                                 ▼
+┌─────────────────────────────────────────────────────────────────────┐
+│  ITERATION 5: QA Testing                                            │
+│  ───────────────────────                                            │
+│  Agent: tester-ai                                                   │
+│  Session: RESUME abc-123                                            │
+│  Output: { qa_gate: "PASS", tests_passed: 47, tests_total: 47 }     │
+└─────────────────────────────────────────────────────────────────────┘
+                                 │
+                                 ▼
+                         ┌───────────────┐
+                         │  PR Created   │
+                         └───────────────┘
+```
+
+The key insight: **every agent resumes the same session**. The developer sees exactly what the architect decided. The reviewer sees the original requirements AND the implementation. When gaps are found, the developer knows precisely what to fix because the context is preserved.
+
+---
+
+## SDLC Phases with Context Chaining
+
+CoWeave workflows follow the complete software development lifecycle, with each phase producing artifacts that feed the next:
+
+```
+REQUIREMENTS    ARCHITECTURE    DEVELOPMENT    REVIEW       TESTING      ASSESSMENT
+     │               │               │            │            │              │
+     ▼               ▼               ▼            ▼            ▼              ▼
+┌─────────┐    ┌──────────┐    ┌─────────┐   ┌────────┐   ┌────────┐    ┌──────────┐
+│  PRD    │ ─► │  TDD +   │ ─► │ Code +  │ ─►│  Gap   │ ─►│  QA    │ ─► │ Complete │
+│ Document│    │  Design  │    │ Tests   │   │Analysis│   │ Report │    │  Report  │
+└─────────┘    └──────────┘    └─────────┘   └────────┘   └────────┘    └──────────┘
+```
+
+**Phase 1: Requirements** — The PRD Generator workflow takes input documents (marketing specs, design mocks, meeting notes) and produces a structured PRD with 14 sections covering functional requirements, technical constraints, and acceptance criteria.
+
+**Phase 2: Architecture** — The Architect Design workflow reads the PRD and produces a Technical Design Document with API specifications, data models, and a TDD (Test-Driven Design) template. An optional Architecture Review workflow validates the design.
+
+**Phase 3: Development** — The Developer Implement workflow reads the PRD, Technical Design, and TDD template, then produces implementation code and test files. All artifacts are stored in the issue's external memory directory.
+
+**Phase 4: Review** — The Code Review workflow performs a 14-phase systematic review, producing a Gap Analysis document with prioritized findings (CRITICAL, HIGH, MEDIUM). If gaps exist, the Developer workflow re-runs to address them.
+
+**Phase 5: Testing** — The QA Review workflow validates test coverage, quality, and TDD compliance. If tests fail, an RCA (Root Cause Analysis) workflow diagnoses issues and guides fixes.
+
+**Phase 6: Assessment** — The Completeness Assessment workflow verifies all requirements are implemented and tested, producing a final report with an implementation score.
+
+---
+
+## How the Pieces Connect
+
+CoWeave's multi-agent orchestration involves three main components working together:
+
+**CoWeave Workflow** (n8n-based) handles the orchestration layer. GitHub webhooks trigger workflows when issues are created or updated. The workflow engine manages execution sequencing, conditional branching (did the review find gaps?), and artifact storage.
+
+**CoWeave AI** provides session management and agent execution. It maintains Redis-backed persistent sessions with deterministic IDs (same issue always gets same session). The `--resume` flag allows any agent to continue from where the previous agent left off. Distributed locks prevent concurrent processing of the same issue.
+
+**CE Studio** manages the context system. Base contexts, role contexts, and workflow prompts are version-controlled and composable. When you update a coding standard, every workflow using that base context automatically inherits the change.
+
+---
+
+## Running Workflows in Practice
+
+So you've got CoWeave set up. You have a GitHub issue. Now what?
+
+### Step-by-Step: From Issue to PR
+
+**Step 1: Create the Issue**
+
+Open a GitHub issue with clear requirements. The more detail you provide, the better the architecture will be. Include acceptance criteria, constraints, and any relevant context.
+
+**Step 2: Architecture Workflow Triggers**
+
+Within seconds, the architect workflow picks up your issue. A new session is created. The architect-ai agent reads your requirements, applies your organization's base context (coding standards, architecture patterns), and produces a Technical Design document.
+
+**Step 3: Review the Architecture**
+
+After 7-10 minutes, check your issue's WIP directory for the architecture output. Review the Technical Design and TDD template. If adjustments are needed, add a comment to the issue—the next iteration will incorporate your feedback.
+
+**Step 4: Development Workflow Continues**
+
+Once architecture is approved (or automatically after the architect completes), the developer workflow resumes the same session. The developer-ai agent sees everything the architect decided and implements accordingly.
+
+**Step 5: Automatic Code Review**
+
+After implementation completes, the code-reviewer-ai agent joins the session. It reviews against the original requirements AND the architecture decisions, producing a prioritized gap analysis.
+
+**Step 6: Iterate if Needed**
+
+If gaps are found (CRITICAL or HIGH severity), the developer workflow automatically re-runs with the gap analysis as input. This iteration loop continues until the review passes.
+
+**Step 7: QA Validation**
+
+The tester-ai agent validates test coverage and quality. If all tests pass and coverage meets thresholds, a PR is automatically created with full context from all phases.
+
+---
+
+## What To Do While Workflows Run
+
+Each workflow iteration takes 7-15 minutes on average. That's time you can use productively instead of watching logs scroll by.
+
+**Review Previous Outputs** — While the current iteration runs, review artifacts from the previous phase. Catch issues early before they compound.
+
+**Refine Your Contexts** — Open CE Studio and improve your context components. Better base contexts mean better outputs next time.
+
+**Queue Up Parallel Work** — CoWeave can process multiple issues concurrently. While issue #123 is in development, start architecture on issue #124.
+
+**Catch Up on Code Reviews** — Your teammates' PRs need attention. Use workflow execution time to review human-written code.
+
+**Monitor for Early Signals** — Check logs periodically. If an agent is struggling with a particular file or pattern, you can prepare context refinements for the next iteration.
+
+**Document Learnings** — When workflows produce unexpected outputs, note what context was missing. These observations become improvements to your base contexts.
+
+**Take a Break** — Seriously. One of the benefits of automation is stepping away. The workflow will complete whether you're watching or not.
+
+---
+
+## Getting Started
+
+Ready to put multi-agent workflows into practice?
+
+**Start with CE Studio Cloud** — Build your context components (base standards, role definitions, repository templates) in CE Studio. This is the foundation everything else builds on.
+
+**Deploy CoWeave AI Platform** — For full SDLC automation with multi-agent orchestration, session persistence, and GitHub integration, deploy the CoWeave AI Platform in your environment.
+
+The workflows described in this guide are production-ready patterns we use internally. They're designed to be customized—your organization's coding standards, your architecture patterns, your testing requirements.
+
+---
+
+## Ready to automate your SDLC?
+
+Start building multi-agent workflows with CoWeave today.
+
+[**Try CE Studio Cloud**](/cloud) - Build your context components and see hierarchical assembly in action.
+
+[**Contact Us**](/contact) - Discuss enterprise deployment of the full CoWeave AI Platform.
+
+---
+
+**Related Articles:**
+- [Getting Started with Context Engineering Studio](/blog/getting-started-ce-studio)
+- [Getting Started with the CoWeave AI Platform](/blog/getting-started-ai-platform)
+- [The Variance Cost: Why AI Coding Tools Need Guardrails](/blog/variance-cost)
+
+---
+
+**CoWeave** - Production code. Done right. Codify your SDLC with context assembly and agentic workflows.
+
+hello@coweave.ai

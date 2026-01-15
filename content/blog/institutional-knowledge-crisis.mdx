@@ -1,0 +1,153 @@
+# The Institutional Knowledge Crisis: Why Companies Lose When Engineers Leave
+
+When a senior engineer gives their two-week notice, most companies focus on the immediate gap—who will take over their tickets, who knows their systems? But the real crisis isn't what walks out the door. It's what was never captured in the first place.
+
+---
+
+## The Invisible Hemorrhage
+
+Consider what actually leaves when an experienced engineer departs:
+
+| The Engineer | The Lost Knowledge |
+|--------------|-------------------|
+| **Senior backend engineer** | Payment service needs a 3-second timeout because anything longer causes cascade failures during peak load. Learned through a 2AM incident six months ago—not in any runbook. |
+| **Frontend lead** | Mobile team expects image assets under 100KB due to legacy CDN constraint. Lives only in code review comments scattered across dozens of PRs. |
+| **Infrastructure specialist** | Staging database has a quirk where certain queries run 10x slower than production—load testing numbers always need mental adjustment. Not documented because "everyone just knows." |
+
+### The Result
+
+| Impact | What Happens |
+|--------|--------------|
+| Code reviews | Take 2-3x longer as new reviewers ask basic questions |
+| Bug fixes | Hours stretch into days while engineers reverse-engineer context |
+| Technical decisions | Made without crucial historical perspective |
+| Old problems | Unknowingly reintroduced because the team forgot they were solved years ago |
+
+---
+
+## Why Documentation Fails
+
+The typical solution is straightforward: "We need better documentation." Engineering leaders mandate design docs, update wikis, and create Notion spaces. Yet six months later, the same knowledge gap persists.
+
+### The Timing Problem
+
+| When Documentation Happens | Why It Fails |
+|----------------------------|--------------|
+| After decisions are made | Context is already stale |
+| When engineers think it's needed | Not what others actually need to know |
+| At a single point in time | Outdated the moment the next change ships |
+
+### The Deeper Problem
+
+Most engineering knowledge doesn't live in documents at all. It lives in the accumulated wisdom of how to work within a specific codebase:
+
+| Knowledge Type | Where It Actually Lives |
+|----------------|------------------------|
+| Implicit standards | Developers' heads |
+| Unwritten conventions | Code review comments |
+| "We do it this way because..." | Pair programming sessions |
+| Historical context | Slack threads (if you can find them) |
+
+---
+
+## The Hidden Cost of Context Switching
+
+When engineers leave, the remaining team doesn't just lose knowledge—they lose velocity.
+
+| Symptom | Cost |
+|---------|------|
+| New team members need constant guidance | Senior engineer time diverted |
+| Code reviews become archaeology expeditions | Review cycles 2-3x longer |
+| Every decision requires a Slack thread | Decision-making slows down |
+| Institutional memory distributed across whoever might remember | Knowledge concentration risk |
+
+### AI Makes It Worse
+
+AI coding tools promise to help, but they can actually compound the problem:
+
+| What Happens | Why It's a Problem |
+|--------------|-------------------|
+| Developer uses Copilot or Claude | Gets syntactically correct code |
+| Code violates team conventions | Developer doesn't know conventions exist |
+| Code "works" | But introduces inconsistency |
+| Technical debt compounds | Review cycles get longer |
+| Fewer people can catch misalignments | Each departure makes it worse |
+
+---
+
+## Knowledge as Infrastructure
+
+The solution isn't better documentation—it's treating knowledge as first-class infrastructure.
+
+At CoWeave, we see institutional knowledge as something that needs to be codified at the point of decision-making, not reconstructed later. This means capturing context in the systems where work actually happens.
+
+### Base Context
+
+| What It Does | Why It Matters |
+|--------------|----------------|
+| Encodes team-wide standards | Not in a wiki that gets stale |
+| Lives in active contexts | Gets used every time someone writes code |
+| Updates immediately | When the team decides all API endpoints need request validation, it's captured now |
+
+### Role Context
+
+| What It Preserves | How It's Used |
+|-------------------|---------------|
+| How senior engineers approach architecture decisions | Applied automatically to AI-assisted work |
+| How the security team thinks about threat modeling | Reused instead of re-explained every review |
+| How the frontend team handles state management | Consistent patterns across the team |
+
+### Repository Context
+
+| What It Captures | Where It Lives |
+|------------------|----------------|
+| Why this service has unique timeout requirements | Alongside the code |
+| Why this component uses a non-standard pattern | In the context, not someone's memory |
+| Why this database query is written a specific way | Available to every developer |
+
+---
+
+## What Changes
+
+When an engineer leaves:
+
+| Before CoWeave | After CoWeave |
+|----------------|---------------|
+| Accumulated wisdom disappears | Wisdom is already encoded in contexts |
+| Next engineer starts from zero | Next engineer starts with everyone's knowledge |
+| Knowledge reconstructed through trial and error | Knowledge applied automatically |
+| Team velocity drops | Team velocity sustained |
+
+---
+
+## The Path Forward
+
+| Organization Type | Outcome |
+|-------------------|---------|
+| Treats institutional knowledge as disposable | Loses ground every time someone leaves |
+| Codifies knowledge as it's created | Compounds advantages over time |
+
+The question isn't whether engineers will leave—they always do. The question is whether your company's collective intelligence leaves with them.
+
+---
+
+## Ready to preserve your institutional knowledge?
+
+CoWeave helps engineering teams capture and codify knowledge at the point of creation, not after it's already gone.
+
+[**Start Free with CE Studio Cloud**](/cloud) - Begin capturing institutional knowledge today.
+
+[**Contact Us for Enterprise**](/contact) - Deploy CoWeave AI Platform across your organization.
+
+---
+
+**Related Articles:**
+- [The Variance Cost: Why AI Coding Tools Need Guardrails](/blog/variance-cost)
+- [Change Management for AI Adoption](/blog/change-management-ai-adoption)
+- [Human-Centered AI: Why We'll Never Automate Away Engineers](/blog/human-centered-ai)
+
+---
+
+**CoWeave** - Production code. Done right. Codify your SDLC with context assembly and agentic workflows.
+
+hello@coweave.ai

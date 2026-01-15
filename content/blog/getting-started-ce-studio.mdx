@@ -1,0 +1,228 @@
+# Getting Started with Context Engineering Studio
+
+Get from zero to engineered context in under 3 days. CE Studio provides default templates for everything—you just customize them to match your team's standards.
+
+---
+
+## The Fast Track: 4 Steps in 3 Days
+
+| Day | What You'll Do | Time Required |
+|-----|----------------|---------------|
+| **Day 1** | Setup + Customize Base Context | 1-2 hours |
+| **Day 2** | Customize Role & Repo Contexts | 1-2 hours |
+| **Day 3** | API Integration + Go Live | 1 hour |
+
+**Total time investment: ~4-5 hours spread across 3 days.**
+
+---
+
+## What You Get Out of the Box
+
+CE Studio comes with **default templates** for all context types. You're not starting from scratch—you're customizing pre-built templates to match your team:
+
+| Context Type | Default Templates Provided |
+|--------------|---------------------------|
+| **Base Context** | Standard coding practices, architecture principles, testing requirements |
+| **Role Contexts** | Senior Developer, Junior Developer, Frontend, Backend, QA, DevOps, Security, Data Engineer |
+| **Repository Contexts** | Template with common sections (stack, patterns, setup) |
+| **Workflow Prompts** | Implement Feature, Fix Bug, Write Tests, Code Review, Refactor |
+
+**Your job: Review the defaults and customize for your team's specific standards.**
+
+---
+
+## Day 1: Setup & Customize Base Context
+
+### Hour 1: Account & Team Setup
+
+1. **Sign up** at [coweave.ai/cloud](/cloud)
+   - Free tier: 3 users, 1 team, 10 context components
+   - No credit card required
+
+2. **Invite your team** (2-3 people to start)
+   - Team Settings → Members → Send Invitations
+
+3. **Review the default Base Context template**
+   - It's already there—just needs your customization
+
+**Done in 20-30 minutes.**
+
+---
+
+### Hour 2: Customize Your Base Context
+
+The default Base Context template includes standard sections. Customize each to match your team:
+
+| Default Section | What to Customize |
+|-----------------|-------------------|
+| **Coding Standards** | Your language, frameworks, style rules |
+| **Architecture** | Your specific patterns (Clean Architecture, Hexagonal, etc.) |
+| **Testing** | Your coverage targets, test frameworks |
+| **Error Handling** | Your error types, logging approach |
+
+**Example customization:**
+
+```markdown
+## Coding Standards
+- TypeScript strict mode (customize: your language)
+- Functional components preferred (customize: your patterns)
+- ESLint + Prettier enforced (customize: your tools)
+
+## Testing
+- 80%+ coverage target (customize: your target)
+- Jest for unit tests (customize: your framework)
+- Playwright for E2E (customize: your E2E tool)
+```
+
+**Update the Dos/Don'ts:**
+- Review defaults, add your team-specific rules
+- Remove anything that doesn't apply
+
+**Done in 30-45 minutes.**
+
+---
+
+## Day 2: Customize Role & Repository Contexts
+
+### Hour 1: Customize Role Contexts
+
+Default role templates are pre-populated. Pick the ones relevant to your team and customize:
+
+| Default Role | What to Customize |
+|--------------|-------------------|
+| **Senior Developer** | Your architecture decision authority, review focus |
+| **Junior Developer** | Your mentoring approach, learning expectations |
+| **Frontend Developer** | Your UI framework, state management patterns |
+| **Backend Developer** | Your API patterns, database conventions |
+
+**Quick customization per role:**
+1. Open the role template
+2. Update the guidance to match your team's expectations
+3. Add team-specific Dos/Don'ts
+
+**15 minutes per role.**
+
+---
+
+### Hour 2: Customize Repository Contexts
+
+Create one per major project by customizing the template:
+
+| Template Section | Your Customization |
+|------------------|-------------------|
+| **Stack** | Your actual tech stack |
+| **Key Patterns** | Your project's architecture patterns |
+| **Local Setup** | Your actual setup commands |
+
+**Example:**
+
+```markdown
+## payment-service (customize template)
+
+### Stack
+- Node.js + TypeScript + Express
+- PostgreSQL + Redis
+
+### Key Patterns
+- Repository pattern for data access
+- Event-driven with RabbitMQ
+
+### Local Setup
+- `npm install && npm run dev`
+```
+
+**15-20 minutes per repository.**
+
+---
+
+### Bonus: Customize Workflow Prompts
+
+Default workflow templates cover common tasks. Review and adjust:
+
+| Default Workflow | Quick Customization |
+|------------------|---------------------|
+| **Implement Feature** | Add your branching strategy, PR process |
+| **Fix Bug** | Add your debugging tools, verification steps |
+| **Write Tests** | Add your test patterns, coverage expectations |
+| **Code Review** | Add your review checklist items |
+
+**10 minutes per workflow.**
+
+---
+
+## Day 3: Go Live (1 Hour)
+
+### Step 1: Get Your API Key
+
+1. Settings → API Keys → Create
+2. Set permissions (Read or Read/Write)
+3. Copy and save securely
+
+### Step 2: Test Assembly
+
+```bash
+curl -X POST https://api.coweave.ai/v1/assemble \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "teamId": "your-team-id",
+    "roleContextId": "senior-developer",
+    "repoContextId": "payment-service"
+  }'
+```
+
+### Step 3: Use in Your AI Tool
+
+Copy the assembled context into Claude, ChatGPT, or Cursor as system instructions. Your AI now understands your team's standards.
+
+---
+
+## You're Live!
+
+After 3 days of customizing templates, you have:
+
+- [ ] Base Context customized to your team standards
+- [ ] Role Contexts tailored to your expectations
+- [ ] Repository Contexts for your main projects
+- [ ] Workflow Prompts adjusted to your process
+- [ ] API integration ready
+
+**Your AI tools now understand your organization.**
+
+---
+
+## Ongoing: Expand & Refine
+
+| When | Action |
+|------|--------|
+| **Week 2+** | Add more repos, refine based on usage |
+| **Monthly** | Review and update contexts as standards evolve |
+
+The initial setup is fast because you're customizing templates, not building from scratch. Expansion happens naturally as you use the system.
+
+---
+
+## Edition Quick Reference
+
+| Tier | Users | Components | Best For |
+|------|-------|------------|----------|
+| **Free** | 3 | 10 | Getting started |
+| **Starter** ($29/mo) | 15 | 100 | Growing teams |
+| **Professional** ($99/mo) | 60 | 500 | Multiple teams, SSO |
+| **Enterprise** | Unlimited | Unlimited | n8n integration |
+
+---
+
+## Ready to Start?
+
+[**Start Free with CE Studio**](/cloud) - Default templates ready to customize.
+
+[**View Pricing**](/pricing) - See all tiers.
+
+[**Contact Sales**](/contact) - Enterprise options.
+
+---
+
+**CoWeave** - Production code. Done right.
+
+hello@coweave.ai

@@ -1,0 +1,280 @@
+# Integrating with Existing Vibe Coding: What to Expect
+
+You've invested in AI coding tools like Cursor, GitHub Copilot, or Claude Code. Your team is already "vibe coding"—using AI assistants to write code faster. But you're seeing the variance problem: every developer's AI generates different patterns, inconsistent styles, and code that requires extensive review.
+
+The question isn't whether to abandon your existing tools. It's how to make them work consistently across your team.
+
+CoWeave AI Platform and CE Studio Cloud were built to solve exactly this problem—not by replacing your vibe coding tools, but by empowering them with centralized context that eliminates variance.
+
+---
+
+## The Integration Journey
+
+Teams integrating CoWeave with existing vibe coding workflows typically move through three phases: initial setup, workflow optimization, and eventually reaching a state where context assembly becomes seamless.
+
+---
+
+## Phase 1: Initial Setup (Week 1-2)
+
+**What You're Doing:** Setting up CE Studio Cloud to capture your team's existing knowledge—the coding standards, architectural patterns, and best practices that currently live in developers' heads or scattered across documentation.
+
+### The Work
+
+| Task | Description |
+|------|-------------|
+| Create base context | Foundational coding standards for your team |
+| Define role contexts | Different expertise levels (senior, junior, frontend, backend) |
+| Document repo patterns | Repository-specific patterns for key projects |
+| Generate API keys | Command-line integration access |
+
+**What to Expect:** This phase requires upfront investment. You're essentially codifying tribal knowledge into structured contexts. Plan for 4-8 hours of team collaboration to capture your standards comprehensively. The effort pays dividends immediately—but expect iteration as you discover gaps.
+
+**The Payoff:** At the end of week two, any developer can assemble a context-aware prompt that includes all team knowledge. No more copying and pasting standards. No more "how did we decide to handle authentication again?"
+
+---
+
+## Phase 2: Workflow Integration (Week 3-6)
+
+**What You're Doing:** Connecting CE Studio's assembled contexts to your existing vibe coding tools through two primary patterns: manual assembly or API integration.
+
+### Option A: Context Assembly for Manual Use
+
+**The Workflow:**
+
+| Step | Action |
+|------|--------|
+| 1 | Developer opens CE Studio's Test Assembly interface |
+| 2 | Selects their role, relevant repositories, and any personal enhancements |
+| 3 | Clicks "Generate Assembly" to get a fully-assembled, context-rich prompt |
+| 4 | Copies the assembled prompt to their vibe coding tool (Cursor, Claude Code, etc.) |
+| 5 | Proceeds with AI-assisted development using consistent context |
+
+**What to Expect:** This approach requires minimal technical integration but involves a manual step. Developers appreciate seeing exactly what context the AI receives—it builds trust and understanding. Initial feedback: "I finally understand why the AI was generating inconsistent code before."
+
+| Metric | Before CoWeave | After CoWeave |
+|--------|----------------|---------------|
+| Context setup time | 15-30 min explaining standards | 2-5 min assembly |
+| Fixing inconsistent outputs | 15-30 min per session | Near zero |
+
+### Option B: API Integration for Command-Line Workflows
+
+**The Workflow:**
+
+| Step | Action |
+|------|--------|
+| 1 | Developer authenticates once with CE Studio API key |
+| 2 | Creates a simple script or shell alias |
+| 3 | Script calls CE Studio's /api/v1/assemble endpoint |
+| 4 | Receives assembled prompt (cached response) |
+| 5 | Pipes assembled prompt directly to vibe coding tool's CLI |
+
+**Example Integration Pattern:**
+
+```bash
+# One-time setup
+export CE_STUDIO_API_KEY="your-api-key-here"
+export CE_STUDIO_TEAM_ID="team-uuid"
+
+# Alias for quick context assembly
+alias assemble-context="curl -X POST https://api.coweave.ai/v1/assemble \
+  -H 'Authorization: Bearer $CE_STUDIO_API_KEY' \
+  -H 'Content-Type: application/json' \
+  -d '{
+    \"teamId\": \"$CE_STUDIO_TEAM_ID\",
+    \"roleId\": \"senior-dev-uuid\",
+    \"repoIds\": [\"backend-api-uuid\"]
+  }' | jq -r '.assembledPrompt'"
+
+# Use in workflow
+assemble-context | cursor-cli --system-prompt -
+```
+
+**What to Expect:** Initial setup takes 1-2 hours to configure API access and create helper scripts. After that, context assembly becomes instant and automatic. Teams report this feels like "giving every vibe coding session a senior engineer's brain."
+
+**The Performance Difference:**
+
+| Call Type | Response Time |
+|-----------|---------------|
+| First call | ~150ms (database fetch + assembly) |
+| Subsequent calls | Under 50ms (Redis cache hit) |
+| Typical cache hit rate | 80%+ |
+
+---
+
+## Phase 3: Seamless Operation (Week 7+)
+
+**What Changes:** Context assembly moves from conscious activity to invisible infrastructure. Developers stop thinking about contexts—they just code with consistent, team-standard AI assistance.
+
+### What You'll Notice
+
+| Before | After |
+|--------|-------|
+| Code reviews focus on style inconsistencies | Code reviews focus on business logic |
+| Junior developers produce inconsistent patterns | Junior developers match senior patterns automatically |
+| New team members ramp up slowly | New members onboard faster (context teaches them) |
+| AI-generated code needs extensive revision | AI-generated code requires 50-70% less revision |
+
+### The Smooth Workflow
+
+| Step | What Happens |
+|------|--------------|
+| 1 | Developer starts a task |
+| 2 | Runs their context assembly command (or uses pre-configured setup) |
+| 3 | AI coding tool receives full team context automatically |
+| 4 | Codes naturally, AI assists with team-standard patterns |
+| 5 | Submits code that passes review on first attempt |
+
+---
+
+## Integration Patterns in Practice
+
+### Pattern 1: Enhanced Cursor Workflow
+
+| Scenario | Experience |
+|----------|------------|
+| **Before CoWeave** | Developer opens Cursor, types a vague prompt, gets generic code that doesn't match team patterns, spends 20 minutes fixing it |
+| **After CoWeave** | Developer runs context assembly, types the same prompt, Cursor generates code using exact team patterns, code merges with minimal review |
+
+**The Key Insight:** The same vibe coding tool. The same developer. The difference is contextual awareness.
+
+### Pattern 2: GitHub Copilot + CE Studio
+
+**The Approach:** While Copilot doesn't accept system prompts directly, teams use CE Studio's assembled contexts as comprehensive comment blocks at the top of files. Copilot learns from these contextual comments to generate consistent code.
+
+**Developer Experience:**
+
+```javascript
+/*
+ * CONTEXT: [Paste assembled prompt as comments]
+ * Base Standards: TypeScript strict mode, functional patterns...
+ * Role: Senior Backend Developer expectations...
+ * Repository: payment-service authentication patterns...
+ */
+
+// Developer starts coding, Copilot suggests team-standard implementations
+```
+
+### Pattern 3: Claude Code Integration
+
+**The Setup:** CE Studio's API returns properly formatted prompts that Claude Code accepts directly. One-line integration for each project.
+
+**The Result:** Every Claude Code session starts with full team context. Developers experience "Claude knows our patterns" immediately—because it literally does.
+
+---
+
+## What About CoWeave Workflows?
+
+Some teams ask: "Should we use CoWeave's full SDLC workflow automation instead?"
+
+**The Honest Answer:**
+
+| If You Want... | Choose... |
+|----------------|-----------|
+| Hands-on development with consistency | CE Studio Cloud integration |
+| Full SDLC automation (architecture, code review, QA, deployment) | CoWeave AI Platform |
+| Keep existing tools, eliminate variance | CE Studio Cloud |
+| 90% autonomous agents, 10% human oversight | CoWeave AI Platform |
+
+CE Studio Cloud works standalone. You don't need CoWeave workflows to get value.
+
+---
+
+## The Setup Checklist
+
+Ready to integrate? Here's your roadmap:
+
+### Week 1: Foundation
+
+| Task | Status |
+|------|--------|
+| Create CE Studio Cloud account | |
+| Define base context (team standards) | |
+| Document 2-3 critical role contexts | |
+| Capture patterns for your main repositories | |
+
+### Week 2: Integration Prep
+
+| Task | Status |
+|------|--------|
+| Generate API keys for command-line users | |
+| Create Test Assembly examples | |
+| Train team on context assembly interface | |
+| Document integration patterns for your tools | |
+
+### Week 3-4: Rollout
+
+| Task | Status |
+|------|--------|
+| Start with 2-3 early adopters | |
+| Gather feedback, iterate on contexts | |
+| Create helper scripts for CLI integration | |
+| Expand to full team | |
+
+### Week 5+: Optimization
+
+| Task | Status |
+|------|--------|
+| Monitor token usage, optimize context sizes | |
+| Add personal contexts for individual enhancements | |
+| Version control critical context changes | |
+| Measure code review time reduction | |
+
+---
+
+## Real Team Results
+
+### E-commerce Startup (8 developers)
+
+> "We kept Cursor but added CE Studio contexts. Code review time dropped from 4 hours to 90 minutes per PR. Everyone's code looks like it came from the same senior developer—because contextually, it did."
+
+| Metric | Before | After |
+|--------|--------|-------|
+| Code review time per PR | 4 hours | 90 minutes |
+| Pattern consistency | Variable | Uniform |
+
+### Fintech Backend Team (15 developers)
+
+> "Our integration uses the CE Studio API from day one. Developers barely notice the integration—it just works. But they definitely notice that our AI coding tool suddenly understands our security patterns and compliance requirements."
+
+### Open Source Project (distributed team)
+
+> "We use the manual assembly workflow because contributors use different tools. They copy the assembled context into whatever AI tool they prefer. First-time contributors now submit code that matches our patterns—their AI learned from our collective knowledge."
+
+---
+
+## The Bottom Line
+
+You don't need to abandon your vibe coding tools to get consistency. You need to give those tools the context they're missing.
+
+| Reality | What to Expect |
+|---------|----------------|
+| Initial setup | Real work—capturing team knowledge takes time |
+| Creating good contexts | Requires thought and iteration |
+| Ongoing workflow | Gets smoother every week |
+| Manual step | Becomes invisible infrastructure |
+| Variance problem | Disappears—not because AI got better, but because you gave it the information it needed |
+
+---
+
+## Getting Started
+
+Ready to eliminate the variance cost in your vibe coding workflow?
+
+[**Try CE Studio Cloud**](/cloud) - Start with the free tier.
+
+[**Read the Docs**](https://docs.coweave.ai) - Technical documentation and API reference.
+
+[**Contact Sales**](/contact) - Discuss your team's specific integration needs.
+
+---
+
+**Related Articles:**
+- [The Variance Cost: Why AI Coding Tools Need Guardrails](/blog/variance-cost)
+- [Getting Started with Context Engineering Studio](/blog/getting-started-ce-studio)
+- [Change Management for AI Adoption](/blog/change-management-ai-adoption)
+
+---
+
+**CoWeave** - Production code. Done right. Codify your SDLC with context assembly and agentic workflows.
+
+hello@coweave.ai
