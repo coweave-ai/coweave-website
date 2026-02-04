@@ -13,7 +13,8 @@ const GlowButton = ({
   className = '',
   loading = false,
   type = 'button',
-  disabled = false
+  disabled = false,
+  newTab = false
 }) => {
   const sizeStyles = {
     small: 'px-6 py-3 text-base',
@@ -80,8 +81,7 @@ const GlowButton = ({
     return (
       <motion.a
         href={href}
-        target="_blank"
-        rel="noopener noreferrer"
+        {...(newTab && { target: "_blank", rel: "noopener noreferrer" })}
         className={combinedClassName}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
