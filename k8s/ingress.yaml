@@ -12,10 +12,10 @@ spec:
   ingressClassName: nginx
   tls:
     - hosts:
-        - manan-coweave-website.coweave.ai
+        - manan.coweave.ai
       secretName: coweave-website-tls
   rules:
-    - host: manan-coweave-website.coweave.ai
+    - host: manan.coweave.ai
       http:
         paths:
           - path: /
