@@ -1,0 +1,58 @@
+# CoWeave Website - Default Values
+# Override these in environment-specific values files
+
+replicaCount: 2
+
+image:
+  repository: coweave-website
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  create: false
+  name: ""
+
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 80
+
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+  host: coweave.ai
+  paths:
+    - path: /
+      pathType: Prefix
+  tls:
+    - secretName: coweave-website-tls
+      hosts:
+        - coweave.ai
+
+# Environment variables
+env: {}
+
+# Health check configuration
+healthCheck:
+  path: /
+  initialDelaySeconds: 10
+  periodSeconds: 10
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 200m
+    memory: 128Mi
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

@@ -1,0 +1,12 @@
+apiVersion: v2
+name: coweave-website
+description: CoWeave Marketing Website
+type: application
+version: 1.0.0
+appVersion: "1.0.0"
+keywords:
+  - coweave
+  - website
+  - marketing
+maintainers:
+  - name: CoWeave Team
