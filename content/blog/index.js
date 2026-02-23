@@ -18,9 +18,9 @@ export const posts = [
     readingTime: '6 min read',
   },
   {
-    slug: 'move-fast-break-things',
-    title: 'Why "Move Fast and Break Things" Doesn\'t Work Anymore',
-    excerpt: 'Silicon Valley\'s favorite mantra helped Facebook grow from dorm room to dominance. But when software runs healthcare, manufacturing, and critical infrastructure, "breaking things" isn\'t innovation—it\'s negligence.',
+    slug: 'velocity-trap',
+    title: 'The Velocity Trap: Why Moving Fast Costs More Than You Think',
+    excerpt: 'Every engineering team wants to ship faster. But there\'s a hidden cost to pure velocity that most organizations don\'t see until it\'s too late. The velocity trap creates an illusion of speed while quietly eroding your actual capacity to ship value.',
     date: '2026-01-08',
     author: 'CoWeave Team',
     category: 'insights',
