@@ -203,70 +203,113 @@ const CloudPage = () => {
         </div>
       </section>
 
-      {/* The Problem Section */}
+      {/* Product Screenshots */}
       <AnimatedSection
         animation="fade"
-        className="py-20 bg-gradient-to-br from-primary-navy via-primary-blue to-primary-indigo"
+        className="py-20 bg-primary-navy"
       >
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="text-white">The </span>
-              <span className="animated-gradient-text">Variance Tax</span>
-              <span className="text-white"> is Costing You Velocity</span>
-            </h2>
-            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              When teams adopt AI coding assistants without guardrails, each developer prompts AI differently, creating the "Variance Tax":
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="max-w-4xl mx-auto"
-          >
-            <GlassCard className="p-8">
-              <div className="space-y-3 mb-6">
-                <p className="text-gray-300"><span className="text-primary-lightAzure font-medium">Developer A</span> → Detailed prompts with coding standards</p>
-                <p className="text-gray-300"><span className="text-primary-lightAzure font-medium">Developer B</span> → Quick, minimal prompts</p>
-                <p className="text-gray-300"><span className="text-primary-lightAzure font-medium">Developer C</span> → Custom instructions tuned over months</p>
-                <p className="text-gray-300"><span className="text-primary-lightAzure font-medium">Developer D</span> → Just started, uses defaults</p>
-                <p className="text-gray-300"><span className="text-primary-lightAzure font-medium">Developer E</span> → Copies prompts from blog posts</p>
+        <div className="container mx-auto px-6 max-w-7xl space-y-24">
+          {/* Context Editor */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary-vividAzure/20 to-primary-lightAzure/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative rounded-xl overflow-hidden border border-primary-vividAzure/20 group-hover:border-primary-vividAzure/50 transition-all duration-500 shadow-2xl">
+                  <img src="/assets/Context Editor.png" alt="Context Editor" className="w-full h-auto" loading="lazy" />
+                </div>
               </div>
-              <div className="text-center text-2xl text-primary-vividAzure mb-6">↓</div>
-              <h3 className="text-xl font-bold text-red-400 mb-4 text-center">RESULT:</h3>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-3 text-gray-300">
-                  <FaTimes className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" />
-                  <span>Code that "works" but requires 2-3x more review time</span>
-                </li>
-                <li className="flex items-start gap-3 text-gray-300">
-                  <FaTimes className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" />
-                  <span>Inconsistent patterns that confuse new team members</span>
-                </li>
-                <li className="flex items-start gap-3 text-gray-300">
-                  <FaTimes className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" />
-                  <span>Technical debt that compounds with every merge</span>
-                </li>
-                <li className="flex items-start gap-3 text-gray-300">
-                  <FaTimes className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" />
-                  <span>Engineers acting as "context gatherers" not problem solvers</span>
-                </li>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-vividAzure/15 border border-primary-vividAzure/30 text-primary-vividAzure text-sm font-semibold mb-4">Context Editor</span>
+              <h3 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Write Once, Use Everywhere</h3>
+              <p className="text-gray-300 mb-6">Codify role definitions, repository knowledge, and workflow context into reusable components. Your team's expertise — encoded and always available.</p>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Role, repo, and workflow context components</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Version-controlled with full edit history</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Markdown editor with live preview</span></li>
               </ul>
-            </GlassCard>
-          </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Context Assembler */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="lg:order-2"
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-vividAzure/15 border border-primary-vividAzure/30 text-primary-vividAzure text-sm font-semibold mb-4">Context Assembler</span>
+              <h3 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Assemble. Preview. Ship to Your IDE.</h3>
+              <p className="text-gray-300 mb-6">Combine context components into optimized prompts. Preview the full assembly, then copy into Cursor, Claude Code, Copilot, or any AI tool.</p>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Multi-layer prompt construction</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Live preview with token count</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>One-click copy or API export</span></li>
+              </ul>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:order-1"
+            >
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary-vividAzure/20 to-primary-lightAzure/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative rounded-xl overflow-hidden border border-primary-vividAzure/20 group-hover:border-primary-vividAzure/50 transition-all duration-500 shadow-2xl">
+                  <img src="/assets/Context Assembler.png" alt="Context Assembler" className="w-full h-auto" loading="lazy" />
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Teams */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary-vividAzure/20 to-primary-lightAzure/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative rounded-xl overflow-hidden border border-primary-vividAzure/20 group-hover:border-primary-vividAzure/50 transition-all duration-500 shadow-2xl">
+                  <img src="/assets/Teams.png" alt="Team Management" className="w-full h-auto" loading="lazy" />
+                </div>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-vividAzure/15 border border-primary-vividAzure/30 text-primary-vividAzure text-sm font-semibold mb-4">Team Management</span>
+              <h3 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Organize Teams, Share Knowledge</h3>
+              <p className="text-gray-300 mb-6">Manage teams across your organization. Share context components, track usage, and ensure every team has access to the knowledge they need.</p>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Multi-team management with RBAC</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Context components shared across teams</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Performance metrics and usage analytics</span></li>
+              </ul>
+            </motion.div>
+          </div>
         </div>
       </AnimatedSection>
 
-      {/* Features Section */}
+      {/* How It Works Section */}
       <AnimatedSection
         animation="fade"
         className="py-20 bg-gradient-to-br from-primary-navy via-primary-blue to-primary-indigo"
@@ -280,29 +323,39 @@ const CloudPage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="text-white">Everything You Need to </span>
-              <span className="animated-gradient-text">Engineer Context</span>
+              <span className="animated-gradient-text">Get Started in Minutes</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Built for teams that take context engineering seriously
+              Four steps from signup to consistent AI output across your team
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-primary-blue/30 backdrop-blur-lg border border-primary-vividAzure/20 rounded-xl p-6 hover:border-primary-vividAzure/50 transition-colors"
-              >
-                <feature.icon className="w-10 h-10 text-primary-vividAzure mb-4" />
-                <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </motion.div>
-            ))}
+          <div className="max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {howItWorks.map((item, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                >
+                  <GlassCard className="p-6 h-full">
+                    <div className="flex gap-4">
+                      <div className="flex-shrink-0">
+                        <div className="w-12 h-12 bg-gradient-to-br from-primary-vividAzure to-primary-lightAzure rounded-xl flex items-center justify-center text-2xl font-bold text-primary-navy">
+                          {item.step}
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                        <p className="text-gray-400">{item.description}</p>
+                      </div>
+                    </div>
+                  </GlassCard>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </AnimatedSection>
@@ -321,10 +374,10 @@ const CloudPage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="animated-gradient-text">Component-Based Context Assembly</span>
+              <span className="animated-gradient-text">Under the Hood</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Engineer context through four hierarchical component types that compose into assembled context for AI agents.
+              Four component types that layer together into a single assembled context for any AI tool.
             </p>
           </motion.div>
 
@@ -393,7 +446,7 @@ const CloudPage = () => {
         </div>
       </AnimatedSection>
 
-      {/* How It Works Section */}
+      {/* The Problem CE Studio Solves */}
       <AnimatedSection
         animation="fade"
         className="py-20 bg-gradient-to-br from-primary-navy via-primary-blue to-primary-indigo"
@@ -404,47 +457,58 @@ const CloudPage = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-center mb-16"
+            className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="animated-gradient-text">How It Works</span>
+              <span className="text-white">Why Teams </span>
+              <span className="animated-gradient-text">Need This</span>
             </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Get from zero to engineered context in four simple steps
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Without shared context, every developer prompts AI differently — creating the "Variance Tax."
             </p>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {howItWorks.map((item, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: index % 2 === 0 ? -20 : 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                >
-                  <GlassCard className="p-6 h-full">
-                    <div className="flex gap-4">
-                      <div className="flex-shrink-0">
-                        <div className="w-12 h-12 bg-gradient-to-br from-primary-vividAzure to-primary-lightAzure rounded-xl flex items-center justify-center text-2xl font-bold text-primary-navy">
-                          {item.step}
-                        </div>
-                      </div>
-                      <div>
-                        <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                        <p className="text-gray-400">{item.description}</p>
-                      </div>
-                    </div>
-                  </GlassCard>
-                </motion.div>
-              ))}
-            </div>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="max-w-4xl mx-auto"
+          >
+            <GlassCard className="p-8">
+              <div className="space-y-3 mb-6">
+                <p className="text-gray-300"><span className="text-primary-lightAzure font-medium">Developer A</span> → Detailed prompts with coding standards</p>
+                <p className="text-gray-300"><span className="text-primary-lightAzure font-medium">Developer B</span> → Quick, minimal prompts</p>
+                <p className="text-gray-300"><span className="text-primary-lightAzure font-medium">Developer C</span> → Custom instructions tuned over months</p>
+                <p className="text-gray-300"><span className="text-primary-lightAzure font-medium">Developer D</span> → Just started, uses defaults</p>
+                <p className="text-gray-300"><span className="text-primary-lightAzure font-medium">Developer E</span> → Copies prompts from blog posts</p>
+              </div>
+              <div className="text-center text-2xl text-primary-vividAzure mb-6">↓</div>
+              <h3 className="text-xl font-bold text-red-400 mb-4 text-center">RESULT:</h3>
+              <ul className="space-y-2">
+                <li className="flex items-start gap-3 text-gray-300">
+                  <FaTimes className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" />
+                  <span>2-3x more review time validating consistency</span>
+                </li>
+                <li className="flex items-start gap-3 text-gray-300">
+                  <FaTimes className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" />
+                  <span>Inconsistent patterns across your codebase</span>
+                </li>
+                <li className="flex items-start gap-3 text-gray-300">
+                  <FaTimes className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" />
+                  <span>Technical debt compounding with every merge</span>
+                </li>
+                <li className="flex items-start gap-3 text-gray-300">
+                  <FaTimes className="w-4 h-4 text-red-400 mt-1 flex-shrink-0" />
+                  <span>Engineers gathering context instead of building</span>
+                </li>
+              </ul>
+            </GlassCard>
+          </motion.div>
         </div>
       </AnimatedSection>
 
-      {/* Real Example Section */}
+      {/* Before/After Proof */}
       <AnimatedSection
         animation="fade"
         className="py-20 bg-primary-navy"
@@ -458,10 +522,10 @@ const CloudPage = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="animated-gradient-text">Real-World Impact</span>
-              <span className="text-white">: E-Commerce Team</span>
+              <span className="text-white">See the </span>
+              <span className="animated-gradient-text">Difference</span>
             </h2>
-            <p className="text-lg text-gray-400 mt-2">Scenario: New API Endpoint Implementation • Team: 15 developers at e-commerce company</p>
+            <p className="text-lg text-gray-400">15-developer e-commerce team implementing a new API endpoint</p>
           </motion.div>
 
           <motion.div
@@ -474,19 +538,18 @@ const CloudPage = () => {
             <GlassCard className="p-8">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div>
-                  <h3 className="text-xl font-bold text-red-400 mb-4">WITHOUT CE STUDIO:</h3>
+                  <h3 className="text-xl font-bold text-red-400 mb-4">WITHOUT CE STUDIO</h3>
                   <ul className="space-y-2 text-gray-300">
-                    <li>• Each dev manually explains REST patterns, error handling, auth approach, testing standards</li>
-                    <li>• Results vary: Some use Express patterns, others custom</li>
-                    <li>• Code review: 4 hours avg (validating consistency + logic)</li>
-                    <li>• Technical debt: Inconsistent error handling across services</li>
+                    <li>• Every dev re-explains patterns, auth, and standards</li>
+                    <li>• Inconsistent output across the team</li>
+                    <li>• 4-hour code reviews (consistency + logic)</li>
+                    <li>• Technical debt from every merge</li>
                   </ul>
                 </div>
                 <div>
-                  <h3 className="text-xl font-bold text-green-400 mb-4">WITH CE STUDIO:</h3>
-                  <p className="text-gray-300 mb-4">Team-wide context codifies TypeScript standards, Express.js structure, security patterns, and testing requirements.</p>
+                  <h3 className="text-xl font-bold text-green-400 mb-4">WITH CE STUDIO</h3>
                   <p className="text-gray-400 mb-2">Developer says: <span className="text-white">"Add refund endpoint"</span></p>
-                  <p className="text-gray-400 mb-4">AI receives: <span className="text-primary-lightAzure">Team context automatically</span></p>
+                  <p className="text-gray-400 mb-4">AI receives: <span className="text-primary-lightAzure">Full team context automatically</span></p>
                   <ul className="space-y-2">
                     <li className="flex items-start gap-2 text-gray-300">
                       <FaCheck className="w-4 h-4 text-green-400 mt-1 flex-shrink-0" />
@@ -494,11 +557,7 @@ const CloudPage = () => {
                     </li>
                     <li className="flex items-start gap-2 text-gray-300">
                       <FaCheck className="w-4 h-4 text-green-400 mt-1 flex-shrink-0" />
-                      <span>Review time: 1 hour (just business logic)</span>
-                    </li>
-                    <li className="flex items-start gap-2 text-gray-300">
-                      <FaCheck className="w-4 h-4 text-green-400 mt-1 flex-shrink-0" />
-                      <span>2-3x time savings on review</span>
+                      <span>1-hour reviews (just business logic)</span>
                     </li>
                     <li className="flex items-start gap-2 text-gray-300">
                       <FaCheck className="w-4 h-4 text-green-400 mt-1 flex-shrink-0" />
@@ -512,7 +571,7 @@ const CloudPage = () => {
         </div>
       </AnimatedSection>
 
-      {/* The Bottom Line Section */}
+      {/* Features Section */}
       <AnimatedSection
         animation="fade"
         className="py-20 bg-gradient-to-br from-primary-navy via-primary-blue to-primary-indigo"
@@ -526,7 +585,45 @@ const CloudPage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="animated-gradient-text">The Bottom Line</span>
+              <span className="text-white">Everything You Need to </span>
+              <span className="animated-gradient-text">Engineer Context</span>
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {features.map((feature, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="bg-primary-blue/30 backdrop-blur-lg border border-primary-vividAzure/20 rounded-xl p-6 hover:border-primary-vividAzure/50 transition-colors"
+              >
+                <feature.icon className="w-10 h-10 text-primary-vividAzure mb-4" />
+                <h3 className="text-xl font-bold text-white mb-2">{feature.title}</h3>
+                <p className="text-gray-400">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* Who It's For */}
+      <AnimatedSection
+        animation="fade"
+        className="py-20 bg-primary-navy"
+      >
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+              <span className="animated-gradient-text">Who It's For</span>
             </h2>
           </motion.div>
 

@@ -309,7 +309,7 @@ const EnterprisePage = () => {
               <span className="animated-gradient-text">CoWeave AI Platform</span>
             </h1>
             <p className="text-2xl md:text-3xl text-white font-semibold mb-2">
-              Human-Supervised Full-Cycle SDLC Automation Platform
+              Human-Supervised SDLC Automation Platform
             </p>
             <p className="text-xl text-primary-lightAzure mb-6">
               Featuring Agentic Workflows and Deterministic Orchestration
@@ -349,7 +349,126 @@ const EnterprisePage = () => {
         </div>
       </section>
 
-      {/* Why CoWeave Platform Section */}
+      {/* Product Screenshots */}
+      <AnimatedSection
+        animation="fade"
+        className="py-20 bg-primary-navy"
+      >
+        <div className="container mx-auto px-6 max-w-7xl space-y-24">
+          {/* Teams and Workflows */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary-vividAzure/20 to-primary-lightAzure/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative rounded-xl overflow-hidden border border-primary-vividAzure/20 group-hover:border-primary-vividAzure/50 transition-all duration-500 shadow-2xl">
+                  <img src="/assets/Teams and Workflows.png" alt="Teams and Workflows" className="w-full h-auto" loading="lazy" />
+                </div>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-vividAzure/15 border border-primary-vividAzure/30 text-primary-vividAzure text-sm font-semibold mb-4">Teams & Workflows</span>
+              <h3 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Manage Teams, Orchestrate Workflows</h3>
+              <p className="text-gray-300 mb-6">Organize your engineering teams and connect them to purpose-built workflows. Every team gets the right context, the right processes, and the right automation.</p>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Team-specific workflow assignments</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Context components shared across teams</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Integrated with your workflow execution engine</span></li>
+              </ul>
+            </motion.div>
+          </div>
+
+          {/* Kanban Board */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="lg:order-2"
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-vividAzure/15 border border-primary-vividAzure/30 text-primary-vividAzure text-sm font-semibold mb-4">Workflow Orchestrator</span>
+              <h3 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">A Ticket Board That Builds Software</h3>
+              <p className="text-gray-300 mb-6">Every column is an SDLC phase. Every phase runs a customized AI workflow. Tickets move from backlog to production with human approval at every gate.</p>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>10 SDLC phases with custom workflows</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Human-in-the-loop at every phase gate</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>GitHub-integrated with linked PRs and CI status</span></li>
+              </ul>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:order-1"
+            >
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary-vividAzure/20 to-primary-lightAzure/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative rounded-xl overflow-hidden border border-primary-vividAzure/20 group-hover:border-primary-vividAzure/50 transition-all duration-500 shadow-2xl">
+                  <img src="/assets/Kanban Board.png" alt="Workflow Orchestrator Kanban Board" className="w-full h-auto" loading="lazy" />
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* How It Works Section — right after screenshots */}
+      <AnimatedSection
+        animation="fade"
+        className="py-20 bg-gradient-to-br from-primary-navy via-primary-blue to-primary-indigo"
+      >
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+              <span className="animated-gradient-text">From PRD to Production in 4 Phases</span>
+            </h2>
+            <p className="text-xl text-gray-300">
+              Human-supervised AI orchestrates each phase of your SDLC
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            {howItWorksPhases.map((phase, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <GlassCard className="p-6 h-full">
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-vividAzure to-primary-lightAzure flex items-center justify-center text-primary-navy font-bold">
+                      {phase.number}
+                    </div>
+                    <h3 className="text-xl font-bold text-white">{phase.title}</h3>
+                  </div>
+                  <p className="text-gray-300">{phase.description}</p>
+                </GlassCard>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* What's Included Section */}
       <AnimatedSection
         animation="fade"
         className="py-20 bg-primary-navy"
@@ -363,13 +482,51 @@ const EnterprisePage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="animated-gradient-text">Why CoWeave Platform?</span>
+              <span className="animated-gradient-text">What's Included</span>
             </h2>
-            <p className="text-xl text-primary-lightAzure font-medium mb-4">
-              From PRD to Production with AI Orchestration
+            <p className="text-xl text-gray-300">
+              Everything you need for end-to-end SDLC orchestration
             </p>
+          </motion.div>
+
+          <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
+            {whatsIncluded.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] bg-primary-blue/30 backdrop-blur-lg border border-primary-vividAzure/20 rounded-xl p-6 hover:border-primary-vividAzure/50 transition-colors"
+              >
+                <item.icon className="w-10 h-10 text-primary-vividAzure mb-4" />
+                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
+                <p className="text-gray-400">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* Why CoWeave Platform Section */}
+      <AnimatedSection
+        animation="fade"
+        className="py-20 bg-gradient-to-br from-primary-navy via-primary-blue to-primary-indigo"
+      >
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+              <span className="text-white">Why </span>
+              <span className="animated-gradient-text">CoWeave Platform</span>
+            </h2>
             <p className="text-lg text-gray-300 max-w-3xl mx-auto">
-              CoWeave turbocharges your SDLC—not just code generation. Agentic workflows handle architecture, development, testing, deployment, and incident response with human supervision at every step.
+              Beyond code generation — full SDLC orchestration with human oversight at every step.
             </p>
           </motion.div>
 
@@ -407,91 +564,6 @@ const EnterprisePage = () => {
         </div>
       </AnimatedSection>
 
-      {/* What's Included Section */}
-      <AnimatedSection
-        animation="fade"
-        className="py-20 bg-gradient-to-br from-primary-navy via-primary-blue to-primary-indigo"
-      >
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="animated-gradient-text">What's Included</span>
-            </h2>
-            <p className="text-xl text-gray-300">
-              Everything You Need for SDLC Orchestration
-            </p>
-          </motion.div>
-
-          <div className="flex flex-wrap justify-center gap-6 max-w-6xl mx-auto">
-            {whatsIncluded.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] bg-primary-blue/30 backdrop-blur-lg border border-primary-vividAzure/20 rounded-xl p-6 hover:border-primary-vividAzure/50 transition-colors"
-              >
-                <item.icon className="w-10 h-10 text-primary-vividAzure mb-4" />
-                <h3 className="text-xl font-bold text-white mb-2">{item.title}</h3>
-                <p className="text-gray-400">{item.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </AnimatedSection>
-
-      {/* How It Works Section */}
-      <AnimatedSection
-        animation="fade"
-        className="py-20 bg-primary-navy"
-      >
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="animated-gradient-text">How It Works</span>
-            </h2>
-            <p className="text-xl text-gray-300">
-              Orchestrate your SDLC from PRD to production in four phases
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {howItWorksPhases.map((phase, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-              >
-                <GlassCard className="p-6 h-full">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-vividAzure to-primary-lightAzure flex items-center justify-center text-primary-navy font-bold">
-                      {phase.number}
-                    </div>
-                    <h3 className="text-xl font-bold text-white">{phase.title}</h3>
-                  </div>
-                  <p className="text-gray-300">{phase.description}</p>
-                </GlassCard>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </AnimatedSection>
-
       {/* Real Results Section */}
       <AnimatedSection
         animation="fade"
@@ -506,13 +578,11 @@ const EnterprisePage = () => {
             className="text-center mb-12"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="animated-gradient-text">Real Results</span>
+              <span className="text-white">CoWeave </span>
+              <span className="animated-gradient-text">Delivers</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Real-World Impact: CE Studio Build
-            </p>
-            <p className="text-lg text-gray-400 mt-4">
-              We built CE Studio—a complete enterprise application—using CoWeave AI Platform.
+              We built CE Studio — a complete enterprise app — using CoWeave AI Platform. Here's what happened.
             </p>
           </motion.div>
 
@@ -594,7 +664,7 @@ const EnterprisePage = () => {
         </div>
       </AnimatedSection>
 
-      {/* The Bottom Line Section */}
+      {/* Who It's For Section */}
       <AnimatedSection
         animation="fade"
         className="py-20 bg-gradient-to-br from-primary-navy via-primary-blue to-primary-indigo"
@@ -608,7 +678,7 @@ const EnterprisePage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="animated-gradient-text">The Bottom Line</span>
+              <span className="animated-gradient-text">Who It's For</span>
             </h2>
           </motion.div>
 
