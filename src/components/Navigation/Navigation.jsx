@@ -26,6 +26,7 @@ const Navigation = () => {
 
   const navLinks = [
     { label: 'Pricing', href: '/pricing' },
+    { label: 'About', href: '/about' },
     { label: 'Blog', href: '/blog' },
   ];
 
@@ -53,7 +54,7 @@ const Navigation = () => {
       }`}
     >
       <div className="container mx-auto px-6">
-        <div className="flex items-center justify-between h-16 md:h-20">
+        <div className="flex items-center justify-between h-16 md:h-20 relative">
           {/* Logo */}
           <Link to="/" className="flex items-center">
             <img
@@ -63,8 +64,8 @@ const Navigation = () => {
             />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Desktop Navigation — Centered */}
+          <div className="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
             {/* Products Dropdown */}
             <div
               className="relative"

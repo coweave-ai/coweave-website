@@ -381,11 +381,8 @@ const PricingPage = () => {
             <h1 className="text-5xl md:text-6xl font-heading font-bold mb-6">
               <span className="animated-gradient-text">Simple, Transparent Pricing</span>
             </h1>
-            <p className="text-2xl text-white font-medium mb-4">
-              Two products, one mission: Production code. Done right.
-            </p>
-            <p className="text-lg text-gray-300">
-              Start free with Context Engineering Studio or schedule a demo for full SDLC automation with CoWeave AI Platform.
+            <p className="text-xl text-gray-300">
+              Start free with Context Engineering Studio, or schedule a demo for full SDLC automation.
             </p>
           </motion.div>
         </div>
@@ -658,7 +655,7 @@ const PricingPage = () => {
                     <span className="animated-gradient-text">CoWeave AI Platform</span>
                   </h2>
                   <p className="text-xl text-primary-lightAzure mb-6">
-                    Human-Supervised Full-Cycle SDLC Automation Platform
+                    Human-Supervised SDLC Automation Platform
                   </p>
 
                   {/* Feature highlights */}

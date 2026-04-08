@@ -27,12 +27,8 @@ const CTASection = () => {
             <span className="animated-gradient-text">Transform Your SDLC</span>
           </h2>
 
-          <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Stop paying the variance tax and LLM context tax. Start shipping enterprise-ready, production-grade code consistently.
-          </p>
-
-          <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
-            CoWeave brings agentic workflows and standardized prompts to your SDLC—codifying the process your team has been struggling to follow manually.
+          <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
+            Stop paying the variance tax. Start shipping production-grade code consistently.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
