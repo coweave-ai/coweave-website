@@ -5,6 +5,7 @@ import SEO from '../components/common/SEO';
 import GlowButton from '../components/common/GlowButton';
 import AnimatedSection from '../components/common/AnimatedSection';
 import GlassCard from '../components/common/GlassCard';
+import urls from '../config/urls';
 import {
   FaBuilding,
   FaServer,
@@ -28,7 +29,12 @@ import {
   FaKey,
   FaGraduationCap,
   FaUserTie,
-  FaDatabase
+  FaDatabase,
+  FaArrowDown,
+  FaLayerGroup,
+  FaCodeBranch,
+  FaTasks,
+  FaCubes
 } from 'react-icons/fa';
 
 const EnterprisePage = () => {
@@ -249,35 +255,59 @@ const EnterprisePage = () => {
     },
   ];
 
+  const contextArchitecture = [
+    {
+      icon: FaLayerGroup,
+      title: 'Base Context',
+      subtitle: 'Team-wide standards and conventions',
+      description: 'Foundation layer for all assemblies. Define coding standards, architectural principles, and testing requirements.',
+    },
+    {
+      icon: FaUserTie,
+      title: 'Role Contexts',
+      subtitle: 'Expertise-level specific information',
+      description: 'Create contexts for different roles: Senior Developer, Junior Developer, Frontend, Backend, QA, DevOps.',
+    },
+    {
+      icon: FaCodeBranch,
+      title: 'Repository Contexts',
+      subtitle: 'Project-specific knowledge and patterns',
+      description: 'Define conventions for each codebase: payment-service, auth-service, user-api.',
+    },
+    {
+      icon: FaTasks,
+      title: 'Workflow Prompts',
+      subtitle: 'Task-specific instructions for SDLC stages',
+      description: 'Create prompts for different workflows: Architecture Design, Development, QA Testing, Code Review.',
+    },
+  ];
+
   const pricingTiers = [
     {
       name: 'STARTER',
-      price: '$299/month',
-      note: '+ BYOL',
+      subtitle: 'For growing teams',
       users: '15 users',
       teams: '3 teams',
       prompts: '100 prompts',
-      cta: 'Schedule Demo',
+      cta: 'Book a Demo',
       highlighted: false
     },
     {
       name: 'PROFESSIONAL',
-      price: '$799/month',
-      note: '+ BYOL',
+      subtitle: 'For scaling organizations',
       users: '60 users',
       teams: '10 teams',
       prompts: '500 prompts',
-      cta: 'Schedule Demo',
+      cta: 'Book a Demo',
       highlighted: true
     },
     {
       name: 'ENTERPRISE',
-      price: 'Custom',
-      note: '+ BYOL',
+      subtitle: 'Custom',
       users: 'Unlimited',
       teams: 'Unlimited',
       prompts: 'Unlimited',
-      cta: 'Contact Sales',
+      cta: 'Contact Us',
       highlighted: false
     }
   ];
@@ -321,18 +351,18 @@ const EnterprisePage = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <GlowButton
-                to="/contact"
+                href={urls.bookDemo}
                 variant="primary"
                 size="large"
               >
-                Schedule Demo
+                Book a Demo
               </GlowButton>
               <GlowButton
-                to="/pricing"
+                to="/features"
                 variant="secondary"
                 size="large"
               >
-                View Pricing
+                View Features
               </GlowButton>
             </div>
 
@@ -420,6 +450,189 @@ const EnterprisePage = () => {
               </div>
             </motion.div>
           </div>
+          {/* Context Editor */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary-vividAzure/20 to-primary-lightAzure/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative rounded-xl overflow-hidden border border-primary-vividAzure/20 group-hover:border-primary-vividAzure/50 transition-all duration-500 shadow-2xl">
+                  <img src="/assets/Context Editor.png" alt="Context Editor" className="w-full h-auto" loading="lazy" />
+                </div>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-vividAzure/15 border border-primary-vividAzure/30 text-primary-vividAzure text-sm font-semibold mb-4">Context Editor</span>
+              <h3 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Write Once, Use Everywhere</h3>
+              <p className="text-gray-300 mb-6">Codify role definitions, repository knowledge, and workflow context into reusable components. Your team's expertise — encoded and always available.</p>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Role, repo, and workflow context components</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Version-controlled with full edit history</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Markdown editor with live preview</span></li>
+              </ul>
+            </motion.div>
+          </div>
+
+          {/* Context Assembler */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="lg:order-2"
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-vividAzure/15 border border-primary-vividAzure/30 text-primary-vividAzure text-sm font-semibold mb-4">Context Assembler</span>
+              <h3 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Assemble. Preview. Ship to Your IDE.</h3>
+              <p className="text-gray-300 mb-6">Combine context components into optimized prompts. Preview the full assembly, then copy into Cursor, Claude Code, Copilot, or any AI tool.</p>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Multi-layer prompt construction</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Live preview with token count</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>One-click copy or API export</span></li>
+              </ul>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:order-1"
+            >
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary-vividAzure/20 to-primary-lightAzure/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative rounded-xl overflow-hidden border border-primary-vividAzure/20 group-hover:border-primary-vividAzure/50 transition-all duration-500 shadow-2xl">
+                  <img src="/assets/Context Assembler.png" alt="Context Assembler" className="w-full h-auto" loading="lazy" />
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Team Management */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="relative group">
+                <div className="absolute -inset-4 bg-gradient-to-r from-primary-vividAzure/20 to-primary-lightAzure/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                <div className="relative rounded-xl overflow-hidden border border-primary-vividAzure/20 group-hover:border-primary-vividAzure/50 transition-all duration-500 shadow-2xl">
+                  <img src="/assets/Teams.png" alt="Team Management" className="w-full h-auto" loading="lazy" />
+                </div>
+              </div>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+            >
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-vividAzure/15 border border-primary-vividAzure/30 text-primary-vividAzure text-sm font-semibold mb-4">Team Management</span>
+              <h3 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Organize Teams, Share Knowledge</h3>
+              <p className="text-gray-300 mb-6">Manage teams across your organization. Share context components, track usage, and ensure every team has access to the knowledge they need.</p>
+              <ul className="space-y-3 text-gray-300">
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Multi-team management with RBAC</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Context components shared across teams</span></li>
+                <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Performance metrics and usage analytics</span></li>
+              </ul>
+            </motion.div>
+          </div>
+        </div>
+      </AnimatedSection>
+
+      {/* Context Architecture Section */}
+      <AnimatedSection
+        animation="fade"
+        className="py-20 bg-primary-navy"
+      >
+        <div className="container mx-auto px-6">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
+              <span className="animated-gradient-text">Under the Hood</span>
+            </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              Four component types that layer together into a single assembled context for every AI agent and workflow.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto mb-16">
+            {contextArchitecture.map((item, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <GlassCard className="p-6 h-full">
+                  <div className="flex items-start gap-4">
+                    <div className="flex-shrink-0">
+                      <div className="w-12 h-12 bg-gradient-to-br from-primary-vividAzure to-primary-lightAzure rounded-xl flex items-center justify-center">
+                        <item.icon className="w-6 h-6 text-primary-navy" />
+                      </div>
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-white mb-1">{item.title}</h3>
+                      <p className="text-primary-lightAzure text-sm mb-3">{item.subtitle}</p>
+                      <p className="text-gray-400">{item.description}</p>
+                    </div>
+                  </div>
+                </GlassCard>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Assembly Hierarchy */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="max-w-md mx-auto"
+          >
+            <h3 className="text-2xl font-bold text-white text-center mb-8">Assembly Hierarchy</h3>
+            <div className="space-y-4">
+              {[
+                { label: 'Base Context', sublabel: '(Foundation)' },
+                { label: 'Role Context', sublabel: '(Expertise Layer)' },
+                { label: 'Repository Context', sublabel: '(Project Layer)' },
+                { label: 'Workflow Prompt', sublabel: '(Task Layer)' },
+                { label: 'Assembled Context', sublabel: '→ AI Agent', highlight: true },
+              ].map((item, index) => (
+                <div key={index}>
+                  <div className={`text-center py-3 px-6 rounded-lg ${
+                    item.highlight
+                      ? 'bg-gradient-to-r from-primary-vividAzure to-primary-lightAzure text-primary-navy font-bold'
+                      : 'bg-primary-blue/30 border border-primary-vividAzure/20'
+                  }`}>
+                    <span className={item.highlight ? '' : 'text-white'}>{item.label}</span>
+                    <span className={`text-sm ml-2 ${item.highlight ? 'text-primary-navy/70' : 'text-gray-400'}`}>{item.sublabel}</span>
+                  </div>
+                  {index < 4 && (
+                    <div className="text-center py-2">
+                      <FaArrowDown className="w-4 h-4 text-primary-vividAzure mx-auto" />
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </AnimatedSection>
 
@@ -437,10 +650,13 @@ const EnterprisePage = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6">
-              <span className="animated-gradient-text">From PRD to Production in 4 Phases</span>
+              <span className="animated-gradient-text">From PRD to Production</span>
             </h2>
-            <p className="text-xl text-gray-300">
+            <p className="text-xl text-gray-300 mb-2">
               Human-supervised AI orchestrates each phase of your SDLC
+            </p>
+            <p className="text-gray-400">
+              Four base phases out of the box — add custom phases, reviewer gates, and automation steps to match your process.
             </p>
           </motion.div>
 
@@ -465,6 +681,16 @@ const EnterprisePage = () => {
               </motion.div>
             ))}
           </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-center text-primary-lightAzure mt-8 text-sm font-medium"
+          >
+            Fully customizable — add additional phases, reviewer gates, and approval workflows to fit your team's process.
+          </motion.p>
         </div>
       </AnimatedSection>
 
@@ -931,16 +1157,16 @@ const EnterprisePage = () => {
                     : 'border-primary-vividAzure/20'
                 }`}
               >
-                <h3 className="text-xl font-bold text-white mb-2">{tier.name}</h3>
-                <p className="text-3xl font-bold text-primary-vividAzure mb-1">{tier.price}</p>
-                <p className="text-gray-400 text-sm mb-6">{tier.note}</p>
+                <h3 className="text-xl font-bold text-white mb-1">{tier.name}</h3>
+                <p className="text-sm text-primary-lightAzure mb-6">{tier.subtitle}</p>
                 <ul className="text-gray-300 space-y-2 mb-6">
                   <li>{tier.users}</li>
                   <li>{tier.teams}</li>
                   <li>{tier.prompts}</li>
                 </ul>
                 <GlowButton
-                  to="/contact"
+                  href={tier.cta === 'Contact Us' ? undefined : urls.bookDemo}
+                  to={tier.cta === 'Contact Us' ? '/contact' : undefined}
                   variant={tier.highlighted ? 'primary' : 'secondary'}
                   className="w-full"
                 >
@@ -958,63 +1184,11 @@ const EnterprisePage = () => {
             className="text-center mt-8"
           >
             <Link
-              to="/pricing"
+              to="/features"
               className="text-primary-lightAzure hover:text-white transition-colors font-medium"
             >
               See Full Pricing Details →
             </Link>
-          </motion.div>
-        </div>
-      </AnimatedSection>
-
-      {/* Start with CE Studio Section */}
-      <AnimatedSection
-        animation="fade"
-        className="py-20 bg-gradient-to-br from-primary-navy via-primary-indigo to-primary-blue"
-      >
-        <div className="container mx-auto px-6">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold mb-6">
-              <span className="animated-gradient-text">Start with Context Engineering Studio</span>
-            </h2>
-            <p className="text-lg text-gray-300 mb-8">
-              Not ready for full SDLC orchestration? Start with CE Studio Cloud to eliminate AI output variance.
-            </p>
-
-            <GlassCard className="p-6 mb-8">
-              <h3 className="text-lg font-bold text-white mb-4">Start with CE Studio Cloud:</h3>
-              <ul className="text-left space-y-2 max-w-md mx-auto mb-6">
-                <li className="flex items-start gap-3 text-gray-300">
-                  <FaCheck className="w-4 h-4 text-primary-vividAzure mt-1" />
-                  <span>Eliminate AI output variance</span>
-                </li>
-                <li className="flex items-start gap-3 text-gray-300">
-                  <FaCheck className="w-4 h-4 text-primary-vividAzure mt-1" />
-                  <span>Codify organizational knowledge</span>
-                </li>
-                <li className="flex items-start gap-3 text-gray-300">
-                  <FaCheck className="w-4 h-4 text-primary-vividAzure mt-1" />
-                  <span>Cloud-based, no infrastructure required</span>
-                </li>
-                <li className="flex items-start gap-3 text-gray-300">
-                  <FaCheck className="w-4 h-4 text-primary-vividAzure mt-1" />
-                  <span>Free to start</span>
-                </li>
-              </ul>
-              <p className="text-gray-400 text-sm mb-4">Upgrade to Platform when ready for workflows</p>
-              <Link
-                to="/cloud"
-                className="text-primary-lightAzure hover:text-white transition-colors font-medium"
-              >
-                Learn About CE Studio →
-              </Link>
-            </GlassCard>
           </motion.div>
         </div>
       </AnimatedSection>
@@ -1040,18 +1214,18 @@ const EnterprisePage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
               <GlowButton
-                to="/contact"
+                href={urls.bookDemo}
                 variant="primary"
                 size="large"
               >
-                Schedule Demo
+                Book a Demo
               </GlowButton>
               <GlowButton
-                to="/pricing"
+                to="/features"
                 variant="secondary"
                 size="large"
               >
-                View Pricing
+                View Features
               </GlowButton>
             </div>
             <p className="text-gray-400 mt-4">
