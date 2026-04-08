@@ -64,12 +64,6 @@ const Navigation = () => {
 
           {/* Auth + CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            <a
-              href={urls.login}
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              Login
-            </a>
             <GlowButton
               href={urls.bookDemo}
               variant="primary"
@@ -117,12 +111,6 @@ const Navigation = () => {
               </div>
 
               <div className="border-t border-primary-blue/30 pt-4 space-y-3">
-                <a
-                  href={urls.login}
-                  className="block py-2 text-gray-300 hover:text-white"
-                >
-                  Login
-                </a>
                 <GlowButton
                   href={urls.bookDemo}
                   variant="primary"
