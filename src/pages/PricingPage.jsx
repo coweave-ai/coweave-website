@@ -17,15 +17,13 @@ import {
 
 const PricingPage = () => {
   const [selectedProduct, setSelectedProduct] = useState('studio');
-  const [isYearly, setIsYearly] = useState(false);
   const [openFaq, setOpenFaq] = useState(null);
 
   // CE Studio Plans
   const studioPlans = [
     {
       name: 'Free',
-      monthlyPrice: 0,
-      yearlyPrice: 0,
+      subtitle: 'For individuals & small projects',
       users: 3,
       teams: 1,
       contexts: 10,
@@ -37,15 +35,14 @@ const PricingPage = () => {
         'Community support'
       ],
       cta: {
-        text: 'Start Free',
-        href: urls.signup,
+        text: 'Book a Demo',
+        href: urls.bookDemo,
         variant: 'secondary'
       }
     },
     {
       name: 'Starter',
-      monthlyPrice: 29,
-      yearlyPrice: 290,
+      subtitle: 'For growing teams',
       users: 15,
       teams: 3,
       contexts: 100,
@@ -56,16 +53,15 @@ const PricingPage = () => {
         'Email support'
       ],
       cta: {
-        text: 'Start Trial',
-        href: urls.signupWithPlan('starter'),
+        text: 'Book a Demo',
+        href: urls.bookDemo,
         variant: 'primary'
       },
       highlighted: true
     },
     {
       name: 'Professional',
-      monthlyPrice: 99,
-      yearlyPrice: 990,
+      subtitle: 'For scaling organizations',
       users: 60,
       teams: 10,
       contexts: 500,
@@ -76,15 +72,14 @@ const PricingPage = () => {
         'Priority support'
       ],
       cta: {
-        text: 'Start Trial',
-        href: urls.signupWithPlan('professional'),
+        text: 'Book a Demo',
+        href: urls.bookDemo,
         variant: 'primary'
       }
     },
     {
       name: 'Enterprise',
-      monthlyPrice: null,
-      yearlyPrice: null,
+      subtitle: 'Custom',
       users: 'Unlimited',
       teams: 'Unlimited',
       contexts: 'Unlimited',
@@ -96,7 +91,7 @@ const PricingPage = () => {
         'Dedicated support'
       ],
       cta: {
-        text: 'Contact Sales',
+        text: 'Contact Us',
         href: '/contact',
         variant: 'secondary',
         isInternal: true
@@ -108,8 +103,7 @@ const PricingPage = () => {
   const platformPlans = [
     {
       name: 'Starter',
-      monthlyPrice: 299,
-      yearlyPrice: 2990,
+      subtitle: 'For growing teams',
       users: 15,
       teams: 3,
       contexts: 100,
@@ -117,16 +111,14 @@ const PricingPage = () => {
       support: 'Email support',
       responseTime: '24h response',
       cta: {
-        text: 'Schedule Demo',
-        href: '/contact',
-        variant: 'primary',
-        isInternal: true
+        text: 'Book a Demo',
+        href: urls.bookDemo,
+        variant: 'primary'
       }
     },
     {
       name: 'Professional',
-      monthlyPrice: 799,
-      yearlyPrice: 7990,
+      subtitle: 'For scaling organizations',
       users: 60,
       teams: 10,
       contexts: 500,
@@ -134,17 +126,15 @@ const PricingPage = () => {
       support: 'Priority support',
       responseTime: '8h response',
       cta: {
-        text: 'Schedule Demo',
-        href: '/contact',
-        variant: 'primary',
-        isInternal: true
+        text: 'Book a Demo',
+        href: urls.bookDemo,
+        variant: 'primary'
       },
       highlighted: true
     },
     {
       name: 'Enterprise',
-      monthlyPrice: null,
-      yearlyPrice: null,
+      subtitle: 'Custom',
       users: 'Unlimited',
       teams: 'Unlimited',
       contexts: 'Unlimited',
@@ -153,7 +143,7 @@ const PricingPage = () => {
       responseTime: 'Custom SLA (99.9%)',
       extras: ['24/7 support', 'Air-gapped deployment'],
       cta: {
-        text: 'Contact Sales',
+        text: 'Contact Us',
         href: '/contact',
         variant: 'secondary',
         isInternal: true
@@ -214,8 +204,8 @@ const PricingPage = () => {
       { name: 'Slack', studio: false, platform: true },
       { name: 'Jenkins/CI-CD', studio: false, platform: true }
     ]},
-    { category: 'STARTING PRICE', features: [
-      { name: 'Price', studio: 'Free', platform: '$299/mo + BYOL' }
+    { category: 'GETTING STARTED', features: [
+      { name: 'How to start', studio: 'Book a Demo', platform: 'Book a Demo' }
     ]}
   ];
 
@@ -226,8 +216,8 @@ const PricingPage = () => {
       answer: "Context Engineering Studio eliminates AI output variance by codifying organizational knowledge into context. It's a cloud-based context engineering platform that works with any AI tool. CoWeave AI Platform is a complete SDLC automation platform featuring agentic workflows with deterministic orchestration. It includes CE Studio plus AI Service, Workflow Execution Engine, and all workflows & agents. Requires on-prem deployment and Claude BYOL."
     },
     {
-      question: 'Can I try before purchasing?',
-      answer: "Yes! CE Studio has a free tier with 3 users and 10 context components. No credit card required. For CoWeave AI Platform, schedule a demo to see it in action. We offer proof-of-concept deployments for qualified teams."
+      question: 'How can I get started?',
+      answer: "Book a demo to see CE Studio or CoWeave AI Platform in action. We'll walk you through the product and help you find the right plan for your team. We also offer proof-of-concept deployments for qualified teams."
     },
     {
       question: 'Do I need a Claude license for CE Studio?',
@@ -242,8 +232,8 @@ const PricingPage = () => {
       answer: "You can upgrade to a higher tier anytime. Your existing context components and settings transfer seamlessly."
     },
     {
-      question: 'Can I switch between monthly and yearly billing?',
-      answer: "Yes. Yearly billing saves 17% (2 months free). You can switch at any time from your account settings."
+      question: 'How does billing work?',
+      answer: "Contact us for pricing details. We offer flexible billing options to fit your team's needs."
     },
     {
       question: 'Do all Platform tiers have the same features?',
@@ -364,8 +354,8 @@ const PricingPage = () => {
     <>
       <SEO
         title="Pricing - Simple, Transparent Pricing | CoWeave"
-        description="Two products, one mission: Production code. Done right. Start free with Context Engineering Studio or schedule a demo for full SDLC automation."
-        keywords="CoWeave pricing, Context Engineering Studio pricing, enterprise software pricing, AI development tools pricing, SDLC automation cost, free tier, developer tools"
+        description="Two products, one mission: Production code. Done right. Explore plans for Context Engineering Studio and CoWeave AI Platform."
+        keywords="CoWeave pricing, Context Engineering Studio pricing, enterprise software pricing, AI development tools pricing, SDLC automation cost, developer tools"
         url="/pricing"
       />
 
@@ -382,7 +372,7 @@ const PricingPage = () => {
               <span className="animated-gradient-text">Simple, Transparent Pricing</span>
             </h1>
             <p className="text-xl text-gray-300">
-              Start free with Context Engineering Studio, or schedule a demo for full SDLC automation.
+              Explore our plans and book a demo to get started.
             </p>
           </motion.div>
         </div>
@@ -476,30 +466,6 @@ const PricingPage = () => {
                     </div>
                   </div>
 
-                  {/* Billing Toggle */}
-                  <div className="flex items-center justify-center gap-4 mb-8">
-                    <span className={`text-lg ${!isYearly ? 'text-white' : 'text-gray-400'}`}>
-                      Monthly
-                    </span>
-                    <button
-                      onClick={() => setIsYearly(!isYearly)}
-                      className={`relative w-14 h-7 rounded-full transition-colors ${
-                        isYearly ? 'bg-primary-vividAzure' : 'bg-gray-600'
-                      }`}
-                    >
-                      <span
-                        className={`absolute top-1 w-5 h-5 bg-white rounded-full transition-transform ${
-                          isYearly ? 'left-8' : 'left-1'
-                        }`}
-                      />
-                    </button>
-                    <span className={`text-lg ${isYearly ? 'text-white' : 'text-gray-400'}`}>
-                      Yearly{' '}
-                      <span className="text-primary-vividAzure text-sm font-medium">
-                        (Save 17%)
-                      </span>
-                    </span>
-                  </div>
                 </div>
 
                 {/* Studio Pricing Cards */}
@@ -523,28 +489,8 @@ const PricingPage = () => {
                         </div>
                       )}
 
-                      <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-
-                      <div className="mb-4">
-                        {plan.monthlyPrice !== null ? (
-                          <>
-                            <span className="text-4xl font-bold text-white">
-                              ${isYearly ? Math.round(plan.yearlyPrice / 12) : plan.monthlyPrice}
-                            </span>
-                            <span className="text-gray-400">/month</span>
-                            {isYearly && plan.monthlyPrice > 0 && (
-                              <p className="text-sm text-primary-lightAzure mt-1">
-                                ${plan.yearlyPrice}/year
-                              </p>
-                            )}
-                            {plan.monthlyPrice === 0 && (
-                              <p className="text-sm text-gray-500 mt-1">forever</p>
-                            )}
-                          </>
-                        ) : (
-                          <span className="text-3xl font-bold text-white">Custom</span>
-                        )}
-                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-1">{plan.name}</h3>
+                      <p className="text-sm text-primary-lightAzure mb-4">{plan.subtitle}</p>
 
                       {/* Scale */}
                       <div className="text-sm text-gray-400 mb-4 space-y-1">
@@ -574,8 +520,6 @@ const PricingPage = () => {
                     </motion.div>
                   ))}
                 </div>
-
-                <p className="text-center text-gray-500 text-sm mb-12">*Yearly billing (2 months free)</p>
 
                 {/* CE Studio Detailed Features Table */}
                 <motion.div
@@ -676,31 +620,6 @@ const PricingPage = () => {
                   </div>
 
                   <p className="text-gray-400 mb-6">All Tiers Include Same Features — Choose for Scale & Support</p>
-
-                  {/* Billing Toggle */}
-                  <div className="flex items-center justify-center gap-4 mb-8">
-                    <span className={`text-lg ${!isYearly ? 'text-white' : 'text-gray-400'}`}>
-                      Monthly
-                    </span>
-                    <button
-                      onClick={() => setIsYearly(!isYearly)}
-                      className={`relative w-14 h-7 rounded-full transition-colors ${
-                        isYearly ? 'bg-primary-vividAzure' : 'bg-gray-600'
-                      }`}
-                    >
-                      <span
-                        className={`absolute top-1 w-5 h-5 bg-white rounded-full transition-transform ${
-                          isYearly ? 'left-8' : 'left-1'
-                        }`}
-                      />
-                    </button>
-                    <span className={`text-lg ${isYearly ? 'text-white' : 'text-gray-400'}`}>
-                      Yearly{' '}
-                      <span className="text-primary-vividAzure text-sm font-medium">
-                        (Save 17%)
-                      </span>
-                    </span>
-                  </div>
                 </div>
 
                 {/* Platform Pricing Cards */}
@@ -724,29 +643,8 @@ const PricingPage = () => {
                         </div>
                       )}
 
-                      <h3 className="text-2xl font-bold text-white mb-2">{plan.name}</h3>
-
-                      <div className="mb-4">
-                        {plan.monthlyPrice !== null ? (
-                          <>
-                            <span className="text-4xl font-bold text-white">
-                              ${isYearly ? Math.round(plan.yearlyPrice / 12) : plan.monthlyPrice}
-                            </span>
-                            <span className="text-gray-400">/month</span>
-                            {isYearly && (
-                              <p className="text-sm text-primary-lightAzure mt-1">
-                                ${plan.yearlyPrice}/year
-                              </p>
-                            )}
-                            <p className="text-sm text-amber-400 mt-1">+ BYOL</p>
-                          </>
-                        ) : (
-                          <>
-                            <span className="text-3xl font-bold text-white">Custom</span>
-                            <p className="text-sm text-amber-400 mt-1">+ BYOL</p>
-                          </>
-                        )}
-                      </div>
+                      <h3 className="text-2xl font-bold text-white mb-1">{plan.name}</h3>
+                      <p className="text-sm text-primary-lightAzure mb-4">{plan.subtitle}</p>
 
                       {/* Scale */}
                       <div className="text-sm text-gray-400 mb-4 pb-4 border-b border-primary-vividAzure/20">
@@ -772,7 +670,8 @@ const PricingPage = () => {
                       </div>
 
                       <GlowButton
-                        to={plan.cta.href}
+                        href={plan.cta.isInternal ? undefined : plan.cta.href}
+                        to={plan.cta.isInternal ? plan.cta.href : undefined}
                         variant={plan.cta.variant}
                         className="w-full mt-auto"
                         size="small"
@@ -782,8 +681,6 @@ const PricingPage = () => {
                     </motion.div>
                   ))}
                 </div>
-
-                <p className="text-center text-gray-500 text-sm mb-12">*Yearly billing (2 months free)</p>
 
                 {/* All Tiers Include */}
                 <div className="max-w-4xl mx-auto bg-primary-blue/20 backdrop-blur-lg border border-primary-vividAzure/30 rounded-xl p-6 mb-12">
@@ -896,7 +793,6 @@ const PricingPage = () => {
                         <span className="text-lg font-bold text-white">CE Studio</span>
                       </div>
                       <p className="text-xs text-gray-400">Cloud SaaS</p>
-                      <p className="text-primary-lightAzure font-semibold text-sm mt-1">Starting Free</p>
                     </th>
                     <th className="p-4 text-center w-1/4 bg-primary-blue/30">
                       <div className="flex items-center justify-center gap-2 mb-1">
@@ -904,7 +800,6 @@ const PricingPage = () => {
                         <span className="text-lg font-bold text-white">Platform</span>
                       </div>
                       <p className="text-xs text-gray-400">On-Prem + BYOL</p>
-                      <p className="text-primary-lightAzure font-semibold text-sm mt-1">$299/mo+</p>
                     </th>
                   </tr>
                 </thead>
@@ -967,7 +862,7 @@ const PricingPage = () => {
                     'Need to codify organizational knowledge into context',
                     'Want cloud-based SaaS with no infrastructure setup',
                     "Don't have a Claude license (works with any AI tool)",
-                    'Want to start free and upgrade when ready'
+                    'Want a cloud-based solution with no infrastructure'
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-gray-300">
                       <FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" />
@@ -975,8 +870,8 @@ const PricingPage = () => {
                     </li>
                   ))}
                 </ul>
-                <GlowButton href={urls.signup} variant="primary" className="w-full">
-                  Start Free
+                <GlowButton href={urls.bookDemo} variant="primary" className="w-full">
+                  Book a Demo
                 </GlowButton>
               </GlassCard>
             </motion.div>
@@ -1006,8 +901,8 @@ const PricingPage = () => {
                     </li>
                   ))}
                 </ul>
-                <GlowButton to="/contact" variant="primary" className="w-full">
-                  Schedule Demo
+                <GlowButton href={urls.bookDemo} variant="primary" className="w-full">
+                  Book a Demo
                 </GlowButton>
               </GlassCard>
             </motion.div>
@@ -1096,23 +991,17 @@ const PricingPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <GlowButton
-                href={urls.signup}
+                href={urls.bookDemo}
                 variant="primary"
                 size="large"
               >
-                Start Free
+                Book a Demo
               </GlowButton>
               <Link
                 to="/contact"
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-lightAzure hover:text-white border border-primary-vividAzure/30 hover:border-primary-vividAzure/60 rounded-xl transition-all duration-300"
               >
-                Schedule Demo
-              </Link>
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-gray-400 hover:text-white border border-gray-600 hover:border-gray-400 rounded-xl transition-all duration-300"
-              >
-                Contact Sales
+                Contact Us
               </Link>
             </div>
           </motion.div>

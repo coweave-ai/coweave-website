@@ -13,8 +13,9 @@ const DOCS_BASE_URL = import.meta.env.VITE_DOCS_URL || 'https://docs.coweave.ai'
 export const urls = {
   // Authentication
   login: `${APP_BASE_URL}/login`,
-  signup: `${APP_BASE_URL}/signup`,
-  signupWithPlan: (plan) => `${APP_BASE_URL}/signup?plan=${plan}`,
+
+  // Booking
+  bookDemo: 'https://cal.com/hersh-bhargava-1wdmf9/30min',
 
   // Documentation
   docs: DOCS_BASE_URL,

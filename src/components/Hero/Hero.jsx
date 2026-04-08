@@ -70,20 +70,18 @@ const Hero = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
         >
           <GlowButton
-            href={urls.signup}
+            href={urls.bookDemo}
             variant="primary"
             size="large"
           >
-            Start Free
+            Book a Demo
           </GlowButton>
-          <a
-            href="https://cal.com/hersh-bhargava-1wdmf9/30min"
-            target="_blank"
-            rel="noopener noreferrer"
+          <Link
+            to="/contact"
             className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-lightAzure hover:text-white border border-primary-vividAzure/30 hover:border-primary-vividAzure/60 rounded-xl transition-all duration-300"
           >
-            Book a Call →
-          </a>
+            Contact Us →
+          </Link>
         </motion.div>
 
         {/* Watch Video */}

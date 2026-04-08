@@ -99,11 +99,11 @@ const CareersPage = () => {
               Try our products and experience the future of production-grade code.
             </p>
             <GlowButton
-              href={urls.signup}
+              href={urls.bookDemo}
               variant="primary"
               size="large"
             >
-              Try CE Studio Free
+              Book a Demo
             </GlowButton>
           </motion.div>
         </div>

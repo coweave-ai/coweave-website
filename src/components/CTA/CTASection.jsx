@@ -33,17 +33,17 @@ const CTASection = () => {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <GlowButton
-              href={urls.signup}
+              href={urls.bookDemo}
               variant="primary"
               size="large"
             >
-              Start Free — Cloud
+              Book a Demo
             </GlowButton>
             <Link
               to="/contact"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-lightAzure hover:text-white border-2 border-primary-vividAzure/40 hover:border-primary-vividAzure rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(63,214,248,0.3)]"
             >
-              Talk to Sales — Enterprise
+              Contact Us
             </Link>
           </div>
 

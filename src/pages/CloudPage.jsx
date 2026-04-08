@@ -89,7 +89,7 @@ const CloudPage = () => {
     {
       step: '1',
       title: 'Create Your Team',
-      description: 'Sign up and invite your team members. Set up roles and permissions.',
+      description: 'Set up your workspace and invite your team members. Configure roles and permissions.',
     },
     {
       step: '2',
@@ -181,11 +181,11 @@ const CloudPage = () => {
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <GlowButton
-                href={urls.signup}
+                href={urls.bookDemo}
                 variant="primary"
                 size="large"
               >
-                Start Free
+                Book a Demo
               </GlowButton>
               <GlowButton
                 to="/pricing"
@@ -326,7 +326,7 @@ const CloudPage = () => {
               <span className="animated-gradient-text">Get Started in Minutes</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Four steps from signup to consistent AI output across your team
+              Four steps to consistent AI output across your team
             </p>
           </motion.div>
 
@@ -673,15 +673,15 @@ const CloudPage = () => {
               <span className="animated-gradient-text">Simple, Transparent Pricing</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-              Start free, upgrade when you're ready
+              Flexible plans for any team size
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
-              { name: 'FREE', price: '$0', period: '/forever', users: '3 users', teams: '1 team', contexts: '10 context components', cta: 'Start Free' },
-              { name: 'STARTER', price: '$29', period: '/month', users: '15 users', teams: '3 teams', contexts: '100 context components', cta: 'Start Trial', highlighted: true },
-              { name: 'PROFESSIONAL', price: '$99', period: '/month', users: '60 users', teams: '10 teams', contexts: '500 context components', cta: 'Start Trial' },
+              { name: 'FREE', subtitle: 'For individuals & small projects', users: '3 users', teams: '1 team', contexts: '10 context components', cta: 'Book a Demo' },
+              { name: 'STARTER', subtitle: 'For growing teams', users: '15 users', teams: '3 teams', contexts: '100 context components', cta: 'Book a Demo', highlighted: true },
+              { name: 'PROFESSIONAL', subtitle: 'For scaling organizations', users: '60 users', teams: '10 teams', contexts: '500 context components', cta: 'Book a Demo' },
             ].map((plan, index) => (
               <motion.div
                 key={index}
@@ -695,18 +695,15 @@ const CloudPage = () => {
                     : 'border-primary-vividAzure/20'
                 }`}
               >
-                <h3 className="text-xl font-bold text-white mb-2">{plan.name}</h3>
-                <div className="mb-4">
-                  <span className="text-3xl font-bold text-primary-vividAzure">{plan.price}</span>
-                  <span className="text-gray-400">{plan.period}</span>
-                </div>
+                <h3 className="text-xl font-bold text-white mb-1">{plan.name}</h3>
+                <p className="text-sm text-primary-lightAzure mb-4">{plan.subtitle}</p>
                 <ul className="text-gray-300 space-y-2 mb-6">
                   <li>{plan.users}</li>
                   <li>{plan.teams}</li>
                   <li>{plan.contexts}</li>
                 </ul>
                 <GlowButton
-                  href={urls.signup}
+                  href={urls.bookDemo}
                   variant={plan.highlighted ? 'primary' : 'secondary'}
                   className="w-full"
                 >
@@ -817,11 +814,11 @@ const CloudPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-4">
               <GlowButton
-                href={urls.signup}
+                href={urls.bookDemo}
                 variant="primary"
                 size="large"
               >
-                Start Free Today
+                Book a Demo
               </GlowButton>
               <Link
                 to="/platform"
@@ -831,7 +828,7 @@ const CloudPage = () => {
               </Link>
             </div>
             <p className="text-gray-500 text-sm">
-              No credit card required • 3 users included
+              See how CE Studio works for your team
             </p>
           </motion.div>
         </div>
