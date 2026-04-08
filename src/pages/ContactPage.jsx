@@ -37,7 +37,7 @@ const ContactPage = () => {
     {
       icon: FaComments,
       title: 'General Inquiries',
-      description: 'Questions about CoWeave or CE Studio',
+      description: 'Questions about CoWeave AI Platform',
       action: 'hello@coweave.ai',
       href: 'mailto:hello@coweave.ai',
       actionType: 'email'
@@ -262,12 +262,12 @@ const ContactPage = () => {
                 transition={{ duration: 0.6 }}
                 className="bg-primary-blue/30 backdrop-blur-lg border border-primary-vividAzure/20 rounded-xl p-8"
               >
-                <h3 className="text-2xl font-bold text-white mb-4">Not Ready for Enterprise?</h3>
+                <h3 className="text-2xl font-bold text-white mb-4">Explore the Platform</h3>
                 <p className="text-gray-400 mb-6">
-                  Start with CE Studio Cloud. Get up and running in minutes with our managed SaaS solution. Upgrade to Enterprise anytime.
+                  See all the features and plans available with CoWeave AI Platform.
                 </p>
                 <ul className="space-y-2 mb-6">
-                  {['Free tier available', 'No credit card required', 'Upgrade anytime'].map((item, i) => (
+                  {['Cloud-based SaaS', 'Works with any AI tool', 'Flexible plans'].map((item, i) => (
                     <li key={i} className="flex items-center text-gray-300">
                       <FaCheck className="w-4 h-4 text-primary-vividAzure mr-2" />
                       {item}
@@ -275,11 +275,11 @@ const ContactPage = () => {
                   ))}
                 </ul>
                 <GlowButton
-                  href={urls.signup}
+                  href={urls.bookDemo}
                   variant="primary"
                   className="w-full"
                 >
-                  Start Free with Cloud
+                  Book a Demo
                 </GlowButton>
               </motion.div>
 
@@ -304,11 +304,11 @@ const ContactPage = () => {
                   ))}
                 </ul>
                 <GlowButton
-                  to="/pricing"
+                  to="/features"
                   variant="secondary"
                   className="w-full"
                 >
-                  View Pricing Plans
+                  View Features & Plans
                 </GlowButton>
               </motion.div>
             </div>

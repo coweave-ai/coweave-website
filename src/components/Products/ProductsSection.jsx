@@ -1,52 +1,21 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
-import { FaCloud, FaBuilding, FaCheck } from 'react-icons/fa'
+import { FaBuilding, FaCheck } from 'react-icons/fa'
 import AnimatedSection from '../common/AnimatedSection'
 import GlowButton from '../common/GlowButton'
 import urls from '../../config/urls'
 
 const ProductsSection = () => {
-  const products = [
-    {
-      name: 'Context Engineering Studio',
-      tagline: 'Eliminate AI Output Variance',
-      description: 'Component-based context engineering platform that transforms generic AI assistants into context-aware team members.',
-      features: [
-        'Cloud-based SaaS',
-        'Start free, upgrade when ready',
-        'Works with any AI tool',
-        'Team collaboration with RBAC',
-        'Version control & API access'
-      ],
-      cta: {
-        text: 'Start Free',
-        href: urls.signup,
-        variant: 'primary'
-      },
-      icon: FaCloud,
-      highlighted: false
-    },
-    {
-      name: 'CoWeave AI Platform',
-      tagline: 'Full SDLC Orchestration with Agentic Workflows',
-      description: 'Human-supervised automation from PRD to production. Pre-built workflows for architecture, development, testing, deployment, and incident response.',
-      features: [
-        'Everything in CE Studio',
-        'AI Service + Workflow Execution Engine',
-        'Agentic workflows with deterministic orchestration',
-        'On-prem deployment with full data control',
-        '3-5x development velocity • 85%+ test coverage'
-      ],
-      cta: {
-        text: 'Schedule Demo',
-        href: 'https://cal.com/hersh-bhargava-1wdmf9/30min',
-        variant: 'primary',
-        isInternal: false
-      },
-      icon: FaBuilding,
-      highlighted: false
-    }
+  const features = [
+    'Context Engineering Studio — codify your team\'s knowledge',
+    'AI Service + Workflow Execution Engine',
+    'Agentic workflows with deterministic orchestration',
+    'Pre-built agents: Architect, Developer, QA, DevOps, Docs, RCA',
+    'Full GitHub/GitLab, Jira/Linear, Slack, CI/CD integration',
+    'On-prem deployment with full data control',
+    '3-5x development velocity with 85%+ test coverage',
+    'Human-in-the-loop at every step'
   ]
 
   return (
@@ -64,62 +33,68 @@ const ProductsSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-            <span className="animated-gradient-text">Choose Your Path</span>
+            <span className="animated-gradient-text">One Platform, Everything You Need</span>
           </h2>
+          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+            From context engineering to full SDLC orchestration — CoWeave AI Platform is the complete suite for production-grade software delivery.
+          </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
-          {products.map((product, index) => (
-            <motion.div
-              key={product.name}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.15 }}
-              className={`relative bg-primary-blue/30 backdrop-blur-lg border rounded-2xl p-8 transition-all duration-300 hover:border-primary-vividAzure/60 ${
-                product.highlighted
-                  ? 'border-primary-vividAzure shadow-[0_0_30px_rgba(63,214,248,0.3)]'
-                  : 'border-primary-vividAzure/20'
-              }`}
-            >
-              {/* Header */}
-              <div className="flex items-center gap-4 mb-6">
-                <div className="p-3 bg-primary-vividAzure/20 rounded-lg">
-                  <product.icon className="w-8 h-8 text-primary-vividAzure" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-white">{product.name}</h3>
-                  <p className="text-primary-lightAzure">{product.tagline}</p>
-                </div>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.15 }}
+          className="max-w-3xl mx-auto"
+        >
+          <div className="relative bg-primary-blue/30 backdrop-blur-lg border border-primary-vividAzure/20 rounded-2xl p-8 transition-all duration-300 hover:border-primary-vividAzure/60">
+            {/* Header */}
+            <div className="flex items-center gap-4 mb-6">
+              <div className="p-3 bg-primary-vividAzure/20 rounded-lg">
+                <FaBuilding className="w-8 h-8 text-primary-vividAzure" />
               </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white">CoWeave AI Platform</h3>
+                <p className="text-primary-lightAzure">Human-Supervised SDLC Automation</p>
+              </div>
+            </div>
 
-              {/* Description */}
-              <p className="text-gray-300 mb-6">{product.description}</p>
+            {/* Description */}
+            <p className="text-gray-300 mb-6">
+              Human-supervised automation from PRD to production. Pre-built workflows for architecture, development, testing, deployment, and incident response — powered by context engineering that codifies your team's knowledge.
+            </p>
 
-              {/* Features */}
-              <ul className="space-y-3 mb-8">
-                {product.features.map((feature, i) => (
-                  <li key={i} className="flex items-start text-gray-300">
-                    <FaCheck className="w-4 h-4 text-primary-vividAzure mr-3 mt-1 flex-shrink-0" />
-                    <span>{feature}</span>
-                  </li>
-                ))}
-              </ul>
+            {/* Features */}
+            <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 mb-8">
+              {features.map((feature, i) => (
+                <li key={i} className="flex items-start text-gray-300">
+                  <FaCheck className="w-4 h-4 text-primary-vividAzure mr-3 mt-1 flex-shrink-0" />
+                  <span>{feature}</span>
+                </li>
+              ))}
+            </ul>
 
-              {/* CTA */}
+            {/* CTA */}
+            <div className="flex flex-col sm:flex-row gap-4">
               <GlowButton
-                href={product.cta.isInternal ? undefined : product.cta.href}
-                to={product.cta.isInternal ? product.cta.href : undefined}
-                variant={product.cta.variant}
-                className="w-full"
+                href={urls.bookDemo}
+                variant="primary"
+                className="flex-1"
               >
-                {product.cta.text}
+                Book a Demo
               </GlowButton>
-            </motion.div>
-          ))}
-        </div>
+              <GlowButton
+                to="/features"
+                variant="secondary"
+                className="flex-1"
+              >
+                See All Features
+              </GlowButton>
+            </div>
+          </div>
+        </motion.div>
 
-        {/* See Pricing Link */}
+        {/* See Features Link */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -128,10 +103,10 @@ const ProductsSection = () => {
           className="text-center mt-12"
         >
           <Link
-            to="/pricing"
+            to="/platform"
             className="text-lg text-primary-lightAzure hover:text-white transition-colors font-medium"
           >
-            See Pricing →
+            Learn More About the Platform →
           </Link>
         </motion.div>
       </div>

@@ -6,11 +6,10 @@ import { FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
 const Footer = () => {
   const footerLinks = {
     products: {
-      title: 'Products',
+      title: 'Product',
       links: [
-        { label: 'Context Engineering Studio', href: '/cloud' },
         { label: 'CoWeave AI Platform', href: '/platform' },
-        { label: 'Pricing', href: '/pricing' },
+        { label: 'Features & Plans', href: '/features' },
       ],
     },
     resources: {

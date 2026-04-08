@@ -141,10 +141,10 @@ const BlogPostPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/cloud"
+                to="/platform"
                 className="inline-flex items-center justify-center px-6 py-3 bg-primary-vividAzure text-white font-semibold rounded-xl hover:bg-primary-vividAzure/80 transition-colors"
               >
-                Try CE Studio Cloud
+                Learn More
               </Link>
               <Link
                 to="/blog"

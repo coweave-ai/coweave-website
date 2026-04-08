@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaChevronDown, FaBars, FaTimes, FaCloud, FaBuilding } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import GlowButton from '../common/GlowButton';
 import urls from '../../config/urls';
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isProductsOpen, setIsProductsOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
@@ -25,24 +24,10 @@ const Navigation = () => {
   }, [location]);
 
   const navLinks = [
-    { label: 'Pricing', href: '/pricing' },
+    { label: 'Platform', href: '/platform' },
+    { label: 'Features', href: '/features' },
     { label: 'About', href: '/about' },
     { label: 'Blog', href: '/blog' },
-  ];
-
-  const productLinks = [
-    {
-      label: 'Context Engineering Studio',
-      description: 'Cloud-based SaaS',
-      href: '/cloud',
-      icon: FaCloud,
-    },
-    {
-      label: 'CoWeave AI Platform',
-      description: 'Full SDLC Orchestration',
-      href: '/platform',
-      icon: FaBuilding,
-    },
   ];
 
   return (
@@ -66,76 +51,15 @@ const Navigation = () => {
 
           {/* Desktop Navigation — Centered */}
           <div className="hidden md:flex items-center space-x-8 absolute left-1/2 -translate-x-1/2">
-            {/* Products Dropdown */}
-            <div
-              className="relative"
-              onMouseEnter={() => setIsProductsOpen(true)}
-              onMouseLeave={() => setIsProductsOpen(false)}
-            >
-              <button className="flex items-center space-x-1 text-gray-300 hover:text-white transition-colors">
-                <span>Products</span>
-                <FaChevronDown
-                  className={`w-3 h-3 transition-transform ${
-                    isProductsOpen ? 'rotate-180' : ''
-                  }`}
-                />
-              </button>
-
-              <AnimatePresence>
-                {isProductsOpen && (
-                  <motion.div
-                    initial={{ opacity: 0, y: 10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{ duration: 0.2 }}
-                    className="absolute top-full left-0 mt-2 w-72 bg-primary-blue/95 backdrop-blur-lg rounded-xl shadow-xl border border-primary-vividAzure/20 overflow-hidden"
-                  >
-                    {productLinks.map((product) => (
-                      <Link
-                        key={product.href}
-                        to={product.href}
-                        className="flex items-start gap-4 p-4 hover:bg-primary-vividAzure/10 transition-colors"
-                      >
-                        <div className="p-2 bg-primary-vividAzure/20 rounded-lg">
-                          <product.icon className="w-5 h-5 text-primary-vividAzure" />
-                        </div>
-                        <div>
-                          <span className="block font-medium text-white">
-                            {product.label}
-                          </span>
-                          <span className="text-sm text-gray-400">
-                            {product.description}
-                          </span>
-                        </div>
-                      </Link>
-                    ))}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </div>
-
-            {/* Other Nav Links */}
-            {navLinks.map((link) =>
-              link.external ? (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  {link.label}
-                </a>
-              ) : (
-                <Link
-                  key={link.href}
-                  to={link.href}
-                  className="text-gray-300 hover:text-white transition-colors"
-                >
-                  {link.label}
-                </Link>
-              )
-            )}
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                to={link.href}
+                className="text-gray-300 hover:text-white transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
           </div>
 
           {/* Auth + CTA */}
@@ -147,11 +71,11 @@ const Navigation = () => {
               Login
             </a>
             <GlowButton
-              href={urls.signup}
+              href={urls.bookDemo}
               variant="primary"
               size="small"
             >
-              Start Free
+              Book a Demo
             </GlowButton>
           </div>
 
@@ -181,42 +105,15 @@ const Navigation = () => {
           >
             <div className="container mx-auto px-6 py-4 space-y-4">
               <div className="space-y-2">
-                <span className="text-sm text-gray-500 uppercase tracking-wider">
-                  Products
-                </span>
-                {productLinks.map((product) => (
+                {navLinks.map((link) => (
                   <Link
-                    key={product.href}
-                    to={product.href}
+                    key={link.href}
+                    to={link.href}
                     className="block py-2 text-gray-300 hover:text-white"
                   >
-                    {product.label}
+                    {link.label}
                   </Link>
                 ))}
-              </div>
-
-              <div className="border-t border-primary-blue/30 pt-4 space-y-2">
-                {navLinks.map((link) =>
-                  link.external ? (
-                    <a
-                      key={link.href}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block py-2 text-gray-300 hover:text-white"
-                    >
-                      {link.label}
-                    </a>
-                  ) : (
-                    <Link
-                      key={link.href}
-                      to={link.href}
-                      className="block py-2 text-gray-300 hover:text-white"
-                    >
-                      {link.label}
-                    </Link>
-                  )
-                )}
               </div>
 
               <div className="border-t border-primary-blue/30 pt-4 space-y-3">
@@ -227,11 +124,11 @@ const Navigation = () => {
                   Login
                 </a>
                 <GlowButton
-                  href={urls.signup}
+                  href={urls.bookDemo}
                   variant="primary"
                   className="w-full"
                 >
-                  Start Free
+                  Book a Demo
                 </GlowButton>
               </div>
             </div>
