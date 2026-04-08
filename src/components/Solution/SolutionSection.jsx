@@ -47,7 +47,7 @@ const SolutionSection = () => {
           className="text-center mb-8"
         >
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-4">
-            <span className="animated-gradient-text">Human-Supervised Full-Cycle SDLC Automation Platform</span>
+            <span className="animated-gradient-text">Human-Supervised SDLC Automation Platform</span>
           </h2>
           <p className="text-xl text-primary-lightAzure font-medium mb-6">
             Featuring Agentic Workflows and Deterministic Orchestration

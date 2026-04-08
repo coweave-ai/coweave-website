@@ -54,13 +54,11 @@ const ProofSection = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-6">
-            <span className="text-white">Real </span>
-            <span className="animated-gradient-text">Results</span>
-            <span className="text-white">, Not Promises</span>
+            <span className="text-white">CoWeave </span>
+            <span className="animated-gradient-text">Delivers</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            We built CE Studio—a complete enterprise application—using CoWeave.
-            Here's what happened.
+            We don't just talk about fixing these problems — we built an entire enterprise application using CoWeave to prove it.
           </p>
         </motion.div>
 

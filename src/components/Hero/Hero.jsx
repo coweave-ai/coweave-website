@@ -15,7 +15,7 @@ const Hero = () => {
       <div className="absolute inset-0 bg-gradient-to-br from-primary-navy/70 via-primary-navy/60 to-primary-indigo/70" style={{ zIndex: 2 }} />
 
       {/* Content */}
-      <div className="relative container mx-auto px-6 text-center max-w-6xl pt-20" style={{ zIndex: 10 }}>
+      <div className="relative container mx-auto px-6 text-center max-w-7xl pt-20" style={{ zIndex: 10 }}>
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -37,9 +37,9 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight"
         >
-          <span className="hero-gradient-text">Codify Your Software</span>
+          <span className="hero-gradient-text">Build Production-Grade</span>
           <br />
-          <span className="hero-gradient-text">Development Lifecycle</span>
+          <span className="hero-gradient-text">Software Fast</span>
         </motion.h1>
 
         {/* Tagline */}
@@ -49,9 +49,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="text-2xl md:text-3xl lg:text-4xl text-primary-lightAzure mb-6 font-medium"
         >
-          Humans + AI, CoWeave Together to Build
-          <br />
-          Enterprise-Grade Software
+          Humans + AI, CoWeave Together
         </motion.p>
 
         {/* Description */}
@@ -61,7 +59,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto"
         >
-          Reliable software, every developer, every time. CoWeave brings standardized prompts and agentic workflows to your SDLC—eliminating variance and shipping production-grade code consistently.
+          Same quality, every developer, every time. Standardized prompts and agentic workflows that eliminate variance across your entire SDLC.
         </motion.p>
 
         {/* Dual CTAs */}
@@ -78,12 +76,14 @@ const Hero = () => {
           >
             Start Free
           </GlowButton>
-          <Link
-            to="/platform"
+          <a
+            href="https://cal.com/hersh-bhargava-1wdmf9/30min"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-lightAzure hover:text-white border border-primary-vividAzure/30 hover:border-primary-vividAzure/60 rounded-xl transition-all duration-300"
           >
-            See Platform →
-          </Link>
+            Book a Call →
+          </a>
         </motion.div>
 
         {/* Watch Video */}
