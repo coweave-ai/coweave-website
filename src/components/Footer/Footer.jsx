@@ -99,7 +99,7 @@ const Footer = () => {
           <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
             {/* Brand Column */}
             <div className="col-span-2">
-              <Link to="/" className="inline-block mb-4">
+              <Link to={isLanding ? '/' : '/preview'} className="inline-block mb-4">
                 <img
                   src="/assets/coweave-logo-no-bg.png"
                   alt="CoWeave"
