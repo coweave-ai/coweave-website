@@ -1,0 +1,370 @@
+# Self-Hosting CoWeave: From Tarball to Running Platform in 45 Minutes
+
+You just received the CoWeave package. This post is the complete walkthrough for getting from a fresh VM to a running platform — designed to fit comfortably between coffee and lunch.
+
+The goal is for the install to feel small. One terminal, two scripts, two YAML files. Forty-five minutes. That's it.
+
+---
+
+## Where this post fits
+
+CoWeave's setup happens in three phases. This post covers phase one. The other two are already documented:
+
+| Phase | Post |
+|---|---|
+| **1. Set up the platform** | **You are here** |
+| 2. Configure your team's context | [Getting Started with Context Engineering Studio](/preview/blog/getting-started-ce-studio) |
+| 3. Build your first workflow | [Getting Started with CoWeave AI Platform](/preview/blog/getting-started-ai-platform) |
+
+If your platform is already up and you just need to wire up workflows, jump to phase three.
+
+---
+
+## The 45-minute promise
+
+| Phase | Time | What you do |
+|---|---|---|
+| Prep (one-time) | 5 min | Provision a VM, point DNS records |
+| Unpack the package | 2 min | `mkdir`, `tar -xzf`, one symlink |
+| Configure values files | 10 min | Edit two YAML files |
+| Run infrastructure setup | ~10 min | One command — `./scripts/setup.sh` |
+| Deploy applications | ~15 min | One command — `./scripts/deploy-single-vm.sh` |
+| Verify and log in | 3 min | Healthcheck and open the n8n editor |
+| **Total** | **~45 min** | |
+
+The two ~10–15 minute blocks are hands-off. Run the command, take a coffee break, come back to a green install.
+
+---
+
+## What you'll have when you're done
+
+- An **n8n workflow editor** at `https://workflow.yourcompany.com`, SSL terminated and ready for accounts
+- A **Claude AI service** at `https://ai.yourcompany.com` (or whichever subdomain you choose)
+- All pods green when you run `kubectl get pods -A`
+- A single command — `./scripts/health-check.sh` — that you can run any time to confirm the platform is healthy
+
+That's the destination. Now the journey.
+
+---
+
+## Before you start
+
+A 5-minute checklist you can run through while the VM provisions:
+
+- **VM**: 4+ vCPU, 16 GB RAM, 100 GB disk. Single-VM is sized for evaluation, pilots, and small teams. (For production-HA across AWS / GCP / Azure, see the dedicated guide — coming soon.)
+- **OS**: Ubuntu 22.04+ or RHEL 9+. Fresh install recommended.
+- **Access**: a regular user with `sudo`. Don't run anything as root — `setup.sh` will refuse.
+- **Network**: ports 80, 443, and 6443 open inbound. Egress to GitHub, Anthropic, and Docker Hub during install.
+- **DNS**: two A records pointed at your VM's public IP.
+- **The package**: the `coweave-single-vm-{version}.tar.gz` file we sent you.
+
+> 💡 **You don't have to create system users manually.** The infrastructure setup script provisions the `postgres`, `redis`, and `node` users for you via `setup-system-users.sh`. Skip ahead.
+
+### DNS records
+
+Before you start the install, point these two records at your VM:
+
+```
+workflow.yourcompany.com  →  <your VM IP>
+ai.yourcompany.com        →  <your VM IP>
+```
+
+DNS tends to take a few minutes to propagate, so kicking it off first means it's ready by the time you need it. You can verify from the VM with `nslookup workflow.yourcompany.com`.
+
+---
+
+## What's inside the package
+
+The tarball is opinionated and self-contained. The four files you'll actually touch:
+
+```
+coweave-single-vm-{version}/
+├── README.md                          # Canonical command reference (this post is the narrative version)
+├── scripts/
+│   ├── setup.sh                       # Run first — installs k3s and infra
+│   └── deploy-single-vm.sh            # Run second — helm-installs everything
+├── config/
+│   ├── values-workflow-template.yaml  # Edit this (after copying)
+│   └── values-ai-template.yaml        # And this
+├── charts-workflow/                   # n8n Helm chart (don't touch)
+├── charts-ai/                         # Claude Helm chart (don't touch)
+└── images/                            # Bundled Docker images (don't touch)
+```
+
+The recommended layout uses two directories on your VM:
+
+- `~/coweave/releases/` — versioned packages live here. New releases land alongside old ones.
+- `~/coweave/config/` — **your** configuration lives here, completely separate from any release.
+
+The reason for the split: upgrades become trivial. Your config never moves. The release directory does. We'll set up the symlinks that make this work in Step 3.
+
+---
+
+## Step 1 — Unpack the package
+
+**~2 minutes.**
+
+```bash
+mkdir -p ~/coweave/{releases,config}
+mv coweave-single-vm-*.tar.gz ~/coweave/releases/
+cd ~/coweave/releases
+tar -xzf coweave-single-vm-*.tar.gz
+ln -sfn coweave-single-vm-* coweave-single-vm-latest
+```
+
+**Why the `latest` symlink?** When the next release ships, you extract it next to this one and update one symlink — `ln -sfn coweave-single-vm-2.0.0 coweave-single-vm-latest` — and every script and command from this guide keeps working unchanged. You never edit a script.
+
+> ✅ **You should see**: `~/coweave/releases/coweave-single-vm-latest/` resolves to the directory you just extracted.
+
+---
+
+## Step 2 — Configure your values files
+
+**~10 minutes. The only step that needs thought.**
+
+Two files, three things to set in each. Open one, search for `MUST BE SET`, fix the lines, save. Repeat for the second file. Done.
+
+### Copy the templates into your config directory
+
+```bash
+cd ~/coweave/releases/coweave-single-vm-latest/config
+cp values-workflow-template.yaml ~/coweave/config/values-workflow.yaml
+cp values-ai-template.yaml       ~/coweave/config/values-ai.yaml
+```
+
+### Edit `values-workflow.yaml`
+
+```bash
+vim ~/coweave/config/values-workflow.yaml
+```
+
+Search for `MUST BE SET` and fill in three fields:
+
+```yaml
+global:
+  domain: "workflow.yourcompany.com"   # MUST BE SET
+
+postgresql:
+  auth:
+    postgresPassword: "<32 chars>"     # MUST BE SET — use the openssl snippet below
+
+redis:
+  auth:
+    password: "<32 chars>"             # MUST BE SET — must match values-ai.yaml below
+```
+
+### Edit `values-ai.yaml`
+
+```bash
+vim ~/coweave/config/values-ai.yaml
+```
+
+Same drill — search for `MUST BE SET`:
+
+```yaml
+global:
+  domain: "ai.yourcompany.com"         # MUST BE SET
+
+redis:
+  auth:
+    password: "<same as workflow>"     # MUST BE SET — must match values-workflow.yaml exactly
+```
+
+### Generate the passwords
+
+```bash
+openssl rand -base64 32   # one for postgres
+openssl rand -base64 32   # one for redis (use the same value in both files)
+```
+
+> ⚠️ **The single most common mistake**: the Redis password must be **identical** in both files. If they don't match, the Claude pods will CrashLoopBackOff with auth errors. Generate it once, paste it in both places.
+
+### Skim the storage sizes
+
+While you're in each file, search for `MUST BE REVIEWED` and adjust the storage sizes if you have specific needs (more workflows → larger PostgreSQL volume, longer metrics retention → larger Prometheus volume). The defaults are sized for evaluation.
+
+Everything else in both files is fine to leave at defaults for the first deploy. You can always come back and tune later.
+
+---
+
+## Step 3 — Wire up the symlinks
+
+**30 seconds. The thing that makes upgrades painless.**
+
+```bash
+cd ~/coweave/releases/coweave-single-vm-latest/config
+rm -f values-workflow.yaml values-ai.yaml
+ln -sf ~/coweave/config/values-workflow.yaml values-workflow.yaml
+ln -sf ~/coweave/config/values-ai.yaml       values-ai.yaml
+```
+
+What just happened: the release directory now contains symlinks pointing at your editable config files in `~/coweave/config/`. The setup and deploy scripts read from the release directory, but the source of truth lives outside it. When the next release arrives, you do the exact same three commands inside the new release — no copy-pasting your edits — and your existing config flows through automatically.
+
+---
+
+## Step 4 — Run the infrastructure script
+
+**~10 minutes, mostly hands-off.**
+
+```bash
+cd ~/coweave/releases/coweave-single-vm-latest
+./scripts/setup.sh --values-folder ~/coweave/config
+```
+
+What it does, in order:
+
+- Installs k3s (lightweight Kubernetes)
+- Installs Helm
+- Installs cert-manager (for SSL certs)
+- Installs the nginx ingress controller
+- Creates the system users (`postgres`, `redis`, `node`) via `setup-system-users.sh`
+- Creates the storage directories on the VM
+- Creates the PersistentVolumes using the sizes from your values files
+
+> ✅ **You should see**: a stream of `[SUCCESS]` log lines and a final "Setup complete" message. Now's a good time for that coffee.
+
+---
+
+## Step 5 — Deploy the applications
+
+**~15 minutes, hands-off.**
+
+```bash
+cd ~/coweave/releases/coweave-single-vm-latest
+./scripts/deploy-single-vm.sh
+```
+
+> ⚠️ **Run from the package root, not from `scripts/`.** The deploy script uses relative paths to find your config symlinks, and running it from the wrong directory produces "configuration not found" errors. Stay in `~/coweave/releases/coweave-single-vm-latest`.
+
+What it does:
+
+1. Validates your config files
+2. Imports the bundled Docker images into k3s
+3. Helm-installs the n8n workflow engine (with PostgreSQL and Redis)
+4. Helm-installs the Claude AI integration
+5. Wires up ingress and triggers cert-manager to issue SSL certificates
+6. Waits for every pod to become Ready
+
+> ✅ **You should see** the success summary at the end:
+>
+> ```
+> 🎉 COWEAVE Single-VM deployment completed successfully!
+>
+>    ✅ n8n Workflow Engine: Deployed and running
+>    ✅ AI Services: Deployed and running
+>
+>    📱 n8n Web Interface: https://workflow.yourcompany.com
+>    🔗 Claude AI: https://ai.yourcompany.com
+> ```
+
+---
+
+## Step 6 — Verify, then log in
+
+**~3 minutes.**
+
+Three quick checks before you open the browser:
+
+```bash
+kubectl get pods -A                            # everything Running
+./scripts/health-check.sh                      # canonical end-to-end check
+curl -k https://workflow.yourcompany.com/healthz   # ingress is alive
+```
+
+The `health-check.sh` script is the canonical "is the platform happy?" command. It checks node status, pod health across every namespace, ingress, services, storage, and DNS. If anything's wrong, it tells you exactly which subsystem is unhappy and what to look at.
+
+When all three are clean, open `https://workflow.yourcompany.com` in a browser, create the initial owner account, and you're in.
+
+> 💡 **One last thing — Claude CLI auth.** The Claude pods need a one-time interactive login. This is the only step that can't be automated:
+>
+> ```bash
+> kubectl exec -it claude-cli-0 -n claude-test -c claude-cli -- /bin/sh
+> claude auth login   # follow the prompts
+> ```
+
+You're done. The platform is running.
+
+---
+
+## When something goes wrong
+
+The four issues we actually see in the field, in rough order of frequency:
+
+### 1. Claude pods are in CrashLoopBackOff
+
+**Almost always**: the Redis password doesn't match between `values-workflow.yaml` and `values-ai.yaml`. Open both files, confirm the Redis passwords are byte-for-byte identical, then re-run the deploy:
+
+```bash
+cd ~/coweave/releases/coweave-single-vm-latest
+./scripts/deploy-single-vm.sh coweave-ai
+```
+
+### 2. DNS isn't resolving
+
+```bash
+nslookup workflow.yourcompany.com
+```
+
+If that fails from your laptop but succeeds from the VM itself, propagation hasn't reached you yet — wait a few minutes and retry. If it fails everywhere, double-check the A records.
+
+### 3. Configuration changes aren't taking effect
+
+Almost always means you edited a file inside the release directory instead of the source-of-truth file in `~/coweave/config/`. The release files are symlinks; edit the targets, not the symlinks. Always edit `~/coweave/config/values-*.yaml`.
+
+### 4. Ingress is returning 502
+
+Cert-manager hasn't issued the SSL certificate yet. Give it 60 seconds and retry. To watch progress:
+
+```bash
+kubectl get certificate -A
+```
+
+For anything else, `./scripts/health-check.sh` will tell you exactly which subsystem is unhappy. Start there.
+
+---
+
+## What's next
+
+Now that the platform is running, the other two posts pick up the story:
+
+- → [**Getting Started with Context Engineering Studio**](/preview/blog/getting-started-ce-studio) — codify your team's coding standards, practices, and conventions so the AI agents follow them automatically.
+- → [**Getting Started with CoWeave AI Platform**](/preview/blog/getting-started-ai-platform) — wire up your first end-to-end workflow, from a GitHub issue to a merged PR.
+
+---
+
+## Sidebar — Upgrading later
+
+When the next release lands, the upgrade is four steps:
+
+```bash
+# 1. Extract the new release alongside the existing one
+cd ~/coweave/releases
+tar -xzf coweave-single-vm-NEW-VERSION.tar.gz
+
+# 2. Update the latest symlink
+ln -sfn coweave-single-vm-NEW-VERSION coweave-single-vm-latest
+
+# 3. Re-create the config symlinks inside the new release
+cd coweave-single-vm-latest/config
+rm -f values-workflow.yaml values-ai.yaml
+ln -sf ~/coweave/config/values-workflow.yaml values-workflow.yaml
+ln -sf ~/coweave/config/values-ai.yaml       values-ai.yaml
+
+# 4. Redeploy — your config in ~/coweave/config/ is reused automatically
+cd ~/coweave/releases/coweave-single-vm-latest
+./scripts/deploy-single-vm.sh
+```
+
+Your configuration in `~/coweave/config/` is never touched. That's the entire reason for the symlink dance in Step 3.
+
+---
+
+## Sidebar — The README inside your package
+
+The canonical command reference is `README.md` inside the package itself. This blog post is the narrative version — same commands, plus the rationale, gotchas, and time estimates. If you ever need a checklist with no commentary while you're deep in a deploy, open the package README. If you're sharing the install path with a teammate who's never done it, send them this post.
+
+---
+
+**CoWeave** — codify your SDLC.
+
+hello@coweave.ai

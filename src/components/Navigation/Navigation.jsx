@@ -31,8 +31,9 @@ const Navigation = () => {
     : [
         { label: 'Platform', href: '/preview/platform' },
         { label: 'Features', href: '/preview/features' },
-        { label: 'About', href: '/preview/about' },
+        { label: 'Docs', href: '/preview/docs' },
         { label: 'Blog', href: '/preview/blog' },
+        { label: 'About', href: '/preview/about' },
       ];
 
   return (

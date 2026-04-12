@@ -1,7 +1,16 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-dom';
 import { HelmetProvider } from 'react-helmet-async';
 import { ParticleProvider } from './context/ParticleContext';
+
+// Small helper: redirect a dynamic-segment route to its /preview/* equivalent
+// while preserving the :slug param. <Navigate> alone drops the param, which
+// is the bug behind /blog/some-post → /preview/blog (the list) instead of
+// /preview/blog/some-post (the post).
+const SlugRedirect = ({ to }) => {
+  const { slug } = useParams();
+  return <Navigate to={`${to}/${slug}`} replace />;
+};
 
 import Layout from './components/Layout/Layout';
 import ScrollToTop from './components/common/ScrollToTop';
@@ -16,6 +25,8 @@ import FeaturesPage from './pages/FeaturesPage';
 import ContactPage from './pages/ContactPage';
 import BlogListPage from './pages/BlogListPage';
 import BlogPostPage from './pages/BlogPostPage';
+import DocsListPage from './pages/DocsListPage';
+import DocsPage from './pages/DocsPage';
 import AboutPage from './pages/AboutPage';
 import CareersPage from './pages/CareersPage';
 
@@ -50,6 +61,8 @@ function App() {
               <Route path="preview/contact" element={<ContactPage />} />
               <Route path="preview/blog" element={<BlogListPage />} />
               <Route path="preview/blog/:slug" element={<BlogPostPage />} />
+              <Route path="preview/docs" element={<DocsListPage />} />
+              <Route path="preview/docs/:slug" element={<DocsPage />} />
               <Route path="preview/about" element={<AboutPage />} />
               <Route path="preview/careers" element={<CareersPage />} />
 
@@ -61,7 +74,9 @@ function App() {
               <Route path="about" element={<Navigate to="/preview/about" replace />} />
               <Route path="contact" element={<Navigate to="/preview/contact" replace />} />
               <Route path="blog" element={<Navigate to="/preview/blog" replace />} />
-              <Route path="blog/:slug" element={<Navigate to="/preview/blog" replace />} />
+              <Route path="blog/:slug" element={<SlugRedirect to="/preview/blog" />} />
+              <Route path="docs" element={<Navigate to="/preview/docs" replace />} />
+              <Route path="docs/:slug" element={<SlugRedirect to="/preview/docs" />} />
               <Route path="careers" element={<Navigate to="/preview/careers" replace />} />
 
               <Route path="*" element={<NotFoundPage />} />
