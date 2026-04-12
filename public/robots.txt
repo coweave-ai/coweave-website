@@ -1,0 +1,12 @@
+# coweave.ai robots policy
+#
+# Public landing page at / is indexable.
+# The full platform preview under /preview/* is stealth-mode and must not
+# be indexed by search engines or AI crawlers. The Disallow below applies
+# to all user agents (Google, Bing, GPTBot, CCBot, Claude-Web, anthropic-ai,
+# Google-Extended, PerplexityBot, etc. all honor the global User-agent: *).
+
+User-agent: *
+Disallow: /preview/
+
+Sitemap: https://coweave.ai/sitemap.xml

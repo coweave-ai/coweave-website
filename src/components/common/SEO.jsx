@@ -21,7 +21,22 @@ const SEO = ({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="author" content="CoWeave" />
-      <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
+      <meta
+        name="robots"
+        content={
+          noindex
+            ? 'noindex, nofollow, noarchive, nosnippet, noimageindex'
+            : 'index, follow'
+        }
+      />
+      <meta
+        name="googlebot"
+        content={
+          noindex
+            ? 'noindex, nofollow, noarchive, nosnippet, noimageindex'
+            : 'index, follow'
+        }
+      />
 
       {/* Open Graph */}
       <meta property="og:title" content={title} />
@@ -41,8 +56,8 @@ const SEO = ({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={fullImageUrl} />
 
-      {/* Canonical */}
-      <link rel="canonical" href={fullUrl} />
+      {/* Canonical — omitted on noindex pages so search engines don't store a reference */}
+      {!noindex && <link rel="canonical" href={fullUrl} />}
     </Helmet>
   );
 };
