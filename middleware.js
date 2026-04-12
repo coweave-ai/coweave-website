@@ -56,15 +56,21 @@ export default function middleware(request) {
 
   // First visit with valid token in the query string → set cookie and
   // redirect to the same path without the ?access= query param.
+  //
+  // We construct the Response manually instead of using Response.redirect()
+  // because Response.redirect() returns a Response with frozen headers in
+  // the Vercel Edge runtime — calling .headers.set() on it throws and
+  // turns the entire request into a 500.
   const providedToken = url.searchParams.get('access');
   if (providedToken && providedToken === expected) {
     url.searchParams.delete('access');
-    const response = Response.redirect(url.toString(), 307);
-    response.headers.set(
-      'Set-Cookie',
-      `${COOKIE_NAME}=${expected}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${COOKIE_MAX_AGE}`
-    );
-    return response;
+    return new Response(null, {
+      status: 307,
+      headers: {
+        Location: url.toString(),
+        'Set-Cookie': `${COOKIE_NAME}=${expected}; Path=/; HttpOnly; Secure; SameSite=Lax; Max-Age=${COOKIE_MAX_AGE}`,
+      },
+    });
   }
 
   // No cookie, no valid token → bounce to the public landing page.
