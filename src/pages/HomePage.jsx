@@ -13,7 +13,7 @@ const HomePage = () => {
   return (
     <>
       <SEO
-        title="CoWeave - Build Production-Grade Software Fast | AI-Powered SDLC Automation"
+        title="CoWeave - Build Enterprise-Grade Software Fast | AI-Powered SDLC Automation"
         description="CoWeave codifies your software development lifecycle with prompts and agentic workflows. Same quality, every developer, every time."
         keywords="AI coding tools, SDLC automation, agentic workflows, context engineering, developer productivity, AI code generation, enterprise software, test-driven development, CoWeave, Context Engineering Studio"
         url="/"

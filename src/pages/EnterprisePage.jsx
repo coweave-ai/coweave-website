@@ -200,7 +200,7 @@ const EnterprisePage = () => {
         'Compliance automated (audit trails, security enforcement)',
         'Senior engineers freed for strategic work',
         'Faster onboarding (2 weeks vs 3 months)',
-        'Predictable, production-grade output'
+        'Predictable, enterprise-grade output'
       ]
     }
   ];

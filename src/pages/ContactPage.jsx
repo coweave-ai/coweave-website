@@ -334,7 +334,7 @@ const ContactPage = () => {
               <span className="animated-gradient-text">Get Started?</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
-              Whether you choose Cloud or Enterprise, we're here to help you ship production-grade code consistently.
+              Whether you choose Cloud or Enterprise, we're here to help you ship enterprise-grade code consistently.
             </p>
             <GlowButton
               to="/"

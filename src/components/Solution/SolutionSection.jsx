@@ -53,7 +53,7 @@ const SolutionSection = () => {
             Featuring Agentic Workflows and Deterministic Orchestration
           </p>
           <p className="text-lg md:text-xl text-gray-300 max-w-4xl mx-auto">
-            CoWeave goes beyond code generation to orchestrate your entire development pipeline—from PRD to production. Standardized prompts reduce AI output variance, while agentic workflows with deterministic guardrails ensure consistent, production-grade output at every phase.
+            CoWeave goes beyond code generation to orchestrate your entire development pipeline—from PRD to production. Standardized prompts reduce AI output variance, while agentic workflows with deterministic guardrails ensure consistent, enterprise-grade output at every phase.
           </p>
         </motion.div>
 

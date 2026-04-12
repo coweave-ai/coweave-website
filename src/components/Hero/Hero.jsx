@@ -37,7 +37,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="text-5xl md:text-7xl lg:text-8xl font-heading font-bold mb-6 leading-tight"
         >
-          <span className="hero-gradient-text">Build Production-Grade</span>
+          <span className="hero-gradient-text">Build Enterprise-Grade</span>
           <br />
           <span className="hero-gradient-text">Software Fast</span>
         </motion.h1>

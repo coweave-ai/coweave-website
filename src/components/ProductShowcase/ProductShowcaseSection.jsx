@@ -24,7 +24,7 @@ const showcaseItems = [
     alt: 'Context Assembler - Prompt assembly and preview interface',
     badge: 'Context Assembler',
     title: 'Assemble. Preview. Ship to Your IDE.',
-    subtitle: 'Build production-grade prompts from your context components—then use them anywhere.',
+    subtitle: 'Build enterprise-grade prompts from your context components—then use them anywhere.',
     description:
       'Stop feeding AI tools generic instructions and hoping for the best. The Context Assembler combines your team, role, and workflow contexts into a single, optimized prompt you can preview before deploying. Copy it into Cursor, Claude Code, Copilot, or any AI tool your team already uses.',
     highlights: [
@@ -190,7 +190,7 @@ const ProductShowcaseSection = () => {
             <span className="animated-gradient-text">The Platform</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Three tools, one mission: turn your team's expertise into consistent, production-grade output.
+            Three tools, one mission: turn your team's expertise into consistent, enterprise-grade output.
           </p>
         </motion.div>
 

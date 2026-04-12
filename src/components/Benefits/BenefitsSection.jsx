@@ -43,7 +43,7 @@ const groups = [
       'Institutional knowledge codified and preserved',
       'Code changes automated with audit trails',
       'Reduce time for novices to codebase-expert level',
-      'Predictable, production-grade output every time',
+      'Predictable, enterprise-grade output every time',
     ],
   },
 ]

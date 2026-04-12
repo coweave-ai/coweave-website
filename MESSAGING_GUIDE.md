@@ -17,7 +17,7 @@
 > **"CoWeave is a platform to codify your software development lifecycle with prompts and agentic workflows."**
 
 ### Positioning Statement
-CoWeave fills the gap between vibe-coding tools (fast prototypes, quick iterations) and production-grade code that is reliable, maintainable, and consistent across teams.
+CoWeave fills the gap between vibe-coding tools (fast prototypes, quick iterations) and enterprise-grade code that is reliable, maintainable, and consistent across teams.
 
 ---
 
@@ -85,7 +85,7 @@ Use these to validate the audience's challenges:
 
 | Criteria | Description |
 |----------|-------------|
-| ✅ Production-grade quality needed | Code that ships to customers |
+| ✅ Enterprise-grade quality needed | Code that ships to customers |
 | ✅ Comprehensive tests (≥85% coverage) | Tests that catch edge cases |
 | ✅ GitHub-based workflow | Integrated with existing tooling |
 | ✅ Complete features | Requirements → PR (not snippets) |
@@ -165,7 +165,7 @@ Use these to validate the audience's challenges:
 ## 8. Call to Action Messaging
 
 ### Primary CTA
-> "If you're tired of technical debt, unreliable software, and the variance cost—and you're ready to codify engineering practices, ship production-grade code consistently, and have AI-assistance throughout—it's time to transform your SDLC."
+> "If you're tired of technical debt, unreliable software, and the variance cost—and you're ready to codify engineering practices, ship enterprise-grade code consistently, and have AI-assistance throughout—it's time to transform your SDLC."
 
 ### CTA Button Text Options
 - "Transform Your SDLC"
@@ -192,7 +192,7 @@ If primary tagline doesn't resonate:
 ### Hero Section
 **Headline:** "Production Code. Done Right."
 **Subheadline:** "Same quality, every developer, every time."
-**Body:** "CoWeave codifies your software development lifecycle with prompts and agentic workflows—eliminating the variance cost and shipping production-grade code consistently."
+**Body:** "CoWeave codifies your software development lifecycle with prompts and agentic workflows—eliminating the variance cost and shipping enterprise-grade code consistently."
 
 ### Problem Section
 **Headline:** "The Variance Cost is Killing Your Team"
@@ -210,7 +210,7 @@ If primary tagline doesn't resonate:
 
 ### Products Section
 **Headline:** "Fill the Gap"
-**Subheadline:** "Production-grade code, not just fast prototypes."
+**Subheadline:** "Enterprise-grade code, not just fast prototypes."
 
 **Cloud Card:**
 - "PO Studio Cloud"
@@ -233,7 +233,7 @@ If primary tagline doesn't resonate:
 
 ### Final CTA Section
 **Headline:** "Transform Your SDLC"
-**Body:** "Stop paying the variance cost. Start shipping production-grade code consistently."
+**Body:** "Stop paying the variance cost. Start shipping enterprise-grade code consistently."
 
 ---
 

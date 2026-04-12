@@ -12,7 +12,7 @@ const CareersPage = () => {
     <>
       <SEO
         title="Careers at CoWeave - Join Our Team"
-        description="Join CoWeave and help us transform software development. We're building the future of production-grade code."
+        description="Join CoWeave and help us transform software development. We're building the future of enterprise-grade code."
         url="/careers"
       />
 
@@ -96,7 +96,7 @@ const CareersPage = () => {
               <span className="text-white">Not Looking for a Job?</span>
             </h2>
             <p className="text-xl text-gray-300 mb-8">
-              Try our products and experience the future of production-grade code.
+              Try our products and experience the future of enterprise-grade code.
             </p>
             <GlowButton
               href={urls.bookDemo}

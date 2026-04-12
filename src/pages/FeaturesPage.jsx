@@ -240,7 +240,7 @@ const FeaturesPage = () => {
               <span className="animated-gradient-text">Platform Features & Plans</span>
             </h1>
             <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-              Everything you need for production-grade software delivery — from context engineering to full SDLC orchestration.
+              Everything you need for enterprise-grade software delivery — from context engineering to full SDLC orchestration.
             </p>
           </motion.div>
         </div>

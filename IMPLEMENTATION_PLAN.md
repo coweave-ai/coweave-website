@@ -604,7 +604,7 @@ const Hero = () => {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto"
         >
-          CoWeave codifies your software development lifecycle with prompts and agentic workflows—eliminating the variance cost and shipping production-grade code consistently.
+          CoWeave codifies your software development lifecycle with prompts and agentic workflows—eliminating the variance cost and shipping enterprise-grade code consistently.
         </motion.p>
 
         {/* Dual CTAs */}
@@ -1226,7 +1226,7 @@ const CTASection = () => {
           </h2>
 
           <p className="text-xl md:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto">
-            Stop paying the variance cost. Start shipping production-grade code consistently.
+            Stop paying the variance cost. Start shipping enterprise-grade code consistently.
           </p>
 
           <p className="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">

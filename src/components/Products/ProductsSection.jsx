@@ -36,7 +36,7 @@ const ProductsSection = () => {
             <span className="animated-gradient-text">One Platform, Everything You Need</span>
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            From context engineering to full SDLC orchestration — CoWeave AI Platform is the complete suite for production-grade software delivery.
+            From context engineering to full SDLC orchestration — CoWeave AI Platform is the complete suite for enterprise-grade software delivery.
           </p>
         </motion.div>
 

@@ -56,7 +56,7 @@ const BlogListPage = () => {
     <>
       <SEO
         title="Blog - CoWeave"
-        description="Insights on AI-assisted development, context engineering, and production-grade code practices from the CoWeave team."
+        description="Insights on AI-assisted development, context engineering, and enterprise-grade code practices from the CoWeave team."
         url="/blog"
       />
 
@@ -73,7 +73,7 @@ const BlogListPage = () => {
               <span className="animated-gradient-text">Blog</span>
             </h1>
             <p className="text-xl text-gray-300">
-              Insights on AI-assisted development, context engineering, and production-grade code practices.
+              Insights on AI-assisted development, context engineering, and enterprise-grade code practices.
             </p>
           </motion.div>
         </div>

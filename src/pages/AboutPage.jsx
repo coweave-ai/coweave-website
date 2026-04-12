@@ -85,7 +85,7 @@ const AboutPage = () => {
   return (
     <>
       <SEO
-        title="About CoWeave - Building the Future of Production-Grade Software"
+        title="About CoWeave - Building the Future of Enterprise-Grade Software"
         description="CoWeave is on a mission to help engineers weave with AI to ship reliable software faster. Learn about our mission, values, and vision."
         url="/about"
       />
@@ -113,7 +113,7 @@ const AboutPage = () => {
               className="text-4xl md:text-5xl lg:text-6xl font-heading font-bold mb-8 leading-tight text-center"
             >
               <span className="text-white">CoWeave is building the future of </span>
-              <span className="animated-gradient-text">production-grade software development</span>
+              <span className="animated-gradient-text">enterprise-grade software development</span>
             </motion.h1>
 
             <motion.div

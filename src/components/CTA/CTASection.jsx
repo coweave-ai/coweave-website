@@ -28,7 +28,7 @@ const CTASection = () => {
           </h2>
 
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
-            Stop paying the variance tax. Start shipping production-grade code consistently.
+            Stop paying the variance tax. Start shipping enterprise-grade code consistently.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
