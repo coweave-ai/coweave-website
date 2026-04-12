@@ -38,7 +38,7 @@ const Hero = () => {
         >
           <span className="hero-gradient-text">Build Enterprise-Grade</span>
           <br />
-          <span className="hero-gradient-text">Software, 4× Faster</span>
+          <span className="hero-gradient-text">Software Fast</span>
         </motion.h1>
 
         {/* Tagline */}
