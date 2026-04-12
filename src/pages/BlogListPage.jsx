@@ -57,7 +57,8 @@ const BlogListPage = () => {
       <SEO
         title="Blog - CoWeave"
         description="Insights on AI-assisted development, context engineering, and enterprise-grade code practices from the CoWeave team."
-        url="/blog"
+        url="/preview/blog"
+        noindex={true}
       />
 
       {/* Hero Section */}

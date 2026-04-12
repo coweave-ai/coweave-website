@@ -27,8 +27,11 @@ const NotFoundPage = () => {
               <GlowButton to="/" variant="primary">
                 Go Home
               </GlowButton>
-              <GlowButton to="/contact" variant="secondary">
-                Contact Support
+              <GlowButton
+                href="https://cal.com/hersh-bhargava-1wdmf9/30min"
+                variant="secondary"
+              >
+                Book a Call
               </GlowButton>
             </div>
           </div>

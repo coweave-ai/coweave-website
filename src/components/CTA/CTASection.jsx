@@ -40,7 +40,7 @@ const CTASection = () => {
               Book a Demo
             </GlowButton>
             <Link
-              to="/contact"
+              to="/preview/contact"
               className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-lightAzure hover:text-white border-2 border-primary-vividAzure/40 hover:border-primary-vividAzure rounded-xl transition-all duration-300 hover:shadow-[0_0_20px_rgba(63,214,248,0.3)]"
             >
               Contact Us

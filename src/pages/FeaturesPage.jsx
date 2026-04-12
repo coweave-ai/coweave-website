@@ -224,7 +224,8 @@ const FeaturesPage = () => {
         title="Features & Plans - CoWeave AI Platform"
         description="Explore the complete feature set of CoWeave AI Platform. Context engineering, agentic workflows, SDLC automation, and enterprise security — all in one platform."
         keywords="CoWeave features, SDLC automation features, context engineering, agentic workflows, enterprise development platform, AI development tools"
-        url="/features"
+        url="/preview/features"
+        noindex={true}
       />
 
       {/* Hero Section */}
@@ -512,7 +513,7 @@ const FeaturesPage = () => {
                 Book a Demo
               </GlowButton>
               <Link
-                to="/contact"
+                to="/preview/contact"
                 className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-lightAzure hover:text-white border border-primary-vividAzure/30 hover:border-primary-vividAzure/60 rounded-xl transition-all duration-300"
               >
                 Contact Us

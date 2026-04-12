@@ -24,7 +24,7 @@ const BlogPostPage = () => {
 
   // If post not found, redirect to blog list
   if (!post) {
-    return <Navigate to="/blog" replace />;
+    return <Navigate to="/preview/blog" replace />;
   }
 
   const formatDate = (dateString) => {
@@ -40,7 +40,8 @@ const BlogPostPage = () => {
       <SEO
         title={`${post.title} - CoWeave Blog`}
         description={post.excerpt}
-        url={`/blog/${post.slug}`}
+        url={`/preview/blog/${post.slug}`}
+        noindex={true}
       />
 
       {/* Hero Section */}
@@ -54,7 +55,7 @@ const BlogPostPage = () => {
           >
             {/* Back link */}
             <Link
-              to="/blog"
+              to="/preview/blog"
               className="inline-flex items-center gap-2 text-primary-lightAzure hover:text-white transition-colors mb-8"
             >
               <FaArrowLeft className="w-4 h-4" />
@@ -141,13 +142,13 @@ const BlogPostPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/platform"
+                to="/preview/platform"
                 className="inline-flex items-center justify-center px-6 py-3 bg-primary-vividAzure text-white font-semibold rounded-xl hover:bg-primary-vividAzure/80 transition-colors"
               >
                 Learn More
               </Link>
               <Link
-                to="/blog"
+                to="/preview/blog"
                 className="inline-flex items-center justify-center px-6 py-3 border border-primary-vividAzure/30 text-primary-lightAzure rounded-xl hover:border-primary-vividAzure/60 transition-colors"
               >
                 More Articles

@@ -163,18 +163,12 @@ const SecurityPage = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <GlowButton
-                to="/contact"
+                href="https://cal.com/hersh-bhargava-1wdmf9/30min"
                 variant="primary"
                 size="large"
               >
-                Contact Sales
+                Book a Call
               </GlowButton>
-              <Link
-                to="/platform"
-                className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-lightAzure hover:text-white border border-primary-vividAzure/30 hover:border-primary-vividAzure/60 rounded-xl transition-all duration-300"
-              >
-                Platform Features
-              </Link>
             </div>
           </motion.div>
         </div>

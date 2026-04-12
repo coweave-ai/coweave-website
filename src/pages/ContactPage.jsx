@@ -95,7 +95,8 @@ const ContactPage = () => {
       <SEO
         title="Contact Sales - CoWeave AI Platform | CoWeave"
         description="Get in touch with our team to discuss enterprise features, custom deployments, n8n integration, and pricing."
-        url="/contact"
+        url="/preview/contact"
+        noindex={true}
       />
 
       {/* Hero Section */}
@@ -304,7 +305,7 @@ const ContactPage = () => {
                   ))}
                 </ul>
                 <GlowButton
-                  to="/features"
+                  to="/preview/features"
                   variant="secondary"
                   className="w-full"
                 >
