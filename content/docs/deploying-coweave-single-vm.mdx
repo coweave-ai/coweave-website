@@ -1,22 +1,38 @@
-# Self-Hosting CoWeave: From Tarball to Running Platform in 45 Minutes
+# Self-Hosting CoWeave Enterprise: From Tarball to Running Platform in 45 Minutes
 
-You just received the CoWeave package. This post is the complete walkthrough for getting from a fresh VM to a running platform — designed to fit comfortably between coffee and lunch.
+You just received the CoWeave Enterprise package. This post is the complete walkthrough for getting from a fresh VM to a running platform — the workflow engine, the AI service, **and** Context Engineering Studio — designed to fit comfortably between coffee and lunch.
 
-The goal is for the install to feel small. One terminal, two scripts, two YAML files. Forty-five minutes. That's it.
+The goal is for the install to feel small. One terminal, two scripts, three YAML files. Forty-five minutes. That's it.
+
+---
+
+## What Enterprise actually is
+
+CoWeave Enterprise is three components deployed as one platform, integrated out of the box:
+
+| Component | Namespace | What it does |
+|---|---|---|
+| **CoWeave Workflow** (n8n fork) | `coweave-workflow` | The workflow engine, plus the shared PostgreSQL and Redis the rest of the platform uses |
+| **CoWeave AI** | `coweave-ai` | Claude AI service with MCP integration, session router, and worker pods |
+| **Context Engineering Studio** | `coweave-ce-studio` | The web UI for codifying team context, managing workflow prompts, running your kanban board |
+
+Context Engineering Studio in Enterprise mode isn't a standalone app — it integrates with n8n for SSO and team sync, and shares the PostgreSQL and Redis running in `coweave-workflow`. That's the whole point of Enterprise: one install, one set of credentials, one place to manage everything.
+
+(If you're evaluating CE Studio standalone with no n8n integration, that's Community Edition — different install, different post.)
 
 ---
 
 ## Where this post fits
 
-CoWeave's setup happens in three phases. This post covers phase one. The other two are already documented:
+CoWeave's onboarding happens in three phases. This post covers phase one. The other two are already documented:
 
 | Phase | Post |
 |---|---|
-| **1. Set up the platform** | **You are here** |
+| **1. Install the platform** | **You are here** |
 | 2. Configure your team's context | [Getting Started with Context Engineering Studio](/preview/blog/getting-started-ce-studio) |
 | 3. Build your first workflow | [Getting Started with CoWeave AI Platform](/preview/blog/getting-started-ai-platform) |
 
-If your platform is already up and you just need to wire up workflows, jump to phase three.
+Phase 1 gets all three components *running*. Phase 2 configures CE Studio (teams, contexts, workflow prompts). Phase 3 runs your first end-to-end workflow. If the platform is already up, jump ahead.
 
 ---
 
@@ -26,10 +42,10 @@ If your platform is already up and you just need to wire up workflows, jump to p
 |---|---|---|
 | Prep (one-time) | 5 min | Provision a VM, point DNS records |
 | Unpack the package | 2 min | `mkdir`, `tar -xzf`, one symlink |
-| Configure values files | 10 min | Edit two YAML files |
+| Configure values files | 12 min | Edit four YAML files |
 | Run infrastructure setup | ~10 min | One command — `./scripts/setup.sh` |
 | Deploy applications | ~15 min | One command — `./scripts/deploy-single-vm.sh` |
-| Verify and log in | 3 min | Healthcheck and open the n8n editor |
+| Verify and log in | 3 min | Healthcheck and open the CE Studio UI |
 | **Total** | **~45 min** | |
 
 The two ~10–15 minute blocks are hands-off. Run the command, take a coffee break, come back to a green install.
@@ -38,10 +54,11 @@ The two ~10–15 minute blocks are hands-off. Run the command, take a coffee bre
 
 ## What you'll have when you're done
 
+- A **Context Engineering Studio** UI at `https://ce-studio.yourcompany.com` — the web front door to the platform, SSO'd into n8n
 - An **n8n workflow editor** at `https://workflow.yourcompany.com`, SSL terminated and ready for accounts
-- A **Claude AI service** at `https://ai.yourcompany.com` (or whichever subdomain you choose)
-- All pods green when you run `kubectl get pods -A`
-- A single command — `./scripts/health-check.sh` — that you can run any time to confirm the platform is healthy
+- A **Claude AI service** at `https://ai.yourcompany.com` for MCP-driven automation
+- All pods green across `coweave-workflow`, `coweave-ai`, and `coweave-ce-studio` when you run `kubectl get pods -A`
+- A single command — `./scripts/health-check.sh` — that you can run any time to confirm the whole platform is healthy
 
 That's the destination. Now the journey.
 
@@ -55,41 +72,48 @@ A 5-minute checklist you can run through while the VM provisions:
 - **OS**: Ubuntu 22.04+ or RHEL 9+. Fresh install recommended.
 - **Access**: a regular user with `sudo`. Don't run anything as root — `setup.sh` will refuse.
 - **Network**: ports 80, 443, and 6443 open inbound. Egress to GitHub, Anthropic, and Docker Hub during install.
-- **DNS**: two A records pointed at your VM's public IP.
+- **DNS**: three A records pointed at your VM's public IP.
 - **The package**: the `coweave-single-vm-{version}.tar.gz` file we sent you.
 
 > 💡 **You don't have to create system users manually.** The infrastructure setup script provisions the `postgres`, `redis`, and `node` users for you via `setup-system-users.sh`. Skip ahead.
 
 ### DNS records
 
-Before you start the install, point these two records at your VM:
+Before you start the install, point these three records at your VM:
 
 ```
-workflow.yourcompany.com  →  <your VM IP>
-ai.yourcompany.com        →  <your VM IP>
+ce-studio.yourcompany.com  →  <your VM IP>
+workflow.yourcompany.com   →  <your VM IP>
+ai.yourcompany.com         →  <your VM IP>
 ```
 
-DNS tends to take a few minutes to propagate, so kicking it off first means it's ready by the time you need it. You can verify from the VM with `nslookup workflow.yourcompany.com`.
+DNS tends to take a few minutes to propagate, so kicking it off first means it's ready by the time you need it. You can verify from the VM with `nslookup ce-studio.yourcompany.com`.
 
 ---
 
 ## What's inside the package
 
-The tarball is opinionated and self-contained. The four files you'll actually touch:
+The tarball is opinionated and self-contained. The files you'll actually touch:
 
 ```
 coweave-single-vm-{version}/
 ├── README.md                          # Canonical command reference (this post is the narrative version)
 ├── scripts/
 │   ├── setup.sh                       # Run first — installs k3s and infra
-│   └── deploy-single-vm.sh            # Run second — helm-installs everything
+│   ├── deploy-single-vm.sh            # Run second — helm-installs everything
+│   └── health-check.sh                # Run any time — platform health
 ├── config/
-│   ├── values-workflow-template.yaml  # Edit this (after copying)
-│   └── values-ai-template.yaml        # And this
+│   ├── values-workflow-template.yaml      # Edit this (after copying)
+│   ├── values-ai-template.yaml            # And this
+│   ├── values-ce-studio-template.yaml     # And this
+│   └── values-observability-template.yaml # And this (Grafana / Loki / Prometheus)
 ├── charts-workflow/                   # n8n Helm chart (don't touch)
 ├── charts-ai/                         # Claude Helm chart (don't touch)
-└── images/                            # Bundled Docker images (don't touch)
+├── charts-ce-studio/                  # CE Studio Helm chart (don't touch)
+└── images/                            # Bundled Docker images — all 5 (don't touch)
 ```
+
+The five bundled images are `coweave-workflow`, `coweave-ai-session-router`, `coweave-ai-worker`, `ce-studio-backend`, and `ce-studio-frontend`. They get imported into k3s automatically during deploy — you never pull from a registry.
 
 The recommended layout uses two directories on your VM:
 
@@ -120,16 +144,18 @@ ln -sfn coweave-single-vm-* coweave-single-vm-latest
 
 ## Step 2 — Configure your values files
 
-**~10 minutes. The only step that needs thought.**
+**~12 minutes. The only step that needs thought.**
 
-Two files, three things to set in each. Open one, search for `MUST BE SET`, fix the lines, save. Repeat for the second file. Done.
+Four files. The big news: **you don't have to set any passwords manually.** `setup.sh` will prompt you interactively for Postgres, Redis, encryption key, Grafana, and SMTP — and offer to auto-generate strong values for everything except SMTP (which you have to provide or explicitly disable). All you're doing in this step is **DNS, SMTP wiring, and storage sizes**.
 
 ### Copy the templates into your config directory
 
 ```bash
 cd ~/coweave/releases/coweave-single-vm-latest/config
-cp values-workflow-template.yaml ~/coweave/config/values-workflow.yaml
-cp values-ai-template.yaml       ~/coweave/config/values-ai.yaml
+cp values-workflow-template.yaml      ~/coweave/config/values-workflow.yaml
+cp values-ai-template.yaml            ~/coweave/config/values-ai.yaml
+cp values-ce-studio-template.yaml     ~/coweave/config/values-ce-studio.yaml
+cp values-observability-template.yaml ~/coweave/config/values-observability.yaml
 ```
 
 ### Edit `values-workflow.yaml`
@@ -138,20 +164,37 @@ cp values-ai-template.yaml       ~/coweave/config/values-ai.yaml
 vim ~/coweave/config/values-workflow.yaml
 ```
 
-Search for `MUST BE SET` and fill in three fields:
+Search for `MUST BE SET` and fill in your domain. Then make a single decision about SMTP (next callout):
 
 ```yaml
 global:
-  domain: "workflow.yourcompany.com"   # MUST BE SET
+  domain: "workflow.yourcompany.com"   # MUST BE SET — your n8n domain
 
-postgresql:
-  auth:
-    postgresPassword: "<32 chars>"     # MUST BE SET — use the openssl snippet below
-
-redis:
-  auth:
-    password: "<32 chars>"             # MUST BE SET — must match values-ai.yaml below
+smtp:
+  enabled: true                         # MUST BE SET — see SMTP section below
+  host: "smtp.yourprovider.com"
+  port: 587
+  fromAddress: "coweave@yourcompany.com"
+  username: "coweave@yourcompany.com"
+  # password is set via env var or interactive prompt — NEVER put it here in plaintext
 ```
+
+> ⚠️ **The SMTP decision you have to make right now.** SMTP is enabled by default and `setup.sh` will refuse to run if you don't provide a password. Pick one path:
+>
+> - **Option A — pre-set the password** (recommended for unattended runs):
+>   ```bash
+>   export COWEAVE_SMTP_PASSWORD="your-smtp-app-password"
+>   ```
+>   Setup will pick it up automatically. Use a Gmail app password, SendGrid API key, AWS SES SMTP credential, etc.
+>
+> - **Option B — type it at the prompt** during step 4. `setup.sh` will pause at `Enter SMTP password:` and accept it interactively.
+>
+> - **Option C — disable SMTP** if you don't need email notifications, alerts, or user invites yet:
+>   ```yaml
+>   smtp:
+>     enabled: false
+>   ```
+>   You can enable it later by editing the values file and re-running deploy.
 
 ### Edit `values-ai.yaml`
 
@@ -159,31 +202,58 @@ redis:
 vim ~/coweave/config/values-ai.yaml
 ```
 
-Same drill — search for `MUST BE SET`:
+Just the domain:
 
 ```yaml
 global:
-  domain: "ai.yourcompany.com"         # MUST BE SET
-
-redis:
-  auth:
-    password: "<same as workflow>"     # MUST BE SET — must match values-workflow.yaml exactly
+  domain: "ai.yourcompany.com"         # MUST BE SET — your Claude AI service domain
 ```
 
-### Generate the passwords
+> 💡 **n8n API keys are managed per-team in CE Studio, not in `values-ai.yaml`.** This used to live here. With the dynamic credentials architecture, you create a service user in n8n after deployment and paste the API key into the team's settings inside CE Studio. Don't bother looking for an `n8nApiKey` field in this file — it's not used.
+
+### Edit `values-ce-studio.yaml`
 
 ```bash
-openssl rand -base64 32   # one for postgres
-openssl rand -base64 32   # one for redis (use the same value in both files)
+vim ~/coweave/config/values-ce-studio.yaml
 ```
 
-> ⚠️ **The single most common mistake**: the Redis password must be **identical** in both files. If they don't match, the Claude pods will CrashLoopBackOff with auth errors. Generate it once, paste it in both places.
+Search for `# CONFIGURE:` and set the domain, admin email, and the initial owner account used for first-time seeding:
 
-### Skim the storage sizes
+```yaml
+global:
+  domain: "ce-studio.yourcompany.com"   # CONFIGURE: Your CE Studio domain
+  adminEmail: "admin@yourcompany.com"   # CONFIGURE: Admin email
 
-While you're in each file, search for `MUST BE REVIEWED` and adjust the storage sizes if you have specific needs (more workflows → larger PostgreSQL volume, longer metrics retention → larger Prometheus volume). The defaults are sized for evaluation.
+frontend:
+  enterpriseEnv:
+    VITE_N8N_URL: "https://workflow.yourcompany.com"   # CONFIGURE: External n8n URL for browser navigation
 
-Everything else in both files is fine to leave at defaults for the first deploy. You can always come back and tune later.
+seeding:
+  enabled: true                          # MUST BE SET to true for first deployment
+  company:
+    name: "Your Company"                 # MUST BE SET — your company name
+  admin:
+    email: "admin@yourcompany.com"       # MUST BE SET — admin email
+    password: "<initial-password>"       # MUST BE SET — change after first login
+```
+
+Everything else — the n8n internal service URL, webhook base URL, database host, redis host — is pre-wired to point at the shared services in `coweave-workflow`. Leave those alone.
+
+### Edit `values-observability.yaml`
+
+The observability stack (Grafana / Loki / Prometheus) has sensible defaults. The only fields most customers touch are storage sizes if you want longer metrics retention. Open it and skim:
+
+```bash
+vim ~/coweave/config/values-observability.yaml
+```
+
+Search for `MUST BE REVIEWED` and adjust storage sizes if needed. For evaluation deployments the defaults are fine.
+
+### Skim the storage sizes in the other files too
+
+While you're at it, search every file for `MUST BE REVIEWED` and adjust storage sizes if you have specific needs (more workflows → larger PostgreSQL volume, larger team → larger CE Studio user data volume). The defaults are sized for evaluation.
+
+Everything else in all four files is fine to leave at defaults for the first deploy. You can always come back and tune later.
 
 ---
 
@@ -193,18 +263,20 @@ Everything else in both files is fine to leave at defaults for the first deploy.
 
 ```bash
 cd ~/coweave/releases/coweave-single-vm-latest/config
-rm -f values-workflow.yaml values-ai.yaml
-ln -sf ~/coweave/config/values-workflow.yaml values-workflow.yaml
-ln -sf ~/coweave/config/values-ai.yaml       values-ai.yaml
+rm -f values-workflow.yaml values-ai.yaml values-ce-studio.yaml values-observability.yaml
+ln -sf ~/coweave/config/values-workflow.yaml      values-workflow.yaml
+ln -sf ~/coweave/config/values-ai.yaml            values-ai.yaml
+ln -sf ~/coweave/config/values-ce-studio.yaml     values-ce-studio.yaml
+ln -sf ~/coweave/config/values-observability.yaml values-observability.yaml
 ```
 
-What just happened: the release directory now contains symlinks pointing at your editable config files in `~/coweave/config/`. The setup and deploy scripts read from the release directory, but the source of truth lives outside it. When the next release arrives, you do the exact same three commands inside the new release — no copy-pasting your edits — and your existing config flows through automatically.
+What just happened: the release directory now contains symlinks pointing at your editable config files in `~/coweave/config/`. The setup and deploy scripts read from the release directory, but the source of truth lives outside it. When the next release arrives, you do the exact same five commands inside the new release — no copy-pasting your edits — and your existing config flows through automatically.
 
 ---
 
 ## Step 4 — Run the infrastructure script
 
-**~10 minutes, mostly hands-off.**
+**~10 minutes, mostly hands-off — but five interactive prompts in the middle.**
 
 ```bash
 cd ~/coweave/releases/coweave-single-vm-latest
@@ -213,15 +285,62 @@ cd ~/coweave/releases/coweave-single-vm-latest
 
 What it does, in order:
 
-- Installs k3s (lightweight Kubernetes)
-- Installs Helm
-- Installs cert-manager (for SSL certs)
-- Installs the nginx ingress controller
-- Creates the system users (`postgres`, `redis`, `node`) via `setup-system-users.sh`
-- Creates the storage directories on the VM
-- Creates the PersistentVolumes using the sizes from your values files
+- Installs k3s (lightweight Kubernetes), Helm, cert-manager, and the nginx ingress controller
+- Configures inotify limits for file watchers
+- Creates the system users (`coweave`, `postgres`, `redis`, `grafana`) via `setup-system-users.sh`
+- Sets up persistent storage directories with the right ownership
+- Creates PersistentVolumes using the sizes from your values files
+- Creates the `coweave-workflow`, `coweave-ai`, `coweave-ce-studio`, and `coweave-observability` namespaces
+- **Prompts you for five passwords** (see below)
+- Provisions secrets in every namespace — including the JWT, cookie, session, encryption, and n8n-integration secrets CE Studio needs
+- Issues a Let's Encrypt ClusterIssuer for the ingress
 
-> ✅ **You should see**: a stream of `[SUCCESS]` log lines and a final "Setup complete" message. Now's a good time for that coffee.
+### What `setup.sh` will prompt you for
+
+Around halfway through the run, the script pauses to resolve credentials. For each prompt you can either type a value or **press Enter to auto-generate** a strong URL-safe one:
+
+```
+[INFO] Resolving PostgreSQL password...
+  Enter PostgreSQL password (or press Enter to generate): ⏎
+[INFO]   ✓ Auto-generated PostgreSQL password (URL-safe)
+
+[INFO] Resolving Redis password...
+  Enter Redis password (or press Enter to generate): ⏎
+[INFO]   ✓ Auto-generated Redis password (URL-safe)
+
+[INFO] Resolving encryption key...
+[INFO]   ✓ Auto-generated new encryption key
+[WARNING]   IMPORTANT: This key encrypts workflow credentials. Back it up!
+
+[INFO] Resolving Grafana password...
+  Enter Grafana admin password (or press Enter to generate): ⏎
+[INFO]   ✓ Auto-generated Grafana password (URL-safe)
+
+  Enter SMTP password: ********
+[INFO]   ✓ Using provided SMTP password
+```
+
+> 🚨 **Back up the encryption key the moment it's generated.** It encrypts every credential stored in n8n (GitHub tokens, Slack webhooks, database passwords, etc.). If you lose it, every credential becomes unrecoverable and every workflow that uses one breaks. Grab it from `kubectl get secret n8n-secret -n coweave-workflow -o jsonpath='{.data.N8N_ENCRYPTION_KEY}' | base64 -d` right after setup completes and store it somewhere durable (1Password, vault, etc.).
+
+> ⚠️ **SMTP gotcha.** SMTP is enabled by default. If you didn't `export COWEAVE_SMTP_PASSWORD=...` before running setup, the script will pause at `Enter SMTP password:` and wait for input. If you accidentally enter blank, you'll get the *"SMTP is enabled but no password configured!"* error and have to re-run. See the SMTP callout in Step 2 — your three options are: pre-export the env var, type it at the prompt, or set `smtp.enabled: false` in `values-workflow.yaml`.
+
+> ⚠️ **UID / GID conflict gotcha.** On shared cloud images (GCP, AWS, Azure), the standard UIDs for `postgres`, `redis`, etc. are sometimes already taken. When that happens, `setup.sh` picks alternates and prints a block like:
+> ```
+> ═════════════════════════════════════════════════════
+>   Created User IDs (update values-workflow.yaml):
+> ═════════════════════════════════════════════════════
+>   coweave:  UID=989, GID=1008
+>   grafana:  UID=472, GID=472
+>   postgres: UID=999, GID=2000
+>   redis:    UID=2000, GID=1007
+> ═════════════════════════════════════════════════════
+> ⚠️  Non-standard UIDs/GIDs were used due to conflicts!
+> IMPORTANT: Update ~/coweave/config/values-workflow.yaml
+> with the actual UIDs/GIDs shown above before deployment.
+> ```
+> If you see this, **stop and update `values-workflow.yaml`** with the printed UIDs/GIDs before running `deploy-single-vm.sh`. The deploy will fail with permission errors otherwise. Search the file for `userIds:` and replace each value to match. Then continue to Step 5.
+
+> ✅ **You should see**: a stream of `[SUCCESS]` log lines, a "Created secrets summary" table listing the new secrets in each namespace, and a final `Infrastructure setup complete!` block with next-step instructions. Now's a good time for that coffee.
 
 ---
 
@@ -238,23 +357,26 @@ cd ~/coweave/releases/coweave-single-vm-latest
 
 What it does:
 
-1. Validates your config files
-2. Imports the bundled Docker images into k3s
-3. Helm-installs the n8n workflow engine (with PostgreSQL and Redis)
-4. Helm-installs the Claude AI integration
-5. Wires up ingress and triggers cert-manager to issue SSL certificates
-6. Waits for every pod to become Ready
+1. Validates all three config files
+2. Imports the bundled Docker images into k3s (`coweave-workflow`, `coweave-ai-session-router`, `coweave-ai-worker`, `ce-studio-backend`, `ce-studio-frontend`)
+3. Helm-installs the n8n workflow engine into `coweave-workflow` (with PostgreSQL and Redis)
+4. Helm-installs the Claude AI service into `coweave-ai`
+5. Helm-installs Context Engineering Studio into `coweave-ce-studio`, wired to the shared PostgreSQL and Redis
+6. Wires up ingress for all three domains and triggers cert-manager to issue SSL certificates
+7. Waits for every pod across all three namespaces to become Ready
 
 > ✅ **You should see** the success summary at the end:
 >
 > ```
 > 🎉 COWEAVE Single-VM deployment completed successfully!
 >
->    ✅ n8n Workflow Engine: Deployed and running
->    ✅ AI Services: Deployed and running
+>    ✅ n8n Workflow Engine:        Deployed and running
+>    ✅ AI Services:                 Deployed and running
+>    ✅ Context Engineering Studio:  Deployed and running
 >
+>    🖥️  CE Studio:      https://ce-studio.yourcompany.com
 >    📱 n8n Web Interface: https://workflow.yourcompany.com
->    🔗 Claude AI: https://ai.yourcompany.com
+>    🔗 Claude AI:         https://ai.yourcompany.com
 > ```
 
 ---
@@ -266,21 +388,39 @@ What it does:
 Three quick checks before you open the browser:
 
 ```bash
-kubectl get pods -A                            # everything Running
-./scripts/health-check.sh                      # canonical end-to-end check
-curl -k https://workflow.yourcompany.com/healthz   # ingress is alive
+kubectl get pods -A                               # everything Running across all three namespaces
+./scripts/health-check.sh                         # canonical end-to-end check
+curl -k https://ce-studio.yourcompany.com/api/health   # CE Studio is alive and enterprise-aware
 ```
 
-The `health-check.sh` script is the canonical "is the platform happy?" command. It checks node status, pod health across every namespace, ingress, services, storage, and DNS. If anything's wrong, it tells you exactly which subsystem is unhappy and what to look at.
+The last curl should return something like `{"status":"ok","edition":"enterprise","features":{"n8nIntegration":true,"n8nSso":true,"teamSync":true,"workflowPrompts":true}}`. If `edition` says `community` or any feature flag is `false`, something's wrong with your CE Studio values file — come back to Step 2.
 
-When all three are clean, open `https://workflow.yourcompany.com` in a browser, create the initial owner account, and you're in.
+The `health-check.sh` script is the canonical "is the platform happy?" command. It checks node status, pod health across every namespace, cross-namespace service discovery (CE Studio → workflow PostgreSQL and Redis), ingress, services, storage, and DNS. If anything's wrong, it tells you exactly which subsystem is unhappy and what to look at.
 
-> 💡 **One last thing — Claude CLI auth.** The Claude pods need a one-time interactive login. This is the only step that can't be automated:
->
-> ```bash
-> kubectl exec -it claude-cli-0 -n claude-test -c claude-cli -- /bin/sh
-> claude auth login   # follow the prompts
-> ```
+When all three are clean, open `https://ce-studio.yourcompany.com` in a browser, sign in with the admin credentials from your CE Studio values file, and you're in.
+
+### Two one-time post-deploy actions
+
+The deploy script can't do these two things for you — neither is hard, but both are required before workflows that use Claude or n8n integrations actually run.
+
+**1. Authenticate Claude CLI in the AI pod**
+
+```bash
+kubectl exec -it claude-cli-0 -n coweave-ai -c claude-cli -- /bin/sh
+claude auth login   # follow the prompts
+```
+
+This is a one-time interactive login per Claude pod. Without it, every workflow that calls Claude fails immediately with an auth error.
+
+**2. Generate an n8n API key per team in CE Studio**
+
+CoWeave Enterprise uses **dynamic credentials** — n8n API keys are managed per-team in CE Studio rather than as a global secret in `values-ai.yaml`. For each team that will run workflows:
+
+1. Open n8n at `https://workflow.yourcompany.com` and **Settings → Users → Invite** a service user (e.g. `coweave-service@yourcompany.com`).
+2. Log in as that user, go to **Settings → API → Create**, and copy the API key.
+3. Open CE Studio at `https://ce-studio.yourcompany.com`, navigate to **Team Settings → Integrations → n8n API Key**, and paste it in.
+
+Repeat for each team. The first team usually takes ~3 minutes; subsequent teams take ~1 minute each.
 
 You're done. The platform is running.
 
@@ -288,36 +428,75 @@ You're done. The platform is running.
 
 ## When something goes wrong
 
-The four issues we actually see in the field, in rough order of frequency:
+The issues we actually see in the field, in rough order of frequency:
 
-### 1. Claude pods are in CrashLoopBackOff
+### 1. `setup.sh` errors with "SMTP is enabled but no password configured!"
 
-**Almost always**: the Redis password doesn't match between `values-workflow.yaml` and `values-ai.yaml`. Open both files, confirm the Redis passwords are byte-for-byte identical, then re-run the deploy:
-
-```bash
-cd ~/coweave/releases/coweave-single-vm-latest
-./scripts/deploy-single-vm.sh coweave-ai
-```
-
-### 2. DNS isn't resolving
+You skipped the SMTP decision in Step 2. The script enables SMTP by default and refuses to provision secrets without a password. Three fixes, pick one:
 
 ```bash
-nslookup workflow.yourcompany.com
+# A. Pre-set the env var, then re-run setup
+export COWEAVE_SMTP_PASSWORD="your-smtp-app-password"
+./scripts/setup.sh --values-folder ~/coweave/config
+
+# B. Re-run and type the password at the interactive prompt
+
+# C. Disable SMTP entirely in values-workflow.yaml:
+#      smtp:
+#        enabled: false
+#    Then re-run setup.sh.
 ```
 
-If that fails from your laptop but succeeds from the VM itself, propagation hasn't reached you yet — wait a few minutes and retry. If it fails everywhere, double-check the A records.
+### 2. `setup.sh` printed "Non-standard UIDs/GIDs were used"
 
-### 3. Configuration changes aren't taking effect
+On shared cloud images the standard UIDs are sometimes taken. The script picked alternates and printed them. **Update `~/coweave/config/values-workflow.yaml`** with the printed UIDs/GIDs (search for `userIds:`) **before** running `deploy-single-vm.sh`. If you've already run deploy and it failed with permission errors on persistent volumes, this is why — fix the values file and re-run deploy.
+
+### 3. Claude pods are in CrashLoopBackOff
+
+If the deploy succeeded but Claude pods are crashing on startup, check the logs: `kubectl logs -n coweave-ai claude-cli-0`. The two most common causes:
+
+- **You haven't run `claude auth login` yet** in the pod — see the "Two one-time post-deploy actions" callout above.
+- **Redis credential mismatch** — rare now since `setup.sh` provisions and copies Redis secrets across namespaces automatically, but possible if you edited secrets by hand. Re-run `./scripts/deploy-single-vm.sh coweave-ai` to refresh.
+
+### 4. CE Studio can't reach PostgreSQL or Redis
+
+Enterprise CE Studio reaches the shared infrastructure via Kubernetes cross-namespace DNS:
+
+```
+postgresql.coweave-workflow.svc.cluster.local:5432
+redis.coweave-workflow.svc.cluster.local:6379
+```
+
+If the CE Studio backend pod is crashlooping with database connection errors, test DNS from inside the pod:
+
+```bash
+kubectl exec -it deployment/ce-studio-backend -n coweave-ce-studio \
+  -- nc -zv postgresql.coweave-workflow.svc.cluster.local 5432
+```
+
+If that fails, the workflow namespace's PostgreSQL isn't up yet — wait for it, or check `kubectl get pods -n coweave-workflow`.
+
+### 5. DNS isn't resolving
+
+```bash
+nslookup ce-studio.yourcompany.com
+```
+
+If that fails from your laptop but succeeds from the VM itself, propagation hasn't reached you yet — wait a few minutes and retry. If it fails everywhere, double-check all three A records.
+
+### 6. Configuration changes aren't taking effect
 
 Almost always means you edited a file inside the release directory instead of the source-of-truth file in `~/coweave/config/`. The release files are symlinks; edit the targets, not the symlinks. Always edit `~/coweave/config/values-*.yaml`.
 
-### 4. Ingress is returning 502
+### 7. Ingress is returning 502
 
 Cert-manager hasn't issued the SSL certificate yet. Give it 60 seconds and retry. To watch progress:
 
 ```bash
 kubectl get certificate -A
 ```
+
+Each of the three domains gets its own certificate; they're issued in parallel but can take up to a minute each.
 
 For anything else, `./scripts/health-check.sh` will tell you exactly which subsystem is unhappy. Start there.
 
@@ -327,8 +506,88 @@ For anything else, `./scripts/health-check.sh` will tell you exactly which subsy
 
 Now that the platform is running, the other two posts pick up the story:
 
-- → [**Getting Started with Context Engineering Studio**](/preview/blog/getting-started-ce-studio) — codify your team's coding standards, practices, and conventions so the AI agents follow them automatically.
+- → [**Getting Started with Context Engineering Studio**](/preview/blog/getting-started-ce-studio) — open `https://ce-studio.yourcompany.com`, create your team, and codify your coding standards, practices, and conventions so the AI agents follow them automatically.
 - → [**Getting Started with CoWeave AI Platform**](/preview/blog/getting-started-ai-platform) — wire up your first end-to-end workflow, from a GitHub issue to a merged PR.
+
+---
+
+## Sidebar — Getting onto a GCP VM (or any cloud VM)
+
+If you're deploying on Google Cloud and this is your first time SSHing into the instance, here's the end-to-end flow — it's the same shape on AWS or Azure, just different console screens.
+
+### 1. Generate an SSH key on your laptop (if you don't already have one)
+
+```bash
+ssh-keygen -t ed25519 -C "you@yourcompany.com"
+# Press enter to accept ~/.ssh/id_ed25519
+```
+
+This gives you `~/.ssh/id_ed25519` (private) and `~/.ssh/id_ed25519.pub` (public). You'll paste the `.pub` into GCP.
+
+### 2. Add the public key to your GCP VM
+
+In the Google Cloud Console:
+- Go to **Compute Engine → VM instances → `<your-vm>`**
+- Click **Edit**
+- Scroll to **SSH Keys** and click **Add item**
+- Paste the entire contents of `~/.ssh/id_ed25519.pub`. GCP uses the username at the end of the key as your Linux username — so if the key ends with `you@yourcompany.com`, your login will be `you`
+- Click **Save**
+
+GCP pushes the key onto the VM within a few seconds.
+
+### 3. Add the VM to your local `~/.ssh/config`
+
+```bash
+vim ~/.ssh/config
+```
+
+Add a block like this:
+
+```
+Host coweave-vm
+  HostName 34.82.35.13          # the external IP from the GCP console
+  User you                       # the username that matches your key
+  IdentityFile ~/.ssh/id_ed25519
+  IdentitiesOnly yes
+```
+
+Now `ssh coweave-vm` from a plain terminal should drop you into the VM. This step is critical: **VS Code Remote-SSH reads this file** to populate its host list, so don't skip it.
+
+### 4. Connect from VS Code
+
+- Install the **Remote - SSH** extension if you haven't
+- Open the Command Palette (`Cmd/Ctrl + Shift + P`)
+- Run **Remote-SSH: Connect Current Window to Host…**
+- Pick `coweave-vm` from the list
+- VS Code reconnects the same window to the remote VM. You'll see `SSH: coweave-vm` in the bottom-left status bar when it's done
+
+From here on, the VS Code terminal (``Ctrl + ` ``) is a shell **on the VM**, and the file explorer browses the VM's filesystem. Everything in Steps 1–6 of this guide happens inside that terminal.
+
+### 5. Move the tarball onto the VM
+
+Two easy options:
+
+**Option A — drag and drop in VS Code.** With the remote window open, drag `coweave-single-vm-*.tar.gz` from your laptop's Finder / Explorer straight into the VS Code file tree on the right. VS Code uploads it over SFTP in the background.
+
+**Option B — `scp` from your laptop terminal.**
+
+```bash
+scp coweave-single-vm-*.tar.gz coweave-vm:~/
+```
+
+(This works because of the `Host coweave-vm` block you added in step 3.)
+
+### 6. Continue with Step 1
+
+You're now on the VM with the tarball in your home directory. Jump back up to [Step 1 — Unpack the package](#step-1--unpack-the-package) and run through the install normally. Everything from that point on happens on the remote VM through the VS Code terminal.
+
+> 💡 **Keep the VS Code window open the whole time.** Long-running commands like `./scripts/setup.sh` and `./scripts/deploy-single-vm.sh` will stream their output into the terminal, and if your laptop sleeps and kills the SSH session mid-deploy you'll have to re-run. Either disable sleep for the duration or run those two scripts inside `tmux`:
+>
+> ```bash
+> tmux new -s coweave
+> ./scripts/setup.sh
+> # Ctrl-b d to detach if needed; tmux attach -t coweave to come back
+> ```
 
 ---
 
@@ -346,9 +605,11 @@ ln -sfn coweave-single-vm-NEW-VERSION coweave-single-vm-latest
 
 # 3. Re-create the config symlinks inside the new release
 cd coweave-single-vm-latest/config
-rm -f values-workflow.yaml values-ai.yaml
-ln -sf ~/coweave/config/values-workflow.yaml values-workflow.yaml
-ln -sf ~/coweave/config/values-ai.yaml       values-ai.yaml
+rm -f values-workflow.yaml values-ai.yaml values-ce-studio.yaml values-observability.yaml
+ln -sf ~/coweave/config/values-workflow.yaml      values-workflow.yaml
+ln -sf ~/coweave/config/values-ai.yaml            values-ai.yaml
+ln -sf ~/coweave/config/values-ce-studio.yaml     values-ce-studio.yaml
+ln -sf ~/coweave/config/values-observability.yaml values-observability.yaml
 
 # 4. Redeploy — your config in ~/coweave/config/ is reused automatically
 cd ~/coweave/releases/coweave-single-vm-latest
