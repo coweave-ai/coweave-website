@@ -1,8 +1,10 @@
-# Self-Hosting CoWeave Enterprise: From Tarball to Running Platform in 45 Minutes
+# Self-Hosting CoWeave Enterprise: From Tarball to Running Platform
 
-You just received the CoWeave Enterprise package. This post is the complete walkthrough for getting from a fresh VM to a running platform — the workflow engine, the AI service, **and** Context Engineering Studio — designed to fit comfortably between coffee and lunch.
+You just received the CoWeave Enterprise package. This is the complete walkthrough for getting from a fresh VM to a running platform — the workflow engine, the AI service, **and** Context Engineering Studio — explained step by step with the reasoning behind each move.
 
-The goal is for the install to feel small. One terminal, two scripts, three YAML files. Forty-five minutes. That's it.
+**Time budget — be honest with yourself**: plan **two to three hours** of focused work for your *first* deploy. Most of that time is reading, deciding (DNS, SMTP, storage sizes), and recovering from the one or two gotchas every first-time install hits. Once you've done it once, future deploys take **30–45 minutes** — the commands themselves are quick; what eats time the first time is understanding what they're doing.
+
+This guide is structured so you can read it once end-to-end before you start typing, then follow it step by step with confidence.
 
 ---
 
@@ -36,19 +38,21 @@ Phase 1 gets all three components *running*. Phase 2 configures CE Studio (teams
 
 ---
 
-## The 45-minute promise
+## The time budget (first deploy vs. repeat deploys)
 
-| Phase | Time | What you do |
-|---|---|---|
-| Prep (one-time) | 5 min | Provision a VM, point DNS records |
-| Unpack the package | 2 min | `mkdir`, `tar -xzf`, one symlink |
-| Configure values files | 12 min | Edit four YAML files |
-| Run infrastructure setup | ~10 min | One command — `./scripts/setup.sh` |
-| Deploy applications | ~15 min | One command — `./scripts/deploy-single-vm.sh` |
-| Verify and log in | 3 min | Healthcheck and open the CE Studio UI |
-| **Total** | **~45 min** | |
+| Phase | First deploy | Repeat deploy | What you do |
+|---|---|---|---|
+| Prep | 15–30 min | 5 min | Provision the VM, point three A records, **wait for DNS to propagate** |
+| Unpack the package | 2 min | 2 min | `mkdir`, `tar -xzf`, one symlink |
+| Configure values files | 30–60 min | 5 min | Read templates, decide on DNS, decide on SMTP, review storage sizes, edit four YAML files |
+| Run infrastructure setup | 10–20 min | 10 min | `./scripts/setup.sh` — answer five interactive prompts, possibly recover from a UID/GID conflict |
+| Deploy applications | 15–25 min | 15 min | `./scripts/deploy-single-vm.sh` — wait for cert-manager and pods to settle |
+| Verify, log in, configure first team | 15–30 min | 5 min | Healthcheck, log in to CE Studio, run `claude auth login`, generate per-team n8n API key |
+| **Total** | **~2–3 hours** | **~30–45 min** | |
 
-The two ~10–15 minute blocks are hands-off. Run the command, take a coffee break, come back to a green install.
+The deploy command itself takes 15 minutes. Everything else around it is *understanding what's about to happen* — that's where most of your first-deploy time goes. Don't fight it. Block out an afternoon, read this guide once before you start, then run through the steps in order.
+
+Two of the phases (setup and deploy) are mostly hands-off once they're running. Run the command, watch the first few log lines to confirm things are happening, then go grab coffee. When you come back, the next phase is waiting for you.
 
 ---
 
