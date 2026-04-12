@@ -1,40 +1,58 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { FaTwitter, FaLinkedin, FaGithub } from 'react-icons/fa';
+import urls from '../../config/urls';
 
 const Footer = () => {
-  const footerLinks = {
-    products: {
-      title: 'Product',
-      links: [
-        { label: 'CoWeave AI Platform', href: '/platform' },
-        { label: 'Features & Plans', href: '/features' },
-      ],
-    },
-    resources: {
-      title: 'Resources',
-      links: [
-        { label: 'Documentation', href: 'https://docs.coweave.ai', external: true },
-        { label: 'Blog', href: '/blog' },
-      ],
-    },
-    company: {
-      title: 'Company',
-      links: [
-        { label: 'About', href: '/about' },
-        { label: 'Contact', href: '/contact' },
-      ],
-    },
-    legal: {
-      title: 'Legal',
-      links: [
-        { label: 'Privacy Policy', href: '/privacy' },
-        { label: 'Terms of Service', href: '/terms' },
-        { label: 'Security', href: '/security' },
-      ],
-    },
-  };
+  const location = useLocation();
+  const isLanding = location.pathname === '/';
+
+  // On the public landing page we only show legal links (everything else
+  // would point at the gated /preview/* routes and be bounced by middleware).
+  // Inside /preview/* we show the full footer, with links rewritten to /preview/*.
+  const footerLinks = isLanding
+    ? {
+        legal: {
+          title: 'Legal',
+          links: [
+            { label: 'Privacy Policy', href: '/privacy' },
+            { label: 'Terms of Service', href: '/terms' },
+            { label: 'Security', href: '/security' },
+          ],
+        },
+      }
+    : {
+        products: {
+          title: 'Product',
+          links: [
+            { label: 'CoWeave AI Platform', href: '/preview/platform' },
+            { label: 'Features & Plans', href: '/preview/features' },
+          ],
+        },
+        resources: {
+          title: 'Resources',
+          links: [
+            { label: 'Documentation', href: 'https://docs.coweave.ai', external: true },
+            { label: 'Blog', href: '/preview/blog' },
+          ],
+        },
+        company: {
+          title: 'Company',
+          links: [
+            { label: 'About', href: '/preview/about' },
+            { label: 'Contact', href: '/preview/contact' },
+          ],
+        },
+        legal: {
+          title: 'Legal',
+          links: [
+            { label: 'Privacy Policy', href: '/privacy' },
+            { label: 'Terms of Service', href: '/terms' },
+            { label: 'Security', href: '/security' },
+          ],
+        },
+      };
 
   const socialLinks = [
     { icon: FaTwitter, href: '/', label: 'Twitter' },

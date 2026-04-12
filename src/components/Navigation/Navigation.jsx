@@ -23,12 +23,17 @@ const Navigation = () => {
     setIsMenuOpen(false);
   }, [location]);
 
-  const navLinks = [
-    { label: 'Platform', href: '/platform' },
-    { label: 'Features', href: '/features' },
-    { label: 'About', href: '/about' },
-    { label: 'Blog', href: '/blog' },
-  ];
+  // Hide product nav links on the public landing page. Inside the gated
+  // preview site, rewrite all nav targets to their /preview/* equivalents.
+  const isLanding = location.pathname === '/';
+  const navLinks = isLanding
+    ? []
+    : [
+        { label: 'Platform', href: '/preview/platform' },
+        { label: 'Features', href: '/preview/features' },
+        { label: 'About', href: '/preview/about' },
+        { label: 'Blog', href: '/preview/blog' },
+      ];
 
   return (
     <nav
@@ -69,7 +74,7 @@ const Navigation = () => {
               variant="primary"
               size="small"
             >
-              Book a Demo
+              Book a Call
             </GlowButton>
           </div>
 
@@ -116,7 +121,7 @@ const Navigation = () => {
                   variant="primary"
                   className="w-full"
                 >
-                  Book a Demo
+                  Book a Call
                 </GlowButton>
               </div>
             </div>
