@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import ParticleBackground from './ParticleBackground'
 import GlowButton from '../common/GlowButton'
@@ -39,7 +38,7 @@ const Hero = () => {
         >
           <span className="hero-gradient-text">Build Enterprise-Grade</span>
           <br />
-          <span className="hero-gradient-text">Software Fast</span>
+          <span className="hero-gradient-text">Software, 4× Faster</span>
         </motion.h1>
 
         {/* Tagline */}
@@ -57,31 +56,35 @@ const Hero = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.7 }}
-          className="text-lg md:text-xl text-gray-300 mb-12 max-w-3xl mx-auto"
+          className="text-lg md:text-xl text-gray-300 mb-4 max-w-3xl mx-auto"
         >
           Same quality, every developer, every time. Standardized prompts and agentic workflows that eliminate variance across your entire SDLC.
         </motion.p>
 
-        {/* Dual CTAs */}
+        {/* Concrete proof strip */}
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.75 }}
+          className="text-base md:text-lg text-primary-lightAzure/90 mb-12 max-w-3xl mx-auto font-medium"
+        >
+          4× faster development · 75% MTTR reduction · 85%+ test coverage — in production today.
+        </motion.p>
+
+        {/* Primary CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center mb-8"
+          className="flex justify-center mb-8"
         >
           <GlowButton
             href={urls.bookDemo}
             variant="primary"
             size="large"
           >
-            Book a Demo
+            Book a 30-min Call
           </GlowButton>
-          <Link
-            to="/contact"
-            className="inline-flex items-center justify-center px-8 py-4 text-lg font-semibold text-primary-lightAzure hover:text-white border border-primary-vividAzure/30 hover:border-primary-vividAzure/60 rounded-xl transition-all duration-300"
-          >
-            Contact Us →
-          </Link>
         </motion.div>
 
         {/* Watch Video */}
