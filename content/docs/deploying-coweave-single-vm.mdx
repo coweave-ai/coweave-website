@@ -61,7 +61,7 @@ Two of the phases (setup and deploy) are mostly hands-off once they're running. 
 - A **Context Engineering Studio** UI at `https://ce-studio.yourcompany.com` — the web front door to the platform, SSO'd into n8n
 - An **n8n workflow editor** at `https://workflow.yourcompany.com`, SSL terminated and ready for accounts
 - A **Claude AI service** at `https://ai.yourcompany.com` for MCP-driven automation
-- All pods green across `coweave-workflow`, `coweave-ai`, and `coweave-ce-studio` when you run `kubectl get pods -A`
+- All pods green across `coweave-workflow`, `coweave-ai`, `coweave-ce-studio`, and `coweave-observability` when you run `kubectl get pods -A`
 - A single command — `./scripts/health-check.sh` — that you can run any time to confirm the whole platform is healthy
 
 That's the destination. Now the journey.
@@ -79,7 +79,7 @@ A 5-minute checklist you can run through while the VM provisions:
 - **DNS**: three A records pointed at your VM's public IP.
 - **The package**: the `coweave-single-vm-{version}.tar.gz` file we sent you.
 
-> 💡 **You don't have to create system users manually.** The infrastructure setup script provisions the `postgres`, `redis`, and `node` users for you via `setup-system-users.sh`. Skip ahead.
+> 💡 **You don't have to create system users manually.** The infrastructure setup script provisions the `coweave`, `postgres`, `redis`, and `grafana` users for you via `setup-system-users.sh`. Skip ahead.
 
 ### DNS records
 
@@ -296,7 +296,7 @@ What it does, in order:
 - Creates PersistentVolumes using the sizes from your values files
 - Creates the `coweave-workflow`, `coweave-ai`, `coweave-ce-studio`, and `coweave-observability` namespaces
 - **Prompts you for five passwords** (see below)
-- Provisions secrets in every namespace — including the JWT, cookie, session, encryption, and n8n-integration secrets CE Studio needs
+- Provisions the Kubernetes secrets each namespace needs to start cleanly
 - Issues a Let's Encrypt ClusterIssuer for the ingress
 
 ### What `setup.sh` will prompt you for
@@ -361,13 +361,14 @@ cd ~/coweave/releases/coweave-single-vm-latest
 
 What it does:
 
-1. Validates all three config files
-2. Imports the bundled Docker images into k3s (`coweave-workflow`, `coweave-ai-session-router`, `coweave-ai-worker`, `ce-studio-backend`, `ce-studio-frontend`)
-3. Helm-installs the n8n workflow engine into `coweave-workflow` (with PostgreSQL and Redis)
-4. Helm-installs the Claude AI service into `coweave-ai`
-5. Helm-installs Context Engineering Studio into `coweave-ce-studio`, wired to the shared PostgreSQL and Redis
-6. Wires up ingress for all three domains and triggers cert-manager to issue SSL certificates
-7. Waits for every pod across all three namespaces to become Ready
+1. Validates all four config files
+2. Imports the bundled Docker images into k3s
+3. Helm-installs the observability stack into `coweave-observability`
+4. Helm-installs the n8n workflow engine into `coweave-workflow` (with PostgreSQL and Redis)
+5. Helm-installs the Claude AI service into `coweave-ai`
+6. Helm-installs Context Engineering Studio into `coweave-ce-studio`, wired to the shared PostgreSQL and Redis
+7. Wires up ingress for all three public domains and triggers cert-manager to issue SSL certificates
+8. Waits for every pod across all four namespaces to become Ready
 
 > ✅ **You should see** the success summary at the end:
 >
@@ -397,7 +398,7 @@ kubectl get pods -A                               # everything Running across al
 curl -k https://ce-studio.yourcompany.com/api/health   # CE Studio is alive and enterprise-aware
 ```
 
-The last curl should return something like `{"status":"ok","edition":"enterprise","features":{"n8nIntegration":true,"n8nSso":true,"teamSync":true,"workflowPrompts":true}}`. If `edition` says `community` or any feature flag is `false`, something's wrong with your CE Studio values file — come back to Step 2.
+The last curl should return `{"status":"ok","edition":"enterprise"}`. If `status` is anything other than `ok`, something's wrong with your CE Studio values file — come back to Step 2.
 
 The `health-check.sh` script is the canonical "is the platform happy?" command. It checks node status, pod health across every namespace, cross-namespace service discovery (CE Studio → workflow PostgreSQL and Redis), ingress, services, storage, and DNS. If anything's wrong, it tells you exactly which subsystem is unhappy and what to look at.
 
@@ -418,7 +419,7 @@ This is a one-time interactive login per Claude pod. Without it, every workflow 
 
 **2. Generate an n8n API key per team in CE Studio**
 
-CoWeave Enterprise uses **dynamic credentials** — n8n API keys are managed per-team in CE Studio rather than as a global secret in `values-ai.yaml`. For each team that will run workflows:
+n8n API keys are managed per-team in CE Studio rather than as a global secret in `values-ai.yaml`. For each team that will run workflows:
 
 1. Open n8n at `https://workflow.yourcompany.com` and **Settings → Users → Invite** a service user (e.g. `coweave-service@yourcompany.com`).
 2. Log in as that user, go to **Settings → API → Create**, and copy the API key.
@@ -549,8 +550,8 @@ Add a block like this:
 
 ```
 Host coweave-vm
-  HostName 34.82.35.13          # the external IP from the GCP console
-  User you                       # the username that matches your key
+  HostName <your-vm-public-ip>   # the external IP from the GCP console
+  User you                        # the username that matches your key
   IdentityFile ~/.ssh/id_ed25519
   IdentitiesOnly yes
 ```
