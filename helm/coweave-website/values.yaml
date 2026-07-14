@@ -1,6 +1,10 @@
 # CoWeave Website - Default Values
 # Override these in environment-specific values files
 
+# Namespace configuration
+namespace:
+  create: false
+
 replicaCount: 2
 
 image:
