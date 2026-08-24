@@ -34,7 +34,7 @@ const FeaturesPage = () => {
       icon: FaCubes,
       features: [
         'Component-based context engineering (Base, Role, Repository, Workflow)',
-        'Hierarchical context assembly',
+        'Hierarchical assembly into a single optimized prompt',
         'Context version control with full history',
         'Team collaboration with RBAC',
         'API access for CI/CD integration',
@@ -47,9 +47,9 @@ const FeaturesPage = () => {
       features: [
         'Claude-powered AI Service',
         'Deterministic workflow orchestration',
-        'PRD → TDD → Test → Code automation',
+        'PRD* → TDD* → Test → Code automation',
         '85%+ test coverage automatically',
-        '3-5x development velocity',
+        '2-5x development velocity',
         'Human-in-the-loop at every step',
       ]
     },
@@ -69,18 +69,16 @@ const FeaturesPage = () => {
       title: 'Integrations',
       icon: FaPlug,
       features: [
-        'GitHub / GitLab',
-        'Jira / Linear',
-        'Slack',
+        'Code Repos — GitHub, Bitbucket',
+        'Issue Tracking — Jira, Redmine, GitHub',
         'Jenkins / CI-CD pipelines',
-        'Works with Cursor, Copilot, Claude Code, any AI tool',
+        'Claude Code',
       ]
     },
     {
       title: 'Enterprise & Security',
       icon: FaShieldAlt,
       features: [
-        'SAML 2.0 SSO (Okta, Azure AD, Google)',
         'Self-hosted on-prem deployment',
         'Air-gapped deployment option',
         'AES-256 encryption at rest',
@@ -156,7 +154,6 @@ const FeaturesPage = () => {
       { name: 'Air-gapped', starter: false, professional: false, enterprise: true }
     ]},
     { category: 'SECURITY', features: [
-      { name: 'SAML SSO', starter: true, professional: true, enterprise: true },
       { name: 'RBAC', starter: true, professional: true, enterprise: true },
       { name: 'Audit logging', starter: 'Basic', professional: 'Full', enterprise: 'Full' },
       { name: 'Custom retention policies', starter: false, professional: false, enterprise: true }
@@ -290,6 +287,11 @@ const FeaturesPage = () => {
               </motion.div>
             ))}
           </div>
+
+          {/* Abbreviation footnote */}
+          <p className="text-center text-gray-500 text-xs mt-8 max-w-7xl mx-auto">
+            * PRD = Product Requirements Document&nbsp;&nbsp;·&nbsp;&nbsp;TDD = Technical Design Document
+          </p>
         </div>
       </AnimatedSection>
 

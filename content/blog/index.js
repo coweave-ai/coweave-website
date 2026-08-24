@@ -61,7 +61,7 @@ export const posts = [
   {
     slug: 'engineering-capacity-planning',
     title: 'Engineering Capacity Planning in the AI Era: Rethinking Your Roadmap',
-    excerpt: 'Your Q1 roadmap assumes developers ship two features per sprint. But what happens when AI gives your team 3-5x velocity? Most engineering leaders are planning for a world that no longer exists.',
+    excerpt: 'Your Q1 roadmap assumes developers ship two features per sprint. But what happens when AI gives your team 2-5x velocity? Most engineering leaders are planning for a world that no longer exists.',
     date: '2026-02-21',
     author: 'CoWeave Team',
     category: 'leadership',

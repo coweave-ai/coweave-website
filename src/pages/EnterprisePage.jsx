@@ -66,7 +66,7 @@ const EnterprisePage = () => {
       checkpoints: [
         'Start seeing value in days, not quarters',
         'Works with your existing tools and processes',
-        'Integrates with GitHub, Jira, Slack, and more'
+        'Integrates with GitHub, Bitbucket, Jira, Redmine, and more'
       ]
     },
     {
@@ -111,7 +111,7 @@ const EnterprisePage = () => {
     {
       icon: FaPlug,
       title: 'Full Tool Integration',
-      description: 'GitHub/GitLab, Jira/Linear, Slack, Jenkins, and more. Works with your existing stack.'
+      description: 'GitHub, Bitbucket, Jira, Redmine, Jenkins, and more. Works with your existing stack.'
     },
     {
       icon: FaChartLine,
@@ -185,7 +185,7 @@ const EnterprisePage = () => {
       title: 'FOR TEAMS',
       icon: FaUsers,
       benefits: [
-        '3-5x development velocity',
+        '2-5x development velocity',
         '85%+ test coverage automatically',
         'Consistent quality across all developers',
         'Reduce cycle time by 40-60%',
@@ -212,11 +212,6 @@ const EnterprisePage = () => {
       description: 'Deploy on your own infrastructure. Docker, Kubernetes, or bare metal. Your data never leaves your network.',
     },
     {
-      icon: FaLock,
-      title: 'SAML 2.0 SSO',
-      description: 'Integrate with Okta, Azure AD, Google Workspace, and more. Single sign-on for your entire organization.',
-    },
-    {
       icon: FaShieldAlt,
       title: 'Air-Gapped Deployment',
       description: 'Deploy in completely isolated environments. No external network dependencies required (except for Claude.ai).',
@@ -234,9 +229,8 @@ const EnterprisePage = () => {
   ];
 
   const securityFeatures = [
-    { icon: FaLock, title: 'Encryption at Rest', description: 'AES-256 encryption for all stored data' },
+    { icon: FaLock, title: 'Encryption at Rest', description: 'AES-256-GCM encryption of sensitive data at rest (credentials, tokens, and secrets)' },
     { icon: FaShieldAlt, title: 'Encryption in Transit', description: 'TLS 1.3 for all network communications' },
-    { icon: FaKey, title: 'SAML 2.0 SSO', description: 'Integrate with Okta, Azure AD, Google Workspace for single sign-on' },
     { icon: FaDatabase, title: 'Custom Retention Policies', description: 'Configure data retention policies to meet compliance requirements' },
     { icon: FaUsers, title: 'Role-Based Access Control (RBAC)', description: 'Granular permissions and access controls for teams and individuals' },
     { icon: FaClipboardCheck, title: 'Audit Trails', description: 'Complete audit trail of all user actions and API calls' },
@@ -371,7 +365,7 @@ const EnterprisePage = () => {
               <span>•</span>
               <span>Claude BYOL Required</span>
               <span>•</span>
-              <span>3-5x Development Velocity</span>
+              <span>2-5x Development Velocity</span>
               <span>•</span>
               <span>85%+ Test Coverage</span>
             </div>
@@ -406,8 +400,8 @@ const EnterprisePage = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-vividAzure/15 border border-primary-vividAzure/30 text-primary-vividAzure text-sm font-semibold mb-4">Teams & Workflows</span>
-              <h3 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Manage Teams, Orchestrate Workflows</h3>
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-vividAzure/15 border border-primary-vividAzure/30 text-primary-vividAzure text-sm font-semibold mb-4">Teams & Agentic Workflows</span>
+              <h3 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">Manage Teams, Orchestrate Agentic Workflows</h3>
               <p className="text-gray-300 mb-6">Organize your engineering teams and connect them to purpose-built workflows. Every team gets the right context, the right processes, and the right automation.</p>
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Team-specific workflow assignments</span></li>
@@ -426,9 +420,9 @@ const EnterprisePage = () => {
               transition={{ duration: 0.6, delay: 0.1 }}
               className="lg:order-2"
             >
-              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-vividAzure/15 border border-primary-vividAzure/30 text-primary-vividAzure text-sm font-semibold mb-4">Workflow Orchestrator</span>
+              <span className="inline-block px-4 py-1.5 rounded-full bg-primary-vividAzure/15 border border-primary-vividAzure/30 text-primary-vividAzure text-sm font-semibold mb-4">Pipeline</span>
               <h3 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">A Ticket Board That Builds Software</h3>
-              <p className="text-gray-300 mb-6">Every column is an SDLC phase. Every phase runs a customized AI workflow. Tickets move from backlog to production with human approval at every gate.</p>
+              <p className="text-gray-300 mb-6">Every column is an SDLC phase. Every phase runs a customized agentic workflow. Tickets move from backlog to production with human approval at every gate.</p>
               <ul className="space-y-3 text-gray-300">
                 <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>10 SDLC phases with custom workflows</span></li>
                 <li className="flex items-start gap-2"><FaCheck className="w-4 h-4 text-primary-vividAzure mt-1 flex-shrink-0" /><span>Human-in-the-loop at every phase gate</span></li>
@@ -445,7 +439,7 @@ const EnterprisePage = () => {
               <div className="relative group">
                 <div className="absolute -inset-4 bg-gradient-to-r from-primary-vividAzure/20 to-primary-lightAzure/10 rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 <div className="relative rounded-xl overflow-hidden border border-primary-vividAzure/20 group-hover:border-primary-vividAzure/50 transition-all duration-500 shadow-2xl">
-                  <img src="/assets/Kanban Board.png" alt="Workflow Orchestrator Kanban Board" className="w-full h-auto" loading="lazy" />
+                  <img src="/assets/Kanban Board.png" alt="SDLC pipeline Kanban board" className="w-full h-auto" loading="lazy" />
                 </div>
               </div>
             </motion.div>
@@ -1110,9 +1104,8 @@ const EnterprisePage = () => {
                 <div>
                   <h3 className="text-lg font-bold text-primary-lightAzure mb-3">INTEGRATIONS (Optional):</h3>
                   <ul className="text-gray-400 space-y-1">
-                    <li>• GitHub or GitLab</li>
-                    <li>• Jira or Linear</li>
-                    <li>• Slack</li>
+                    <li>• GitHub or Bitbucket</li>
+                    <li>• Jira, Redmine, or GitHub</li>
                     <li>• Jenkins or CI/CD</li>
                   </ul>
                 </div>

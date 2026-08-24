@@ -12,9 +12,9 @@ const ProductsSection = () => {
     'AI Service + Workflow Execution Engine',
     'Agentic workflows with deterministic orchestration',
     'Pre-built agents: Architect, Developer, QA, DevOps, Docs, RCA',
-    'Full GitHub/GitLab, Jira/Linear, Slack, CI/CD integration',
+    'Full GitHub, Bitbucket, Jira, Redmine, CI/CD integration',
     'On-prem deployment with full data control',
-    '3-5x development velocity with 85%+ test coverage',
+    '2-5x development velocity with 85%+ test coverage',
     'Human-in-the-loop at every step'
   ]
 

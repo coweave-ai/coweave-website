@@ -63,7 +63,7 @@ const ContactPage = () => {
     {
       icon: FaShieldAlt,
       title: 'Security & Compliance',
-      description: 'SOC 2, SAML SSO, audit logging, custom retention'
+      description: 'SOC 2, audit logging, custom retention'
     }
   ];
 

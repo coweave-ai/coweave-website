@@ -205,7 +205,7 @@ const PrivacyPage = () => {
                   information against unauthorized access, alteration, disclosure, or destruction. These measures include:
                 </p>
                 <ul className="text-gray-400 list-disc list-inside space-y-2 mb-4">
-                  <li><strong className="text-white">Encryption at Rest:</strong> All data is encrypted using AES-256 encryption</li>
+                  <li><strong className="text-white">Encryption at Rest:</strong> Sensitive data (credentials, tokens, and secrets) is encrypted using AES-256-GCM</li>
                   <li><strong className="text-white">Encryption in Transit:</strong> All communications use TLS 1.3 encryption</li>
                   <li><strong className="text-white">Access Controls:</strong> Role-based access controls and multi-factor authentication</li>
                   <li><strong className="text-white">Network Security:</strong> Firewalls, intrusion detection, and DDoS protection</li>

@@ -26,7 +26,6 @@ const Navigation = () => {
   const navLinks = [
     { label: 'Platform', href: '/platform' },
     { label: 'Features', href: '/features' },
-    { label: 'Docs', href: '/docs' },
     { label: 'Blog', href: '/blog' },
     { label: 'About', href: '/about' },
   ];

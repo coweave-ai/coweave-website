@@ -345,7 +345,7 @@ const AboutPage = () => {
                 That's a responsibility we take seriously. Every workflow, every automation, every line of AI-assisted code must be production-ready — because it touches real lives.
               </p>
               <p>
-                The early results speak for themselves. Teams using CoWeave see up to a 3-5x increase in delivery velocity. Engineers reclaim 4+ hours per day for strategic work. Onboarding drops from months to weeks. And the quality doesn't just hold — it improves, because the process is consistent every time.
+                The early results speak for themselves. Teams using CoWeave see up to a 2-5x increase in delivery velocity. Engineers reclaim 4+ hours per day for strategic work. Onboarding drops from months to weeks. And the quality doesn't just hold — it improves, because the process is consistent every time.
               </p>
 
               <div className="bg-gradient-to-r from-primary-blue/40 to-transparent border-l-2 border-primary-lightAzure/60 rounded-r-lg pl-6 py-4 my-8">
