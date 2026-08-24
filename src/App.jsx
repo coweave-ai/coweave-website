@@ -3,10 +3,10 @@ import { BrowserRouter, Routes, Route, Navigate, useParams } from 'react-router-
 import { HelmetProvider } from 'react-helmet-async';
 import { ParticleProvider } from './context/ParticleContext';
 
-// Small helper: redirect a dynamic-segment route to its /preview/* equivalent
-// while preserving the :slug param. <Navigate> alone drops the param, which
-// is the bug behind /blog/some-post → /preview/blog (the list) instead of
-// /preview/blog/some-post (the post).
+// Small helper: redirect a dynamic-segment route to its target while
+// preserving the :slug param. <Navigate> alone drops the param, which would
+// turn /blog/some-post into /blog (the list) instead of
+// /blog/some-post (the post).
 const SlugRedirect = ({ to }) => {
   const { slug } = useParams();
   return <Navigate to={`${to}/${slug}`} replace />;
@@ -15,10 +15,7 @@ const SlugRedirect = ({ to }) => {
 import Layout from './components/Layout/Layout';
 import ScrollToTop from './components/common/ScrollToTop';
 
-// Public landing
-import LandingPage from './pages/LandingPage';
-
-// Gated full-site pages (served under /preview/*)
+// Full public site
 import HomePage from './pages/HomePage';
 import EnterprisePage from './pages/EnterprisePage';
 import FeaturesPage from './pages/FeaturesPage';
@@ -46,38 +43,40 @@ function App() {
           <ScrollToTop />
           <Routes>
             <Route path="/" element={<Layout />}>
-              {/* Public landing page */}
-              <Route index element={<LandingPage />} />
+              {/* Homepage — full product home */}
+              <Route index element={<HomePage />} />
 
-              {/* Always-public legal pages */}
+              {/* Public product site at clean root URLs */}
+              <Route path="platform" element={<EnterprisePage />} />
+              <Route path="features" element={<FeaturesPage />} />
+              <Route path="contact" element={<ContactPage />} />
+              <Route path="blog" element={<BlogListPage />} />
+              <Route path="blog/:slug" element={<BlogPostPage />} />
+              <Route path="docs" element={<DocsListPage />} />
+              <Route path="docs/:slug" element={<DocsPage />} />
+              <Route path="about" element={<AboutPage />} />
+              <Route path="careers" element={<CareersPage />} />
+
+              {/* Legal pages */}
               <Route path="privacy" element={<PrivacyPage />} />
               <Route path="terms" element={<TermsPage />} />
               <Route path="security" element={<SecurityPage />} />
 
-              {/* Full site under /preview/* — gated by middleware.js */}
-              <Route path="preview" element={<HomePage />} />
-              <Route path="preview/platform" element={<EnterprisePage />} />
-              <Route path="preview/features" element={<FeaturesPage />} />
-              <Route path="preview/contact" element={<ContactPage />} />
-              <Route path="preview/blog" element={<BlogListPage />} />
-              <Route path="preview/blog/:slug" element={<BlogPostPage />} />
-              <Route path="preview/docs" element={<DocsListPage />} />
-              <Route path="preview/docs/:slug" element={<DocsPage />} />
-              <Route path="preview/about" element={<AboutPage />} />
-              <Route path="preview/careers" element={<CareersPage />} />
+              {/* Back-compat redirects — old gated /preview/* links → clean URLs */}
+              <Route path="preview" element={<Navigate to="/" replace />} />
+              <Route path="preview/platform" element={<Navigate to="/platform" replace />} />
+              <Route path="preview/features" element={<Navigate to="/features" replace />} />
+              <Route path="preview/contact" element={<Navigate to="/contact" replace />} />
+              <Route path="preview/blog" element={<Navigate to="/blog" replace />} />
+              <Route path="preview/blog/:slug" element={<SlugRedirect to="/blog" />} />
+              <Route path="preview/docs" element={<Navigate to="/docs" replace />} />
+              <Route path="preview/docs/:slug" element={<SlugRedirect to="/docs" />} />
+              <Route path="preview/about" element={<Navigate to="/about" replace />} />
+              <Route path="preview/careers" element={<Navigate to="/careers" replace />} />
 
-              {/* Back-compat redirects — old external links → /preview/* */}
-              <Route path="cloud" element={<Navigate to="/preview/platform" replace />} />
-              <Route path="pricing" element={<Navigate to="/preview/features" replace />} />
-              <Route path="platform" element={<Navigate to="/preview/platform" replace />} />
-              <Route path="features" element={<Navigate to="/preview/features" replace />} />
-              <Route path="about" element={<Navigate to="/preview/about" replace />} />
-              <Route path="contact" element={<Navigate to="/preview/contact" replace />} />
-              <Route path="blog" element={<Navigate to="/preview/blog" replace />} />
-              <Route path="blog/:slug" element={<SlugRedirect to="/preview/blog" />} />
-              <Route path="docs" element={<Navigate to="/preview/docs" replace />} />
-              <Route path="docs/:slug" element={<SlugRedirect to="/preview/docs" />} />
-              <Route path="careers" element={<Navigate to="/preview/careers" replace />} />
+              {/* Legacy external links */}
+              <Route path="cloud" element={<Navigate to="/platform" replace />} />
+              <Route path="pricing" element={<Navigate to="/features" replace />} />
 
               <Route path="*" element={<NotFoundPage />} />
             </Route>

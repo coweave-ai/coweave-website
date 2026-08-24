@@ -318,8 +318,7 @@ const EnterprisePage = () => {
         title="CoWeave AI Platform - Human-Supervised SDLC Automation | CoWeave"
         description="Full-cycle SDLC automation platform with agentic workflows and deterministic orchestration. From PRD to production with human oversight at every step."
         keywords="SDLC automation, agentic workflows, enterprise software development, PRD to production, test-driven development, AI code generation, on-prem deployment, Claude AI, development velocity, automated testing"
-        url="/preview/platform"
-        noindex={true}
+        url="/platform"
       />
 
       {/* Hero Section */}
@@ -359,7 +358,7 @@ const EnterprisePage = () => {
                 Book a Demo
               </GlowButton>
               <GlowButton
-                to="/preview/features"
+                to="/features"
                 variant="secondary"
                 size="large"
               >
@@ -1185,7 +1184,7 @@ const EnterprisePage = () => {
             className="text-center mt-8"
           >
             <Link
-              to="/preview/features"
+              to="/features"
               className="text-primary-lightAzure hover:text-white transition-colors font-medium"
             >
               See Full Pricing Details →
@@ -1222,7 +1221,7 @@ const EnterprisePage = () => {
                 Book a Demo
               </GlowButton>
               <GlowButton
-                to="/preview/features"
+                to="/features"
                 variant="secondary"
                 size="large"
               >

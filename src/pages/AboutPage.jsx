@@ -87,8 +87,7 @@ const AboutPage = () => {
       <SEO
         title="About CoWeave - Building the Future of Enterprise-Grade Software"
         description="CoWeave is on a mission to help engineers weave with AI to ship reliable software faster. Learn about our mission, values, and vision."
-        url="/preview/about"
-        noindex={true}
+        url="/about"
       />
 
       {/* Hero — Cinematic Opening */}
@@ -505,7 +504,7 @@ const AboutPage = () => {
             </div>
 
             <Link
-              to="/preview/blog"
+              to="/blog"
               className="text-primary-lightAzure hover:text-white transition-colors font-medium"
             >
               Browse all articles →

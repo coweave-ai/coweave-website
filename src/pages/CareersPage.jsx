@@ -13,8 +13,7 @@ const CareersPage = () => {
       <SEO
         title="Careers at CoWeave - Join Our Team"
         description="Join CoWeave and help us transform software development. We're building the future of enterprise-grade code."
-        url="/preview/careers"
-        noindex={true}
+        url="/careers"
       />
 
       {/* Hero Section */}
