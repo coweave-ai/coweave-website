@@ -34,7 +34,7 @@ const FeaturesPage = () => {
       icon: FaCubes,
       features: [
         'Component-based context engineering (Base, Role, Repository, Workflow)',
-        'Hierarchical context assembly',
+        'Hierarchical assembly into a single optimized prompt',
         'Context version control with full history',
         'Team collaboration with RBAC',
         'API access for CI/CD integration',
