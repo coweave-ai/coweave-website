@@ -73,7 +73,7 @@ const FeaturesPage = () => {
         'Jira / Linear',
         'Slack',
         'Jenkins / CI-CD pipelines',
-        'Works with Cursor, Copilot, Claude Code, any AI tool',
+        'Claude Code',
       ]
     },
     {

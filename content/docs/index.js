@@ -13,13 +13,13 @@
 export const docs = [
   {
     slug: 'deploying-coweave-single-vm',
-    title: 'Self-Hosting CoWeave: From Tarball to Running Platform in 45 Minutes',
+    title: 'Self-Hosting CoWeave: From Tarball to Running Platform',
     excerpt:
-      'You just received your CoWeave package. Here\'s the complete walkthrough — directory layout, values files, infrastructure script, and deployment — designed to get you from a fresh VM to a running platform before lunch.',
+      'You just received your CoWeave package. Here\'s the complete walkthrough — directory layout, values files, infrastructure script, and deployment — to get you from a fresh VM to a running platform.',
     category: 'setup',
     orderIndex: 1,
-    readingTime: '10 min read',
-    lastUpdated: '2026-04-12',
+    readingTime: '15 min read',
+    lastUpdated: '2026-08-24',
   },
 ];
 
