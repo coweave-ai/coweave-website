@@ -59,8 +59,7 @@ const DocsListPage = () => {
       <SEO
         title="Docs - CoWeave"
         description="Setup, installation, operations, and reference documentation for the CoWeave platform."
-        url="/preview/docs"
-        noindex={true}
+        url="/docs"
       />
 
       {/* Hero */}
@@ -223,7 +222,7 @@ const DocsListPage = () => {
                     transition={{ duration: 0.4, delay: index * 0.05 }}
                   >
                     <Link
-                      to={`/preview/docs/${doc.slug}`}
+                      to={`/docs/${doc.slug}`}
                       className="block bg-primary-blue/30 backdrop-blur-lg border border-primary-vividAzure/20 rounded-xl p-6 md:p-8 hover:border-primary-vividAzure/50 hover:bg-primary-blue/40 transition-all duration-300 group"
                     >
                       {doc.category && (

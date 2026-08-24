@@ -84,7 +84,7 @@ const ProductsSection = () => {
                 Book a Demo
               </GlowButton>
               <GlowButton
-                to="/preview/features"
+                to="/features"
                 variant="secondary"
                 className="flex-1"
               >
@@ -103,7 +103,7 @@ const ProductsSection = () => {
           className="text-center mt-12"
         >
           <Link
-            to="/preview/platform"
+            to="/platform"
             className="text-lg text-primary-lightAzure hover:text-white transition-colors font-medium"
           >
             Learn More About the Platform →

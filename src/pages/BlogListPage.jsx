@@ -57,8 +57,7 @@ const BlogListPage = () => {
       <SEO
         title="Blog - CoWeave"
         description="Insights on AI-assisted development, context engineering, and enterprise-grade code practices from the CoWeave team."
-        url="/preview/blog"
-        noindex={true}
+        url="/blog"
       />
 
       {/* Hero Section */}
@@ -220,7 +219,7 @@ const BlogListPage = () => {
                     transition={{ duration: 0.4, delay: index * 0.05 }}
                   >
                     <Link
-                      to={`/preview/blog/${post.slug}`}
+                      to={`/blog/${post.slug}`}
                       className="block bg-primary-blue/30 backdrop-blur-lg border border-primary-vividAzure/20 rounded-xl p-6 md:p-8 hover:border-primary-vividAzure/50 hover:bg-primary-blue/40 transition-all duration-300 group"
                     >
                       {/* Category Badge */}

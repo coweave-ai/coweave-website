@@ -23,18 +23,13 @@ const Navigation = () => {
     setIsMenuOpen(false);
   }, [location]);
 
-  // Hide product nav links on the public landing page. Inside the gated
-  // preview site, rewrite all nav targets to their /preview/* equivalents.
-  const isLanding = location.pathname === '/';
-  const navLinks = isLanding
-    ? []
-    : [
-        { label: 'Platform', href: '/preview/platform' },
-        { label: 'Features', href: '/preview/features' },
-        { label: 'Docs', href: '/preview/docs' },
-        { label: 'Blog', href: '/preview/blog' },
-        { label: 'About', href: '/preview/about' },
-      ];
+  const navLinks = [
+    { label: 'Platform', href: '/platform' },
+    { label: 'Features', href: '/features' },
+    { label: 'Docs', href: '/docs' },
+    { label: 'Blog', href: '/blog' },
+    { label: 'About', href: '/about' },
+  ];
 
   return (
     <nav
@@ -46,10 +41,8 @@ const Navigation = () => {
     >
       <div className="container mx-auto px-6">
         <div className="flex items-center justify-between h-16 md:h-20 relative">
-          {/* Logo — points to the "home" of the current context.
-              Inside /preview/* it returns to /preview, not the public landing,
-              so prospects don't accidentally bounce out of the gated area. */}
-          <Link to={isLanding ? '/' : '/preview'} className="flex items-center">
+          {/* Logo — home */}
+          <Link to="/" className="flex items-center">
             <img
               src="/assets/coweave-logo-no-bg.png"
               alt="CoWeave"
@@ -70,17 +63,8 @@ const Navigation = () => {
             ))}
           </div>
 
-          {/* Auth + CTA */}
+          {/* CTA */}
           <div className="hidden md:flex items-center space-x-4">
-            {!isLanding && (
-              <Link
-                to="/"
-                className="text-sm text-gray-400 hover:text-white transition-colors"
-                title="Return to the public site"
-              >
-                ← Public site
-              </Link>
-            )}
             <GlowButton
               href={urls.bookDemo}
               variant="primary"
@@ -128,14 +112,6 @@ const Navigation = () => {
               </div>
 
               <div className="border-t border-primary-blue/30 pt-4 space-y-3">
-                {!isLanding && (
-                  <Link
-                    to="/"
-                    className="block py-2 text-sm text-gray-400 hover:text-white"
-                  >
-                    ← Public site
-                  </Link>
-                )}
                 <GlowButton
                   href={urls.bookDemo}
                   variant="primary"

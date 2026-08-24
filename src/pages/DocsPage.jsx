@@ -22,7 +22,7 @@ const DocsPage = () => {
   }, [slug, doc]);
 
   if (!doc) {
-    return <Navigate to="/preview/docs" replace />;
+    return <Navigate to="/docs" replace />;
   }
 
   const formatDate = (dateString) =>
@@ -37,8 +37,7 @@ const DocsPage = () => {
       <SEO
         title={`${doc.title} - CoWeave Docs`}
         description={doc.excerpt}
-        url={`/preview/docs/${doc.slug}`}
-        noindex={true}
+        url={`/docs/${doc.slug}`}
       />
 
       {/* Hero */}
@@ -52,7 +51,7 @@ const DocsPage = () => {
           >
             {/* Back link */}
             <Link
-              to="/preview/docs"
+              to="/docs"
               className="inline-flex items-center gap-2 text-primary-lightAzure hover:text-white transition-colors mb-8"
             >
               <FaArrowLeft className="w-4 h-4" />
@@ -119,7 +118,7 @@ const DocsPage = () => {
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto flex flex-col sm:flex-row gap-4 justify-between items-center">
             <Link
-              to="/preview/docs"
+              to="/docs"
               className="inline-flex items-center gap-2 text-primary-lightAzure hover:text-white transition-colors"
             >
               <FaArrowLeft className="w-4 h-4" />
