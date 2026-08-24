@@ -11,17 +11,12 @@ const SecurityPage = () => {
     {
       icon: FaLock,
       title: 'Encryption at Rest',
-      description: 'All data is encrypted using AES-256 encryption when stored in our databases.',
+      description: 'Sensitive data — credentials, tokens, and secrets — is encrypted at rest with AES-256-GCM.',
     },
     {
       icon: FaShieldAlt,
       title: 'Encryption in Transit',
       description: 'All network communications use TLS 1.3 for secure data transmission.',
-    },
-    {
-      icon: FaUserShield,
-      title: 'SAML SSO',
-      description: 'Integrate with your identity provider (Okta, Azure AD, Google Workspace) for single sign-on.',
     },
     {
       icon: FaClipboardCheck,

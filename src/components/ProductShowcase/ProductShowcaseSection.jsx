@@ -37,12 +37,12 @@ const showcaseItems = [
   },
   {
     image: '/assets/Kanban Board.png',
-    alt: 'Kanban Board - SDLC workflow orchestration',
-    badge: 'Workflow Orchestrator',
+    alt: 'Kanban Board — SDLC pipeline',
+    badge: 'Pipeline',
     title: 'A Ticket Board That Actually Builds Software',
-    subtitle: 'Every column is an SDLC phase. Every phase runs a customized AI workflow.',
+    subtitle: 'Every column is an SDLC phase. Every phase runs a customized agentic workflow.',
     description:
-      'This isn\'t another Jira clone. The Workflow Orchestrator tracks tickets from backlog to production—and at each phase, it triggers purpose-built AI workflows that generate architecture docs, write tests first, implement code, run reviews, and validate compliance. Human-supervised at every gate.',
+      'This isn\'t another Jira clone. Your SDLC pipeline tracks tickets from backlog to production—and at each phase, it orchestrates purpose-built agentic workflows that generate architecture docs, write tests first, implement code, run reviews, and validate compliance. Human-supervised at every gate.',
     highlights: [
       'Backlog to Deploy — 10 SDLC phases with custom workflows at each step',
       'AI-powered execution — architecture, TDD, implementation, QA, and deployment',

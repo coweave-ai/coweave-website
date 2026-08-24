@@ -136,7 +136,7 @@ const Footer = () => {
         <div className="py-6 border-t border-primary-vividAzure/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} CoWeave.ai. All rights reserved.
+              © {new Date().getFullYear()} CoWeave. All rights reserved.
             </p>
             <div className="flex items-center gap-6 text-sm">
               <Link
