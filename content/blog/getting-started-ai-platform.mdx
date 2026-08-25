@@ -11,7 +11,7 @@ CoWeave AI Platform combines two powerful systems:
 | Component | Purpose | Setup Time |
 |-----------|---------|------------|
 | **Context Engineering Studio** | Codify your team's standards and practices | 1-2 days |
-| **n8n Workflow Engine** | Orchestrate AI agents through your SDLC | 1 day |
+| **CoWeave Workflow** (n8n engine) | Orchestrate AI agents through your SDLC | 1 day |
 
 **Total setup: ~3 days to your first automated workflow.**
 
@@ -21,12 +21,12 @@ CoWeave AI Platform combines two powerful systems:
 
 Before you begin:
 
-- [ ] [On-prem deployment completed (K8s cluster running)](/preview/docs/deploying-coweave-single-vm)
+- [ ] [On-prem deployment completed (K8s cluster running)](/docs/deploying-coweave-single-vm)
 - [ ] Claude license configured (BYOL - Max or Enterprise)
 - [ ] GitHub/GitLab repository connected
 - [ ] Admin credentials for n8n and CE Studio
 
-> 💡 **Don't have the platform installed yet?** Start with [Self-Hosting CoWeave: From Tarball to Running Platform in 45 Minutes](/preview/docs/deploying-coweave-single-vm) — that walks you from the package we sent you to a working install. This guide picks up where that one leaves off.
+> 💡 **Don't have the platform installed yet?** Start with [Self-Hosting CoWeave: From Tarball to Running Platform](/docs/deploying-coweave-single-vm) — that walks you from the package we sent you to a working install. This guide picks up where that one leaves off.
 
 ---
 
@@ -59,18 +59,18 @@ Quick summary of what you'll set up:
 
 ### Step 2: Explore the Workflow Library
 
-CoWeave comes with **45 pre-built workflows** organized by SDLC phase:
+CoWeave ships **34 pre-built workflows** organized by SDLC phase:
 
 | Category | Workflows | Purpose |
 |----------|-----------|---------|
-| **Architecture** | 2 | Design systems, review architecture |
-| **Development** | 6 | Implement features, TDD, diagnostics |
-| **Code Review** | 2 | AI-driven code review, completeness check |
-| **QA & Testing** | 12 | Test execution, infrastructure, deployment |
-| **RCA** | 1 | Root cause analysis of failures |
-| **Git Integration** | 2 | Setup repos, commit and publish |
-| **GitHub** | 7 | Issues, PRs, branches, files |
-| **Google Workspace** | 6 | Docs, Sheets, Slides automation |
+| **Requirements / PRD** | 4 | Generate, diff, and review PRDs |
+| **Architecture** | 4 | Design systems, review architecture, reverse-engineer |
+| **Planning** | 1 | Decompose requirements into implementable units |
+| **Development** | 3 | Implement features, TDD, code review |
+| **QA & Testing** | 13 | Test authoring, execution, environments, infra, deployment |
+| **Deployment** | 1 | DevOps deployment validation |
+| **RCA & Diagnostics** | 3 | Root cause analysis, diagnostics, ticket RCA |
+| **Issue & PR Management** | 5 | Issue completeness, workspace cleanup, PR create/merge, ticket generation |
 
 **To explore:**
 1. Click **Workflows** in the left sidebar
@@ -194,23 +194,25 @@ work-in-progress/issue-{N}/
 
 ---
 
-## The 11 AI Roles
+## The 13 AI Roles
 
-Your platform includes specialized AI agents:
+Each workflow invokes a specialized AI **role**. The 13 roles CoWeave ships:
 
 | Role | What It Does |
 |------|--------------|
-| **Architect AI** | System design, architecture patterns |
-| **Developer AI** | Code implementation |
-| **Code Reviewer AI** | Reviews code, identifies gaps |
-| **QA AI** | Test execution and validation |
-| **RCA AI** | Root cause analysis of failures |
-| **Classifier AI** | Issue routing and classification |
-| **Documentation AI** | Auto-generates docs |
-| **PM AI** | PRD generation |
-| **Support AI** | Customer support assistance |
-| **Pre-Sales AI** | Technical sales support |
-| **Post-Sales AI** | Customer success |
+| **Product Manager** | PRD generation and requirements |
+| **PRD Reviewer** | Reviews PRDs for completeness and feasibility |
+| **Architect** | System design, architecture patterns |
+| **Architect Reviewer** | Reviews technical designs |
+| **Developer** | Code implementation (TDD) |
+| **Code Reviewer** | Reviews code, identifies gaps |
+| **QA Engineer** | Test authoring and execution |
+| **QA Reviewer** | Reviews test coverage and results |
+| **RCA Engineer** | Root cause analysis of failures |
+| **Completeness Assessor** | Checks issue and iteration completeness |
+| **Infrastructure Engineer** | Build, deploy, and environment setup |
+| **Technical Writer** | Auto-generates documentation |
+| **Support Engineer** | Customer support assistance |
 
 Each role uses your **CE Studio contexts** for consistent outputs.
 
@@ -249,7 +251,7 @@ Workflow Prompt ──┘
 
 ### 1. Architecture Design
 
-**Workflow:** `architect-design-multiple-issues-workflow`
+**Workflow:** `architecture-design`
 
 **What it does:**
 - Reads requirements from GitHub issues
@@ -263,7 +265,7 @@ Workflow Prompt ──┘
 
 ### 2. Development Implementation
 
-**Workflow:** `developer-implement-multiple-issues-workflow`
+**Workflow:** `development-implement`
 
 **What it does:**
 - Reads TDD and requirements
@@ -273,7 +275,7 @@ Workflow Prompt ──┘
 
 ### 3. Code Review
 
-**Workflow:** `developer-reviewer-multiple-issues-workflow`
+**Workflow:** `development-review`
 
 **What it does:**
 - Reviews implementation against TDD
@@ -282,12 +284,12 @@ Workflow Prompt ──┘
 
 ### 4. PRD Generation
 
-**Workflow:** `prd-generator-workflow`
+**Workflow:** `prd-generate`
 
 **What it does:**
 - Takes meeting notes or requirements input
-- Generates comprehensive PRD
-- Multiple input modes (single source, multi-source, with Claude analysis)
+- Generates a comprehensive 14-section PRD, committed to Git
+- Pair it with `prd-reverse-engr` to document an existing product, or `prd-review` to review a draft
 
 ---
 
@@ -315,10 +317,10 @@ Iteration N: Continue until QA passes
 
 | Service | URL Pattern |
 |---------|-------------|
-| **n8n Dashboard** | `https://n8n.your-domain.com` |
-| **CE Studio** | `https://ce-studio.your-domain.com` |
-| **AI Service** | `https://ai.your-domain.com/mcp-workflow` |
-| **Metrics** | `https://grafana.your-domain.com` |
+| **CE Studio** | `https://ce-studio.yourcompany.com` |
+| **Workflow editor (n8n)** | `https://coweave-workflow.yourcompany.com` |
+| **AI Service** | in-cluster only (`*.svc.cluster.local`) — no public host by default |
+| **Metrics (Grafana)** | via the `coweave-observability` namespace |
 
 ---
 
