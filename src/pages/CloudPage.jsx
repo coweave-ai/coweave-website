@@ -775,11 +775,7 @@ const CloudPage = () => {
                 </li>
                 <li className="flex items-start gap-3 text-gray-300">
                   <FaCheck className="w-4 h-4 text-primary-vividAzure mt-1" />
-                  <span>3-5x development velocity</span>
-                </li>
-                <li className="flex items-start gap-3 text-gray-300">
-                  <FaCheck className="w-4 h-4 text-primary-vividAzure mt-1" />
-                  <span>85%+ test coverage automatically</span>
+                  <span>2-5x development velocity</span>
                 </li>
               </ul>
               <Link

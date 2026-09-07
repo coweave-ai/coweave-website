@@ -14,7 +14,7 @@ const ProductsSection = () => {
     'Pre-built agents: Architect, Developer, QA, DevOps, Docs, RCA',
     'Full GitHub, Bitbucket, Jira, Redmine, CI/CD integration',
     'On-prem deployment with full data control',
-    '2-5x development velocity with 85%+ test coverage',
+    '2-5x development velocity',
     'Human-in-the-loop at every step'
   ]
 

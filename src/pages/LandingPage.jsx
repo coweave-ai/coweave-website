@@ -21,7 +21,7 @@ const LandingPage = () => {
     <>
       <SEO
         title="CoWeave — AI-Assisted SDLC for Enterprise Teams"
-        description="Codify your SDLC with prompts and agentic workflows. 4× faster development, 75% MTTR reduction, 85%+ test coverage — in production today."
+        description="Codify your SDLC with prompts and agentic workflows — standardized quality across your entire software delivery lifecycle."
         keywords="AI SDLC automation, agentic workflows, prompt engineering, enterprise software delivery, CoWeave"
         url="/"
       />

@@ -54,7 +54,6 @@ const EnterprisePage = () => {
       title: 'End-to-End SDLC Orchestration',
       description: 'Orchestrate your entire pipeline—from PRD to production.',
       checkpoints: [
-        'Reduce cycle time by 40-60%',
         'Maintain quality standards throughout',
         'Every phase orchestrated with human oversight'
       ]
@@ -177,7 +176,6 @@ const EnterprisePage = () => {
       benefits: [
         'AI provides context instantly—unblocked immediately',
         'Agents propose solutions, you review and approve',
-        'Ship 60% more per sprint',
         'Focus on creative work, not repetitive tasks'
       ]
     },
@@ -186,9 +184,7 @@ const EnterprisePage = () => {
       icon: FaUsers,
       benefits: [
         '2-5x development velocity',
-        '85%+ test coverage automatically',
         'Consistent quality across all developers',
-        'Reduce cycle time by 40-60%',
         'PRD → Production in days, not weeks'
       ]
     },
@@ -366,8 +362,6 @@ const EnterprisePage = () => {
               <span>Claude BYOL Required</span>
               <span>•</span>
               <span>2-5x Development Velocity</span>
-              <span>•</span>
-              <span>85%+ Test Coverage</span>
             </div>
           </motion.div>
         </div>
@@ -828,7 +822,6 @@ const EnterprisePage = () => {
                 <div>
                   <h3 className="text-xl font-bold text-primary-lightAzure mb-4">TIMELINE:</h3>
                   <ul className="space-y-2 text-gray-300">
-                    <li>• 10 weeks vs 40 weeks traditional (4x faster)</li>
                     <li>• 3-day integration (not 3 weeks or months)</li>
                   </ul>
                   <h3 className="text-xl font-bold text-primary-lightAzure mt-6 mb-4">THE SECRET:</h3>

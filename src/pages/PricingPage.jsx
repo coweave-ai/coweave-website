@@ -158,8 +158,7 @@ const PricingPage = () => {
     'ALL Workflows & Agents (Architect, Dev, QA, DevOps, Doc, RCA)',
     'Full GitHub/GitLab/Jira/Linear/Slack/CI-CD integration',
     'PRD → TDD → Test → Code automation',
-    '85%+ test coverage automatically',
-    '3-5x development velocity',
+    '2-5x development velocity',
     'Enterprise compliance'
   ];
 
@@ -891,8 +890,7 @@ const PricingPage = () => {
                     'Want PRD → TDD → Test → Code → Deploy automation',
                     'Require on-prem deployment with full data control',
                     'Have Claude Max or Enterprise license (or can get one)',
-                    'Want 3-5x development velocity',
-                    'Need 85%+ test coverage automatically',
+                    'Want 2-5x development velocity',
                     'Want human-supervised automation at scale'
                   ].map((item, i) => (
                     <li key={i} className="flex items-start gap-3 text-gray-300">

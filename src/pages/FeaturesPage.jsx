@@ -48,7 +48,6 @@ const FeaturesPage = () => {
         'Claude-powered AI Service',
         'Deterministic workflow orchestration',
         'PRD* → TDD* → Test → Code automation',
-        '85%+ test coverage automatically',
         '2-5x development velocity',
         'Human-in-the-loop at every step',
       ]

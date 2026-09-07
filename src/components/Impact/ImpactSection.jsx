@@ -2,17 +2,10 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import StatCard from './StatCard'
 import AnimatedSection from '../common/AnimatedSection'
-import { FaBolt, FaRocket, FaCheckCircle, FaArrowDown } from 'react-icons/fa'
+import { FaRocket, FaCheckCircle, FaArrowDown } from 'react-icons/fa'
 
 const ImpactSection = () => {
   const stats = [
-    {
-      value: 75,
-      suffix: '%',
-      label: 'Reduction in Mean Time to Resolve (MTTR)',
-      icon: FaBolt,
-      delay: 0
-    },
     {
       value: 80,
       suffix: '%',
