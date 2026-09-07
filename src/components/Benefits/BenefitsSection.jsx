@@ -27,7 +27,6 @@ const groups = [
     iconColor: 'text-violet-400',
     benefits: [
       '2–5x development velocity',
-      '85%+ test coverage automatically',
       'Consistent quality across every developer',
       'PRD to Production in days, not weeks',
     ],

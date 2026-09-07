@@ -61,16 +61,6 @@ const Hero = () => {
           Same quality, every developer, every time. Standardized prompts and agentic workflows that eliminate variance across your entire SDLC.
         </motion.p>
 
-        {/* Concrete proof strip */}
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.75 }}
-          className="text-base md:text-lg text-primary-lightAzure/90 mb-12 max-w-3xl mx-auto font-medium"
-        >
-          4× faster development · 75% MTTR reduction · 85%+ test coverage — in production today.
-        </motion.p>
-
         {/* Primary CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
